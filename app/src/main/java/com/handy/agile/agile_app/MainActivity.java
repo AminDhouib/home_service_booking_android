@@ -23,10 +23,4 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-
-//    public void logInButton(View view){
-//        Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
-//        startActivityForResult(intent, 0);
-//    }
-
 }
