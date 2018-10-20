@@ -1,14 +1,13 @@
 package com.handy.agile.agile_app;
 
+import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.app.Activity;
 
-public class signUpActivity extends Activity {
+public class UserAccountActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_sign_up);
+        setContentView(R.layout.activity_user_account);
     }
-//amin is amin IOP
 }
