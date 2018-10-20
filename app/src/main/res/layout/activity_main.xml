@@ -15,4 +15,12 @@
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <Button
+        android:id="@+id/logInButton"
+        android:layout_width="318dp"
+        android:layout_height="104dp"
+        android:text="Button"
+        tools:layout_editor_absoluteX="47dp"
+        tools:layout_editor_absoluteY="151dp" />
+
 </android.support.constraint.ConstraintLayout>
