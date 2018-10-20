@@ -21,14 +21,14 @@
         tools:layout_editor_absoluteY="157dp">
 
         <TextView
-            android:id="@+id/WelcomeUserField"
+            android:id="@+id/tvWelcome"
             android:layout_width="105dp"
             android:layout_height="wrap_content"
             android:text="Welcome,"
             android:textAppearance="@style/TextAppearance.AppCompat.Large" />
 
         <TextView
-            android:id="@+id/userTextField"
+            android:id="@+id/tvUsername"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Username"
@@ -43,14 +43,14 @@
         tools:layout_editor_absoluteY="39dp">
 
         <TextView
-            android:id="@+id/loggedInAs"
+            android:id="@+id/tvLoggedInAs"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="you are logged in as "
             android:textAppearance="@style/TextAppearance.AppCompat.Headline" />
 
         <TextView
-            android:id="@+id/roleTextField"
+            android:id="@+id/tvRole"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Role"

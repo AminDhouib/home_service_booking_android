@@ -3,7 +3,7 @@ package com.handy.agile.agile_app;
 import android.os.Bundle;
 import android.app.Activity;
 
-public class signUpActivity extends Activity {
+public class SignUpActivity extends Activity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
