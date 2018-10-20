@@ -11,6 +11,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Welcome"
+        android:textSize="32sp"
         android:textAlignment="center"/>
 
     <LinearLayout
@@ -41,7 +42,22 @@
                 android:layout_centerInParent="true"/>
 
         </RelativeLayout>
+
     </LinearLayout>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="or"
+        android:textAlignment="center"/>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Sign up"
+        android:layout_centerInParent="true"/>
+    </RelativeLayout>
 
 
 
