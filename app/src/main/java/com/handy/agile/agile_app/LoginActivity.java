@@ -27,8 +27,32 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
 
+        bLogin.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                boolean valid = false;
+                //1. call verifyInfo()
+
+                if (valid) {
+                    // Intent to go to userAccountActivity
+                }
+
+                //if not valid: change editText for username and password to display
+                //"invalid username or password
+
+
+            }
+        });
+
 
     }
+
+    //Verify username and password entered
+    public boolean verifyInfo() {
+        throw new UnsupportedOperationException("verifyInfo() not implemented yet");
+    }
+
+
 
 
 }
