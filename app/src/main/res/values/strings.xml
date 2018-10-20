@@ -1,4 +1,5 @@
 <resources>
     <string name="app_name">AGILE-app</string>
     <string name="title_activity_sign_up">signUpActivity</string>
+    <string name="firstname">FirstName</string>
 </resources>
