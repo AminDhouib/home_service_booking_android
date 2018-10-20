@@ -79,7 +79,7 @@
             android:text="Confirm Password" />
 
         <EditText
-            android:id="@+id/confirmNewUser"
+            android:id="@+id/confirmNewUserPassword"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
@@ -113,10 +113,10 @@
     </LinearLayout>
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/bRegister"
         android:layout_width="220dp"
         android:layout_height="wrap_content"
-        android:text="Button"
+        android:text="Register"
         tools:layout_editor_absoluteX="95dp"
         tools:layout_editor_absoluteY="503dp" />
 </android.support.constraint.ConstraintLayout>
