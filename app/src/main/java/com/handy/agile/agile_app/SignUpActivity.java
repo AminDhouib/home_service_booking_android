@@ -50,7 +50,7 @@ public class SignUpActivity extends Activity {
                 boolean valid = false;
 
                 //1. call addUserToDB();
-//                addUsertoDB();
+                addUsertoDB();
 //                Intent goBackToLoginIntent = new Intent(SignUpActivity.this,LoginActivity.class);
 //                SignUpActivity.this.startActivity(goBackToLoginIntent);
             }
@@ -69,7 +69,7 @@ public class SignUpActivity extends Activity {
         String address = addressNewUser.getText().toString().trim();
 
         //2. validate input
-//        verifyInfo(name, lastName, email, password, confirmPassword, phoneNumber, address);
+        verifyInfo(name, lastName, email, password, confirmPassword, phoneNumber, address);
 
         //3. User registration
 

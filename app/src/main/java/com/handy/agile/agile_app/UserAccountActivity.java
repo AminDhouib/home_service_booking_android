@@ -9,15 +9,19 @@ import org.w3c.dom.Text;
 
 public class UserAccountActivity extends AppCompatActivity {
 
+    TextView tvUsername;
+    TextView tvRole;
+    TextView tvWelcome;
+    TextView tvLoggedInAs;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user_account);
 
-        final TextView tvUsername = (TextView) findViewById(R.id.tvUsername);
-        final TextView tvRole = (TextView) findViewById(R.id.tvRole);
-        final TextView tvWelcome = (TextView) findViewById(R.id.tvWelcome);
-        final TextView tvLoggedInAs = (TextView) findViewById(R.id.tvLoggedInAs);
+        tvUsername = (TextView) findViewById(R.id.tvUsername);
+        tvRole = (TextView) findViewById(R.id.tvRole);
+        tvWelcome = (TextView) findViewById(R.id.tvWelcome);
+        tvLoggedInAs = (TextView) findViewById(R.id.tvLoggedInAs);
     }
 }
