@@ -10,21 +10,16 @@ import android.widget.EditText;
 public class LoginActivity extends AppCompatActivity {
 
 
-    EditText etEmail = (EditText) findViewById(R.id.etEmail);
-    EditText etPassword = (EditText) findViewById(R.id.etPassword);
-    Button bSignUp = (Button) findViewById(R.id.bSingUp);
-    Button bLogin = (Button) findViewById(R.id.bLogin);
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-        etEmail = (EditText) findViewById(R.id.etEmail);
-        etPassword = (EditText) findViewById(R.id.etPassword);
-        bSignUp = (Button) findViewById(R.id.bSingUp);
-        bLogin = (Button) findViewById(R.id.bLogin);
+        final EditText etEmail = (EditText) findViewById(R.id.etEmail);
+        final EditText etPassword = (EditText) findViewById(R.id.etPassword);
+        final Button bSignUp = (Button) findViewById(R.id.bSingUp);
+        final Button bLogin = (Button) findViewById(R.id.bLogin);
 
         bSignUp.setOnClickListener(new View.OnClickListener() {
             @Override

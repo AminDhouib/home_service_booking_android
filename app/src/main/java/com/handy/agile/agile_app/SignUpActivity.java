@@ -3,26 +3,29 @@ package com.handy.agile.agile_app;
 import android.content.Intent;
 import android.os.Bundle;
 import android.app.Activity;
+
 import android.util.Patterns;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
+
+import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
+import static android.content.ContentValues.TAG;
+
 public class SignUpActivity extends Activity {
 
-     EditText firstNameNewUser;
-     EditText lastNameNewUser;
-     EditText emailNewUser;
-     EditText passwordNewUser;
-     EditText confirmNewUserPassword;
-     EditText phoneNumberNewUser;
-     EditText addressNewUser;
-     Button bRegister;
+    EditText firstNameNewUser;
+    EditText lastNameNewUser;
+    EditText emailNewUser;
+    EditText passwordNewUser;
+    EditText confirmNewUserPassword;
+    EditText phoneNumberNewUser;
+    EditText addressNewUser;
 
-     DatabaseReference databaseUsers;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,33 +40,25 @@ public class SignUpActivity extends Activity {
          phoneNumberNewUser = (EditText) findViewById(R.id.phoneNumberNewUser);
          addressNewUser = (EditText) findViewById(R.id.addressNewUser);
 
-         databaseUsers = FirebaseDatabase.getInstance().getReference();
 
-         bRegister = (Button) findViewById(R.id.bRegister);
+
+
+         final Button bRegister = (Button) findViewById(R.id.bRegister);
          bRegister.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 boolean valid = false;
-                //1. Call verifyInfo()
 
-                //2. if valid:
-                if (valid) {
-                    // a. Call addUserToDB()
-
-
-                    // b. Go back to login page
-                    Intent goBackToLoginIntent = new Intent(SignUpActivity.this,LoginActivity.class);
-                    SignUpActivity.this.startActivity(goBackToLoginIntent);
-                }
-
-
-                //if not valid: change editTexts that were not valid
+                //1. call addUserToDB();
+//                addUsertoDB();
+//                Intent goBackToLoginIntent = new Intent(SignUpActivity.this,LoginActivity.class);
+//                SignUpActivity.this.startActivity(goBackToLoginIntent);
             }
         });
     }
 
 
-    private boolean addUsertoDB() {
+    private void addUsertoDB() {
         //1. get inputs
         String name = firstNameNewUser.getText().toString().trim();
         String lastName = lastNameNewUser.getText().toString().trim();
@@ -73,9 +68,11 @@ public class SignUpActivity extends Activity {
         String phoneNumber = phoneNumberNewUser.getText().toString().trim();
         String address = addressNewUser.getText().toString().trim();
 
-        verifyInfo(name, lastName, email, password, confirmPassword, phoneNumber, address);
+        //2. validate input
+//        verifyInfo(name, lastName, email, password, confirmPassword, phoneNumber, address);
 
-        return true;
+        //3. User registration
+
 
     }
 
@@ -132,7 +129,7 @@ public class SignUpActivity extends Activity {
 
         //validate password
         if (password.length()<6) {
-            passwordNewUser.setError("Please enter a valid password");
+            passwordNewUser.setError("Minimum length of password should b 8 ");
             passwordNewUser.requestFocus();
             return;
         }
@@ -180,6 +177,7 @@ public class SignUpActivity extends Activity {
         }
 
     }
+
 
 
 
