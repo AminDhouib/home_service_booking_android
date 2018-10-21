@@ -1,6 +1,5 @@
 package com.handy.agile.agile_app;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.app.Activity;
 
@@ -8,13 +7,10 @@ import android.util.Patterns;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Spinner;
 
-
-import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-
-import static android.content.ContentValues.TAG;
 
 public class SignUpActivity extends Activity {
 
@@ -25,6 +21,9 @@ public class SignUpActivity extends Activity {
     EditText confirmNewUserPassword;
     EditText phoneNumberNewUser;
     EditText addressNewUser;
+    Spinner spinnerRole;
+
+    DatabaseReference databaseUser;
 
 
     @Override
@@ -39,9 +38,10 @@ public class SignUpActivity extends Activity {
          confirmNewUserPassword = (EditText) findViewById(R.id.confirmNewUserPassword);
          phoneNumberNewUser = (EditText) findViewById(R.id.phoneNumberNewUser);
          addressNewUser = (EditText) findViewById(R.id.addressNewUser);
+         spinnerRole = (Spinner) findViewById(R.id.spinnerRole);
 
 
-
+        databaseUser = FirebaseDatabase.getInstance().getReference();
 
          final Button bRegister = (Button) findViewById(R.id.bRegister);
          bRegister.setOnClickListener(new View.OnClickListener() {
@@ -51,6 +51,9 @@ public class SignUpActivity extends Activity {
 
                 //1. call addUserToDB();
                 addUsertoDB();
+
+
+                //2. go back to login screen
 //                Intent goBackToLoginIntent = new Intent(SignUpActivity.this,LoginActivity.class);
 //                SignUpActivity.this.startActivity(goBackToLoginIntent);
             }
@@ -67,11 +70,22 @@ public class SignUpActivity extends Activity {
         String confirmPassword = confirmNewUserPassword.getText().toString().trim();
         String phoneNumber = phoneNumberNewUser.getText().toString().trim();
         String address = addressNewUser.getText().toString().trim();
+        String role = spinnerRole.getSelectedItem().toString().trim();
 
         //2. validate input
         verifyInfo(name, lastName, email, password, confirmPassword, phoneNumber, address);
 
-        //3. User registration
+        //3. Create user account
+        String id = databaseUser.push().getKey();
+        User newUser;
+        if (role.equals("Home Owner")) {
+            newUser = new HomeOwner(name, lastName, email, password, phoneNumber, address, role, id);
+        } else {
+            newUser = new ServiceProvider(name, lastName, email, password, phoneNumber, address, role, id);
+        }
+
+        //4. Add user to database
+        databaseUser.child(id).setValue(newUser);
 
 
     }
