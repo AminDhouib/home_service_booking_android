@@ -73,110 +73,111 @@ public class SignUpActivity extends Activity {
         String phoneNumber = phoneNumberNewUser.getText().toString().trim();
         String address = addressNewUser.getText().toString().trim();
 
+        verifyInfo(name, lastName, email, password, confirmPassword, phoneNumber, address);
+
         return true;
 
     }
 
-    private boolean verifyInfo(String name, String lastName, String email, String password,
+    private void verifyInfo(String name, String lastName, String email, String password,
                                 String confirmPassword, String phoneNumber, String address) {
         //if name is empty
         if (name.isEmpty()) {
             firstNameNewUser.setError("Name is required");
             firstNameNewUser.requestFocus();
-            return false;
+            return;
         }
 
         //validate name
         if (!name.matches("[A-Z][a-zA-Z]*")) {
             firstNameNewUser.setError("Please enter a valid name");
             firstNameNewUser.requestFocus();
-            return false;
+            return;
         }
 
         //if lastName is empty
         if (lastName.isEmpty()) {
             lastNameNewUser.setError("last name is required");
             lastNameNewUser.requestFocus();
-            return false;
+            return;
         }
 
         //validate lastName
         if (!lastName.matches("[a-zA-z]+([ '-][a-zA-Z]+)*")) {
             lastNameNewUser.setError("Please enter a valid last name");
             lastNameNewUser.requestFocus();
-            return false;
+            return;
         }
 
         //if email is empty
         if (email.isEmpty()) {
             emailNewUser.setError("email is required");
             emailNewUser.requestFocus();
-            return false;
+            return;
         }
 
         //validate email
         if (!Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
             emailNewUser.setError("Please enter a valid email");
             emailNewUser.requestFocus();
-            return false;
+            return;
         }
 
         //if password is empty
         if (password.isEmpty()) {
             passwordNewUser.setError("password is required");
             passwordNewUser.requestFocus();
-            return false;
+            return;
         }
 
         //validate password
         if (password.length()<6) {
             passwordNewUser.setError("Please enter a valid password");
             passwordNewUser.requestFocus();
-            return false;
+            return;
         }
 
         //if confirmPassword is empty
         if (confirmPassword.isEmpty()) {
             confirmNewUserPassword.setError("You need to confirm your password");
             confirmNewUserPassword.requestFocus();
-            return false;
+            return;
         }
 
         //validate confirmPassword
         if (!confirmPassword.equals(password)) {
             confirmNewUserPassword.setError("passwords do not match");
             confirmNewUserPassword.requestFocus();
-            return false;
+            return;
         }
 
         //if phoneNumber is empty
         if (phoneNumber.isEmpty()) {
             phoneNumberNewUser.setError("phone number is required");
             phoneNumberNewUser.requestFocus();
-            return false;
+            return;
         }
 
         //validate phoneNumber
         if (!Patterns.PHONE.matcher(phoneNumber).matches()) {
             phoneNumberNewUser.setError("Please enter a valid phone number");
             phoneNumberNewUser.requestFocus();
-            return false;
+            return;
         }
 
         //if address is empty
         if (address.isEmpty()) {
             addressNewUser.setError("Name is required");
             addressNewUser.requestFocus();
-            return false;
+            return;
         }
 
         //validate address
         if (!address.matches("\\d+\\s+([a-zA-Z]+|[a-zA-Z]+\\s[a-zA-Z]+)")) {
             addressNewUser.setError("Please enter a valid address");
             addressNewUser.requestFocus();
-            return false;
+            return;
         }
-        return true;
 
     }
 
