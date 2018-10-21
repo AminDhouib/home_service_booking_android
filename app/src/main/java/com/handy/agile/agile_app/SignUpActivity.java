@@ -9,21 +9,30 @@ import android.widget.EditText;
 
 public class SignUpActivity extends Activity {
 
+     EditText firstNameNewUser;
+     EditText lastNameNewUser;
+     EditText emailNewUser;
+     EditText passwordNewUser;
+     EditText confirmNewUserPassword;
+     EditText phoneNumberNewUser;
+     EditText addressNewUser;
+     Button bRegister;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_up);
 
-        final EditText firstNameNewUser = (EditText) findViewById(R.id.firstNameNewUser);
-        final EditText lastNameNewUser = (EditText) findViewById(R.id.lastNameNewUser);
-        final EditText emailNewUser = (EditText) findViewById(R.id.emailNewUser);
-        final EditText passwordNewUser = (EditText) findViewById(R.id.passwordNewUser);
-        final EditText confirmNewUserPassword = (EditText) findViewById(R.id.confirmNewUserPassword);
-        final EditText phoneNumberNewUser = (EditText) findViewById(R.id.phoneNumberNewUser);
-        final EditText addressNewUser = (EditText) findViewById(R.id.addressNewUser);
+         firstNameNewUser = (EditText) findViewById(R.id.firstNameNewUser);
+         lastNameNewUser = (EditText) findViewById(R.id.lastNameNewUser);
+         emailNewUser = (EditText) findViewById(R.id.emailNewUser);
+         passwordNewUser = (EditText) findViewById(R.id.passwordNewUser);
+         confirmNewUserPassword = (EditText) findViewById(R.id.confirmNewUserPassword);
+         phoneNumberNewUser = (EditText) findViewById(R.id.phoneNumberNewUser);
+         addressNewUser = (EditText) findViewById(R.id.addressNewUser);
 
-        final Button bRegister = (Button) findViewById(R.id.bRegister);
-        bRegister.setOnClickListener(new View.OnClickListener() {
+         bRegister = (Button) findViewById(R.id.bRegister);
+         bRegister.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 boolean valid = false;
@@ -31,7 +40,7 @@ public class SignUpActivity extends Activity {
 
                 //2. if valid:
                 if (valid) {
-                    // a. Call addAccountToDB()
+                    // a. Call addUserToDB()
 
 
                     // b. Go back to login page
@@ -53,7 +62,7 @@ public class SignUpActivity extends Activity {
         throw new UnsupportedOperationException("verfiyInfo() needs to be implemented");
     }
 
-    public boolean addAccountToDB() {
+    public boolean addUserToDB() {
         //verify it was successfully added
         throw new UnsupportedOperationException("addAccountToDB() needs to be implemented");
     }
