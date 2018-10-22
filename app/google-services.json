@@ -23,6 +23,14 @@
           }
         },
         {
+          "client_id": "323240664222-th2uumf51e5nib8pbidohbb39qnkakdc.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.handy.agile.agile_app",
+            "certificate_hash": "bf466860328246c5da1ae39f492c4825af37df92"
+          }
+        },
+        {
           "client_id": "323240664222-ajssdg8knihtmk5j9s8h9ka2k81pbnaj.apps.googleusercontent.com",
           "client_type": 3
         }
