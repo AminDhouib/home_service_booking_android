@@ -11,16 +11,15 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Welcome"
-        android:textSize="32sp"
-        android:textAlignment="center"/>
+        android:textAlignment="center"
+        android:textSize="32sp" />
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:background="@color/grey"
+        android:layout_height="156dp"
         android:layout_marginLeft="10px"
-        android:layout_marginRight="10px">
+        android:layout_marginRight="10px"
+        android:orientation="vertical">
 
 
         <EditText
@@ -44,18 +43,19 @@
             <Button
                 android:id="@+id/bLogin"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_height="51dp"
                 android:layout_centerInParent="true"
                 android:text="Login" />
 
         </RelativeLayout>
 
     </LinearLayout>
+
     <TextView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="37dp"
         android:text="or"
-        android:textAlignment="center"/>
+        android:textAlignment="center" />
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
@@ -64,7 +64,9 @@
             android:id="@+id/bSingUp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_centerInParent="true"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="0dp"
             android:text="Sign up" />
     </RelativeLayout>
 
