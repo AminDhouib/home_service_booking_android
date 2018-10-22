@@ -1,5 +1,6 @@
 package com.handy.agile.agile_app;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.TextClock;
@@ -9,14 +10,21 @@ import org.w3c.dom.Text;
 
 public class UserAccountActivity extends AppCompatActivity {
 
+    TextView tvUsername;
+    TextView tvRole;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        Intent intent = getIntent();
+        User user = (User)intent.getSerializableExtra("User");
         setContentView(R.layout.activity_user_account);
 
-        final TextView tvUsername = (TextView) findViewById(R.id.tvUsername);
-        final TextView tvRole = (TextView) findViewById(R.id.tvRole);
-        final TextView tvWelcome = (TextView) findViewById(R.id.tvWelcome);
-        final TextView tvLoggedInAs = (TextView) findViewById(R.id.tvLoggedInAs);
+        tvUsername = (TextView) findViewById(R.id.tvUsername);
+        tvUsername.setText("Welcome, " + user.getName());
+        tvRole = (TextView) findViewById(R.id.tvRole);
+        tvRole.setText("Role: " + user.getRole());
+
     }
 }
