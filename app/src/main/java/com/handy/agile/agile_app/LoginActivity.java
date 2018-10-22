@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.Gravity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -32,6 +33,16 @@ public class LoginActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+        Intent intent = getIntent();
+
+        //Check if we are coming from a new registration, if yes display toast
+        if(intent.getBooleanExtra("registered", false)){
+            Toast toast = Toast.makeText(getApplicationContext(), "Successfully Registered", Toast.LENGTH_LONG);
+            toast.setGravity(Gravity.TOP, 0, 0);
+            toast.show();
+
+        }
+
 
         etEmail = (EditText) findViewById(R.id.etEmail);
         etPassword = (EditText) findViewById(R.id.etPassword);
@@ -57,8 +68,7 @@ public class LoginActivity extends AppCompatActivity {
                     // Intent to go to userAccountActivity
                 }
 
-                //if not valid: change editText for username and password to display
-                //"invalid username or password
+
 
 
             }

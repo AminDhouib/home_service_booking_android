@@ -1,16 +1,21 @@
 package com.handy.agile.agile_app;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.app.Activity;
 
+import android.support.annotation.NonNull;
 import android.util.Patterns;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
 
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 public class SignUpActivity extends Activity {
 
@@ -47,15 +52,8 @@ public class SignUpActivity extends Activity {
          bRegister.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                boolean valid = false;
-
-                //1. call addUserToDB();
-                addUsertoDB();
-
-
-                //2. go back to login screen
-//                Intent goBackToLoginIntent = new Intent(SignUpActivity.this,LoginActivity.class);
-//                SignUpActivity.this.startActivity(goBackToLoginIntent);
+                //First check if username is available
+                checkUsername(emailNewUser.getText().toString().trim());
             }
         });
     }
@@ -72,125 +70,159 @@ public class SignUpActivity extends Activity {
         String address = addressNewUser.getText().toString().trim();
         String role = spinnerRole.getSelectedItem().toString().trim();
 
-        //2. validate input
-        verifyInfo(name, lastName, email, password, confirmPassword, phoneNumber, address);
+        //If the rest of the users information is valid, proceed to adding them to the database
+        if(verifyInfo(name, lastName, email, password, confirmPassword, phoneNumber, address)) {
 
-        //3. Create user account
-        String id = databaseUser.push().getKey();
-        User newUser;
-        if (role.equals("Home Owner")) {
-            newUser = new HomeOwner(name, lastName, email, password, phoneNumber, address, role, id);
-        } else {
-            newUser = new ServiceProvider(name, lastName, email, password, phoneNumber, address, role, id);
+
+            String id = databaseUser.push().getKey();
+            User newUser;
+            if (role.equals("Home Owner")) {
+                newUser = new HomeOwner(name, lastName, email, password, phoneNumber, address, role, id);
+            } else {
+                newUser = new ServiceProvider(name, lastName, email, password, phoneNumber, address, role, id);
+            }
+
+            //4. Add user to database
+            databaseUser.child(id).setValue(newUser);
+
+            //Redirect to log in
+            Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
+            intent.putExtra("registered", true);
+            startActivity(intent);
         }
-
-        //4. Add user to database
-        databaseUser.child(id).setValue(newUser);
 
 
     }
 
-    private void verifyInfo(String name, String lastName, String email, String password,
+    private boolean verifyInfo(String name, String lastName, String email, String password,
                                 String confirmPassword, String phoneNumber, String address) {
         //if name is empty
         if (name.isEmpty()) {
             firstNameNewUser.setError("Name is required");
             firstNameNewUser.requestFocus();
-            return;
+            return false;
         }
 
         //validate name
         if (!name.matches("[A-Z][a-zA-Z]*")) {
             firstNameNewUser.setError("Please enter a valid name");
             firstNameNewUser.requestFocus();
-            return;
+            return false;
         }
 
         //if lastName is empty
         if (lastName.isEmpty()) {
             lastNameNewUser.setError("last name is required");
             lastNameNewUser.requestFocus();
-            return;
+            return false;
         }
 
         //validate lastName
         if (!lastName.matches("[a-zA-z]+([ '-][a-zA-Z]+)*")) {
             lastNameNewUser.setError("Please enter a valid last name");
             lastNameNewUser.requestFocus();
-            return;
+            return false;
         }
 
         //if email is empty
         if (email.isEmpty()) {
             emailNewUser.setError("email is required");
             emailNewUser.requestFocus();
-            return;
+            return false;
         }
 
         //validate email
         if (!Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
             emailNewUser.setError("Please enter a valid email");
             emailNewUser.requestFocus();
-            return;
+            return false;
         }
 
         //if password is empty
         if (password.isEmpty()) {
             passwordNewUser.setError("password is required");
             passwordNewUser.requestFocus();
-            return;
+            return false;
         }
 
         //validate password
         if (password.length()<6) {
             passwordNewUser.setError("Minimum length of password should b 8 ");
             passwordNewUser.requestFocus();
-            return;
+            return false;
         }
 
         //if confirmPassword is empty
         if (confirmPassword.isEmpty()) {
             confirmNewUserPassword.setError("You need to confirm your password");
             confirmNewUserPassword.requestFocus();
-            return;
+            return false;
         }
 
         //validate confirmPassword
         if (!confirmPassword.equals(password)) {
             confirmNewUserPassword.setError("passwords do not match");
             confirmNewUserPassword.requestFocus();
-            return;
+            return false;
         }
 
         //if phoneNumber is empty
         if (phoneNumber.isEmpty()) {
             phoneNumberNewUser.setError("phone number is required");
             phoneNumberNewUser.requestFocus();
-            return;
+            return false;
         }
 
         //validate phoneNumber
         if (!Patterns.PHONE.matcher(phoneNumber).matches()) {
             phoneNumberNewUser.setError("Please enter a valid phone number");
             phoneNumberNewUser.requestFocus();
-            return;
+            return false;
         }
 
         //if address is empty
         if (address.isEmpty()) {
             addressNewUser.setError("Name is required");
             addressNewUser.requestFocus();
-            return;
+            return false;
         }
 
         //validate address
         if (!address.matches("\\d+\\s+([a-zA-Z]+|[a-zA-Z]+\\s[a-zA-Z]+)")) {
             addressNewUser.setError("Please enter a valid address");
             addressNewUser.requestFocus();
-            return;
+            return false;
         }
 
+        return true;
     }
+
+    public void checkUsername(String username){
+
+        //Search in database for any user with the same email
+        databaseUser.orderByChild("email").equalTo(username).addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                //Check ff the dataSnapshot contains non-null value, if it does not then the username is available and we will
+                //proceed to checking the user input and add the user to the db
+                if(!dataSnapshot.exists()){
+                    addUsertoDB();
+                }else{
+                    //Username unavailable, show warning
+                    emailNewUser.setError("Username unavailable");
+                    emailNewUser.requestFocus();
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+
+    }
+
+
 
 
 
