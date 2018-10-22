@@ -1,6 +1,9 @@
 package com.handy.agile.agile_app;
 
-public class User {
+import java.io.Serializable;
+
+
+public class User implements Serializable {
 
     private String name;
 
@@ -80,6 +83,7 @@ public class User {
 
     public String getId() { return  id; }
 
-
-
+    public void setId(String id) {
+        this.id = id;
+    }
 }
