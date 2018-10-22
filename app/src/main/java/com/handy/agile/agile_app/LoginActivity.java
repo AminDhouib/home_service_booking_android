@@ -96,12 +96,14 @@ public class LoginActivity extends AppCompatActivity {
 
                         //Incorrect password was entered
                         }else{
-                            Toast.makeText(getApplicationContext(),"Password does not match", Toast.LENGTH_LONG).show();
+                            etPassword.setError("Password Incorrect");
+                            etPassword.requestFocus();
                         }
                     }
                     //No matching email was found in the database
                     }else{
-                    Toast.makeText(getApplicationContext(),"Invalid login", Toast.LENGTH_LONG).show();
+                           etEmail.setError("Invalid username");
+                           etEmail.requestFocus();
                 }
             }
 
