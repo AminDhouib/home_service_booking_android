@@ -45,12 +45,12 @@ public class UserAccountActivity extends AppCompatActivity {
         user = (User)intent.getSerializableExtra("User");
         setContentView(R.layout.activity_user_account);
 
-        tvUsername = (TextView) findViewById(R.id.tvUsername);
+        tvUsername = findViewById(R.id.tvUsername);
         tvUsername.setText("Welcome, " + user.getName());
-        tvRole = (TextView) findViewById(R.id.tvRole);
+        tvRole = findViewById(R.id.tvRole);
         tvRole.setText("You are logged in as " + user.getRole());
 
-        listViewUsers = (ListView) findViewById(R.id.listViewUsers);
+        listViewUsers = findViewById(R.id.listViewUsers);
         users = new ArrayList<>();
 
         databaseUser = FirebaseDatabase.getInstance().getReference();
