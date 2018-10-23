@@ -36,19 +36,19 @@ public class SignUpActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_up);
 
-         firstNameNewUser = (EditText) findViewById(R.id.firstNameNewUser);
-         lastNameNewUser = (EditText) findViewById(R.id.lastNameNewUser);
-         emailNewUser = (EditText) findViewById(R.id.emailNewUser);
-         passwordNewUser = (EditText) findViewById(R.id.passwordNewUser);
-         confirmNewUserPassword = (EditText) findViewById(R.id.confirmNewUserPassword);
-         phoneNumberNewUser = (EditText) findViewById(R.id.phoneNumberNewUser);
-         addressNewUser = (EditText) findViewById(R.id.addressNewUser);
-         spinnerRole = (Spinner) findViewById(R.id.spinnerRole);
+         firstNameNewUser = findViewById(R.id.firstNameNewUser);
+         lastNameNewUser = findViewById(R.id.lastNameNewUser);
+         emailNewUser = findViewById(R.id.emailNewUser);
+         passwordNewUser = findViewById(R.id.passwordNewUser);
+         confirmNewUserPassword = findViewById(R.id.confirmNewUserPassword);
+         phoneNumberNewUser = findViewById(R.id.phoneNumberNewUser);
+         addressNewUser = findViewById(R.id.addressNewUser);
+         spinnerRole = findViewById(R.id.spinnerRole);
 
 
         databaseUser = FirebaseDatabase.getInstance().getReference();
 
-         final Button bRegister = (Button) findViewById(R.id.bRegister);
+         final Button bRegister = findViewById(R.id.bRegister);
          bRegister.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -76,6 +76,8 @@ public class SignUpActivity extends Activity {
 
             String id = databaseUser.push().getKey();
             User newUser;
+            //TODO as discussed, we might need to add a new role to this switch statment
+            //TODO i think the class structure should be revised, rather than having 2 seperate classes, i beleive there should be a single user class, with a boolean, i.e isHomeOwner = true/false this way we can switch between service or homeowner
             if (role.equals("Home Owner")) {
                 newUser = new HomeOwner(name, lastName, email, password, phoneNumber, address, role, id);
             } else {

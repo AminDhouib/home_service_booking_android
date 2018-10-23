@@ -28,6 +28,8 @@ public class UserList extends ArrayAdapter<User> {
 
     @NonNull
     @Override
+    // TODO: 2018-10-22
+    // TODO: fun fact guys, you can make little todo's in the code! this could be really useful! :D
     public View getView(int position, View convertView, ViewGroup parent) {
         LayoutInflater inflater = context.getLayoutInflater();
         View listViewItem = inflater.inflate(R.layout.user_list, null, true);
