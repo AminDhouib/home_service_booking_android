@@ -3,6 +3,8 @@ package com.handy.agile.agile_app;
 
 
 public class HomeOwner extends User {
+
+    //TODO: user superclass already has these string covered?
     private String name;
 
     private String lastName;
