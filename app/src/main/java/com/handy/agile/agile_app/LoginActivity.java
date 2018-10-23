@@ -44,10 +44,10 @@ public class LoginActivity extends AppCompatActivity {
         }
 
 
-        etEmail = (EditText) findViewById(R.id.etEmail);
-        etPassword = (EditText) findViewById(R.id.etPassword);
-        bSignUp = (Button) findViewById(R.id.bSingUp);
-        bLogin = (Button) findViewById(R.id.bLogin);
+        etEmail = findViewById(R.id.etEmail);
+        etPassword = findViewById(R.id.etPassword);
+        bSignUp = findViewById(R.id.bSingUp);
+        bLogin = findViewById(R.id.bLogin);
         databaseUser = FirebaseDatabase.getInstance().getReference();
 
         bSignUp.setOnClickListener(new View.OnClickListener() {

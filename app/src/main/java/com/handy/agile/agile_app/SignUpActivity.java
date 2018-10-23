@@ -76,8 +76,6 @@ public class SignUpActivity extends Activity {
 
             String id = databaseUser.push().getKey();
             User newUser;
-            //TODO as discussed, we might need to add a new role to this switch statment
-            //TODO i think the class structure should be revised, rather than having 2 seperate classes, i beleive there should be a single user class, with a boolean, i.e isHomeOwner = true/false this way we can switch between service or homeowner
             if (role.equals("Home Owner")) {
                 newUser = new HomeOwner(name, lastName, email, password, phoneNumber, address, role, id);
             } else {
