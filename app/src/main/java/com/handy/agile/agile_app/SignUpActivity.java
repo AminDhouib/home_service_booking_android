@@ -106,7 +106,8 @@ public class SignUpActivity extends Activity {
         }
 
         //validate name
-        if (!name.matches("[A-Z][a-zA-Z]*")) {
+        //if (!name.matches("[A-Z][a-zA-Z]*")) {
+        if (!name.toString().matches("[a-zA-Z]+")){
             firstNameNewUser.setError("Please enter a valid name");
             firstNameNewUser.requestFocus();
             return false;
@@ -119,8 +120,9 @@ public class SignUpActivity extends Activity {
             return false;
         }
 
-        //validate lastName
-        if (!lastName.matches("[a-zA-z]+([ '-][a-zA-Z]+)*")) {
+        //validate last name
+        //if (!name.matches("[A-Z][a-zA-Z]*")) {
+        if (!name.toString().matches("[a-zA-Z]+")){
             lastNameNewUser.setError("Please enter a valid last name");
             lastNameNewUser.requestFocus();
             return false;
