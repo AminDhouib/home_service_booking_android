@@ -2,6 +2,11 @@
     <string name="app_name">AGILE-app</string>
     <string name="title_activity_sign_up">signUpActivity</string>
     <string name="firstname">FirstName</string>
+    <string name="welcome">Welcome</string>
+    <string name="sign_up">Sign up</string>
+    <string name="or">or</string>
+    <string name="login">Login</string>
+    <string name="enter_password">Enter password</string>
     <array name="roles">
         <item>Home Owner</item>
         <item>Service Provider</item>
