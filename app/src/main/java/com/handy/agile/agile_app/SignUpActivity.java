@@ -61,14 +61,14 @@ public class SignUpActivity extends Activity {
 
     private void addUsertoDB() {
         //1. get inputs
-        String name = firstNameNewUser.getText().toString().trim();
-        String lastName = lastNameNewUser.getText().toString().trim();
-        String email = emailNewUser.getText().toString().trim();
+        String name = firstNameNewUser.getText().toString().trim().toLowerCase();
+        String lastName = lastNameNewUser.getText().toString().trim().toLowerCase();
+        String email = emailNewUser.getText().toString().trim().toLowerCase();
         String password = passwordNewUser.getText().toString().trim();
         String confirmPassword = confirmNewUserPassword.getText().toString().trim();
         String phoneNumber = phoneNumberNewUser.getText().toString().trim();
-        String address = addressNewUser.getText().toString().trim();
-        String role = spinnerRole.getSelectedItem().toString().trim();
+        String address = addressNewUser.getText().toString().trim().toLowerCase();
+        String role = spinnerRole.getSelectedItem().toString().trim().toLowerCase();
 
         //If the rest of the users information is valid, proceed to adding them to the database
         if(verifyInfo(name, lastName, email, password, confirmPassword, phoneNumber, address)) {
