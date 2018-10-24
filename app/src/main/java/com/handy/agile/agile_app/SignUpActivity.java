@@ -4,18 +4,26 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.app.Activity;
 
+import android.os.Debug;
 import android.support.annotation.NonNull;
 import android.util.Patterns;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 public class SignUpActivity extends Activity {
 
@@ -27,6 +35,7 @@ public class SignUpActivity extends Activity {
     EditText phoneNumberNewUser;
     EditText addressNewUser;
     Spinner spinnerRole;
+    boolean adminExists;
 
     DatabaseReference databaseUser;
 
@@ -36,20 +45,54 @@ public class SignUpActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_up);
 
-         firstNameNewUser = findViewById(R.id.firstNameNewUser);
-         lastNameNewUser = findViewById(R.id.lastNameNewUser);
-         emailNewUser = findViewById(R.id.emailNewUser);
-         passwordNewUser = findViewById(R.id.passwordNewUser);
-         confirmNewUserPassword = findViewById(R.id.confirmNewUserPassword);
-         phoneNumberNewUser = findViewById(R.id.phoneNumberNewUser);
-         addressNewUser = findViewById(R.id.addressNewUser);
-         spinnerRole = findViewById(R.id.spinnerRole);
+        firstNameNewUser = findViewById(R.id.firstNameNewUser);
+        lastNameNewUser = findViewById(R.id.lastNameNewUser);
+        emailNewUser = findViewById(R.id.emailNewUser);
+        passwordNewUser = findViewById(R.id.passwordNewUser);
+        confirmNewUserPassword = findViewById(R.id.confirmNewUserPassword);
+        phoneNumberNewUser = findViewById(R.id.phoneNumberNewUser);
+        addressNewUser = findViewById(R.id.addressNewUser);
+        spinnerRole = findViewById(R.id.spinnerRole);
 
-
+        //connecting to database
         databaseUser = FirebaseDatabase.getInstance().getReference();
 
-         final Button bRegister = findViewById(R.id.bRegister);
-         bRegister.setOnClickListener(new View.OnClickListener() {
+
+        //if admin doesnt exist remove it from the XML, else don't change anything
+           //TODO: checkAdmin is suppoed to change the value of boolean adminExits.  Sadly this doesnt work. :(  maybe you can query onCreate?
+            checkAdmin();
+            if (!adminExists) {
+
+
+                //intialize XML string[] to a ArrayList
+                final List<String> roleList = new ArrayList<String>();
+                roleList.add("Home Owener");
+                roleList.add("Service Provider");
+
+                ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, roleList);
+
+                adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                spinnerRole.setAdapter(adapter);
+            }else{
+
+                //intialize XML string[] to a ArrayList
+                final List<String> roleList = new ArrayList<String>();
+                roleList.add("Home Owener");
+                roleList.add("Service Provider");
+                roleList.add("Admin");
+
+                ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, roleList);
+
+                adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                spinnerRole.setAdapter(adapter);
+            }
+            //Toast.makeText(getActivity(), "Something Went Wrong!",
+            //\       Toast.LENGTH_LONG).show();
+
+
+
+        final Button bRegister = findViewById(R.id.bRegister);
+        bRegister.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 //First check if username is available
@@ -71,19 +114,27 @@ public class SignUpActivity extends Activity {
         String role = spinnerRole.getSelectedItem().toString().trim().toLowerCase();
 
         //If the rest of the users information is valid, proceed to adding them to the database
-        if(verifyInfo(name, lastName, email, password, confirmPassword, phoneNumber, address)) {
+        if (verifyInfo(name, lastName, email, password, confirmPassword, phoneNumber, address)) {
 
 
             String id = databaseUser.push().getKey();
             User newUser;
             if (role.equals("Home Owner")) {
                 newUser = new HomeOwner(name, lastName, email, password, phoneNumber, address, role, id);
-            } else {
+                databaseUser.child(id).setValue(newUser);
+            } else if (role.equals("Service Provider")) {
                 newUser = new ServiceProvider(name, lastName, email, password, phoneNumber, address, role, id);
+                databaseUser.child(id).setValue(newUser);
+            } else if (role.equals("Admin")){
+                newUser = new Admin(name, lastName, email, password, phoneNumber, address, role, id);
+                databaseUser.child(id).setValue(newUser);
+            }else{
+                //Toast.makeText(getActivity(), "Something Went Wrong!",
+                 //       Toast.LENGTH_LONG).show();
             }
 
             //4. Add user to database
-            databaseUser.child(id).setValue(newUser);
+
 
             //Redirect to log in
             Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
@@ -95,7 +146,7 @@ public class SignUpActivity extends Activity {
     }
 
     private boolean verifyInfo(String name, String lastName, String email, String password,
-                                String confirmPassword, String phoneNumber, String address) {
+                               String confirmPassword, String phoneNumber, String address) {
         //if name is empty
         if (name.isEmpty()) {
             firstNameNewUser.setError("Name is required");
@@ -105,7 +156,7 @@ public class SignUpActivity extends Activity {
 
         //validate name
         //if (!name.matches("[A-Z][a-zA-Z]*")) {
-        if (!name.toString().matches("[a-zA-Z]+")){
+        if (!name.toString().matches("[a-zA-Z]+")) {
             firstNameNewUser.setError("Please enter a valid name");
             firstNameNewUser.requestFocus();
             return false;
@@ -120,7 +171,7 @@ public class SignUpActivity extends Activity {
 
         //validate last name
         //if (!name.matches("[A-Z][a-zA-Z]*")) {
-        if (!name.toString().matches("[a-zA-Z]+")){
+        if (!name.toString().matches("[a-zA-Z]+")) {
             lastNameNewUser.setError("Please enter a valid last name");
             lastNameNewUser.requestFocus();
             return false;
@@ -148,7 +199,7 @@ public class SignUpActivity extends Activity {
         }
 
         //validate password
-        if (password.length()<6) {
+        if (password.length() < 6) {
             passwordNewUser.setError("Minimum length of password should b 8 ");
             passwordNewUser.requestFocus();
             return false;
@@ -199,7 +250,7 @@ public class SignUpActivity extends Activity {
         return true;
     }
 
-    public void checkUsername(String username){
+    public void checkUsername(String username) {
 
         //Search in database for any user with the same email
         databaseUser.orderByChild("email").equalTo(username).addListenerForSingleValueEvent(new ValueEventListener() {
@@ -207,9 +258,9 @@ public class SignUpActivity extends Activity {
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 //Check ff the dataSnapshot contains non-null value, if it does not then the username is available and we will
                 //proceed to checking the user input and add the user to the db
-                if(!dataSnapshot.exists()){
+                if (!dataSnapshot.exists()) {
                     addUsertoDB();
-                }else{
+                } else {
                     //Username unavailable, show warning
                     emailNewUser.setError("Username unavailable");
                     emailNewUser.requestFocus();
@@ -225,10 +276,21 @@ public class SignUpActivity extends Activity {
     }
 
 
+    public void checkAdmin() {
 
+        //Search in database for any user with the same email
+        databaseUser.orderByChild("role").equalTo("Admin").addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                    //if the data exists, an Admin exists in the system
+                    adminExists = dataSnapshot.exists();
+            }
 
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
 
+            }
+        });
 
-
-
+    }
 }

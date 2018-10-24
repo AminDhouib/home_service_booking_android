@@ -10,5 +10,6 @@
     <array name="roles">
         <item>Home Owner</item>
         <item>Service Provider</item>
+        <item>Admin</item>
     </array>
 </resources>
