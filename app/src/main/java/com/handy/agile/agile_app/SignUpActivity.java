@@ -6,7 +6,9 @@ import android.app.Activity;
 
 import android.os.Debug;
 import android.support.annotation.NonNull;
+import android.util.Log;
 import android.util.Patterns;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -35,7 +37,6 @@ public class SignUpActivity extends Activity {
     EditText phoneNumberNewUser;
     EditText addressNewUser;
     Spinner spinnerRole;
-    boolean adminExists;
 
     DatabaseReference databaseUser;
 
@@ -57,46 +58,21 @@ public class SignUpActivity extends Activity {
         //connecting to database
         databaseUser = FirebaseDatabase.getInstance().getReference();
 
-
-        //if admin doesnt exist remove it from the XML, else don't change anything
-           //TODO: checkAdmin is suppoed to change the value of boolean adminExits.  Sadly this doesnt work. :(  maybe you can query onCreate?
-            checkAdmin();
-            if (!adminExists) {
-
-
-                //intialize XML string[] to a ArrayList
-                final List<String> roleList = new ArrayList<String>();
-                roleList.add("Home Owener");
-                roleList.add("Service Provider");
-
-                ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, roleList);
-
-                adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-                spinnerRole.setAdapter(adapter);
-            }else{
-
-                //intialize XML string[] to a ArrayList
-                final List<String> roleList = new ArrayList<String>();
-                roleList.add("Home Owener");
-                roleList.add("Service Provider");
-                roleList.add("Admin");
-
-                ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, roleList);
-
-                adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-                spinnerRole.setAdapter(adapter);
-            }
-            //Toast.makeText(getActivity(), "Something Went Wrong!",
-            //\       Toast.LENGTH_LONG).show();
-
-
-
         final Button bRegister = findViewById(R.id.bRegister);
         bRegister.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 //First check if username is available
                 checkUsername(emailNewUser.getText().toString().trim());
+            }
+        });
+
+        //on touch it checks if there is an admin
+        spinnerRole.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View view, MotionEvent motionEvent) {
+                checkAdmin();
+                return false;
             }
         });
     }
@@ -277,13 +253,42 @@ public class SignUpActivity extends Activity {
 
 
     public void checkAdmin() {
-
         //Search in database for any user with the same email
         databaseUser.orderByChild("role").equalTo("Admin").addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                     //if the data exists, an Admin exists in the system
-                    adminExists = dataSnapshot.exists();
+                    Log.d("SERVER", "THE RESULT OF THE QUEREY: " + dataSnapshot.exists());
+                   /** if(dataSnapshot.exists()){
+                        adminExists = true;
+
+                    }else{
+                        adminExists = false;
+                    }*/
+                if (dataSnapshot.exists()) {
+                    //intialize XML string[] to a ArrayList
+                    final List<String> roleList = new ArrayList<String>();
+                    roleList.add("Home Owner");
+                    roleList.add("Service Provider");
+
+                    ArrayAdapter<String> adapter = new ArrayAdapter<String>(getApplicationContext(), android.R.layout.simple_spinner_item, roleList);
+
+                    adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                    spinnerRole.setAdapter(adapter);
+                }else{
+
+                    //intialize XML string[] to a ArrayList
+                    final List<String> roleList = new ArrayList<String>();
+                    roleList.add("Home Owner");
+                    roleList.add("Service Provider");
+                    roleList.add("Admin");
+
+                    ArrayAdapter<String> adapter = new ArrayAdapter<String>(getApplicationContext(), android.R.layout.simple_spinner_item, roleList);
+
+                    adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                    spinnerRole.setAdapter(adapter);
+                }
+
             }
 
             @Override
