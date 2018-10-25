@@ -252,7 +252,7 @@ public class SignUpActivity extends Activity {
 
     public void checkAdmin() {
         //Search in database for any user with the same email
-        databaseUser.orderByChild("role").equalTo("Admin").addListenerForSingleValueEvent(new ValueEventListener() {
+        databaseUser.orderByChild("role").equalTo("admin").addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                     //if the data exists, an Admin exists in the system

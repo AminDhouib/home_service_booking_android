@@ -8,5 +8,4 @@ public class HomeOwner extends User {
         super(name, lastName, email, password, phoneNumber, address, role, id);
 
     }
-    public HomeOwner(){}
 }
