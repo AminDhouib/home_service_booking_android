@@ -174,7 +174,7 @@ public class SignUpActivity extends Activity {
 
         //validate password
         if (password.length() < 6) {
-            passwordNewUser.setError("Minimum length of password should b 8 ");
+            passwordNewUser.setError("Minimum length of password should b 6 ");
             passwordNewUser.requestFocus();
             return false;
         }
