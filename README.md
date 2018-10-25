@@ -38,6 +38,9 @@ Features which have currently been developed include:
 We will the following features to our android application in our next revision:
 
 1 - Allow users to search for service providers
+
 2 - Users will be able to rate a service and to book one as well
+
 3 - Service providers will add his availabilities. 
+
 4 - Allow Admin to delete, remove or add users
