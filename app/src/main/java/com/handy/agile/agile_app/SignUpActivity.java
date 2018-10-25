@@ -97,17 +97,15 @@ public class SignUpActivity extends Activity {
             User newUser;
             if (role.equals("Home Owner")) {
                 newUser = new HomeOwner(name, lastName, email, password, phoneNumber, address, role, id);
-                databaseUser.child(id).setValue(newUser);
+
             } else if (role.equals("Service Provider")) {
                 newUser = new ServiceProvider(name, lastName, email, password, phoneNumber, address, role, id);
-                databaseUser.child(id).setValue(newUser);
-            } else if (role.equals("Admin")){
+
+            } else {
                 newUser = new Admin(name, lastName, email, password, phoneNumber, address, role, id);
-                databaseUser.child(id).setValue(newUser);
-            }else{
-                //Toast.makeText(getActivity(), "Something Went Wrong!",
-                 //       Toast.LENGTH_LONG).show();
+
             }
+            databaseUser.child(id).setValue(newUser);
 
             //4. Add user to database
 

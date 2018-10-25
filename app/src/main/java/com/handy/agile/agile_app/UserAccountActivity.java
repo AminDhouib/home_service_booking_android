@@ -61,7 +61,7 @@ public class UserAccountActivity extends AppCompatActivity {
     protected void onStart() {
         super.onStart();
         //if you're logged in as admin
-        if (user.getRole().equals("Admin")) {
+        if (user.getRole().equals("admin")) {
             listViewUsers.setVisibility(View.VISIBLE);
             displayDataBase();
         }
