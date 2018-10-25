@@ -95,10 +95,10 @@ public class SignUpActivity extends Activity {
 
             String id = databaseUser.push().getKey();
             User newUser;
-            if (role.equals("Home Owner")) {
+            if (role.equals("home owner")) {
                 newUser = new HomeOwner(name, lastName, email, password, phoneNumber, address, role, id);
 
-            } else if (role.equals("Service Provider")) {
+            } else if (role.equals("service provider")) {
                 newUser = new ServiceProvider(name, lastName, email, password, phoneNumber, address, role, id);
 
             } else {
