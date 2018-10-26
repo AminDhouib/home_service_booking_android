@@ -5,7 +5,7 @@ Group members:
 
 -Yesmine Zribi
 -Amin Dhouib
--Greg Ivo
+-Gregory Ivo
 -Jared Lueck
 
 Purpose of the Project: This application allows home owners to connect with service providers.
