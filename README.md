@@ -44,3 +44,5 @@ We will add the following features to our android application in future delivera
 3 - Service providers will add his availabilities. 
 
 4 - Allow Admin to delete, remove or add users
+
+5 - Allow to put a full address for the user (street adress, postal code, City, Province, Country)
