@@ -35,7 +35,7 @@ Features which have currently been developed include:
 
 ****************************************************************************************
 
-We will the following features to our android application in our next revision:
+We will add the following features to our android application in future deliverables:
 
 1 - Allow users to search for service providers
 
