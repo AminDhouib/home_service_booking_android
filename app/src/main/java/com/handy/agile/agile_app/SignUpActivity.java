@@ -79,7 +79,7 @@ public class SignUpActivity extends Activity {
 
 
     private void addUsertoDB() {
-        //1. get inputs
+        //get inputs
         String name = firstNameNewUser.getText().toString().trim().toLowerCase();
         String lastName = lastNameNewUser.getText().toString().trim().toLowerCase();
         String email = emailNewUser.getText().toString().trim().toLowerCase();
@@ -107,8 +107,6 @@ public class SignUpActivity extends Activity {
             }
             databaseUser.child(id).setValue(newUser);
 
-            //4. Add user to database
-
 
             //Redirect to log in
             Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
@@ -129,7 +127,6 @@ public class SignUpActivity extends Activity {
         }
 
         //validate name
-        //if (!name.matches("[A-Z][a-zA-Z]*")) {
         if (!name.toString().matches("[a-zA-Z]+")) {
             firstNameNewUser.setError("Please enter a valid name");
             firstNameNewUser.requestFocus();
@@ -144,7 +141,6 @@ public class SignUpActivity extends Activity {
         }
 
         //validate last name
-        //if (!name.matches("[A-Z][a-zA-Z]*")) {
         if (!name.toString().matches("[a-zA-Z]+")) {
             lastNameNewUser.setError("Please enter a valid last name");
             lastNameNewUser.requestFocus();
@@ -230,7 +226,7 @@ public class SignUpActivity extends Activity {
         databaseUser.orderByChild("email").equalTo(username).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                //Check ff the dataSnapshot contains non-null value, if it does not then the username is available and we will
+                //Check if the dataSnapshot contains non-null value, if it does not then the username is available and we will
                 //proceed to checking the user input and add the user to the db
                 if (!dataSnapshot.exists()) {
                     addUsertoDB();

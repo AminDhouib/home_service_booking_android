@@ -61,15 +61,7 @@ public class LoginActivity extends AppCompatActivity {
         bLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                boolean valid = false;
                 verifyInfo(etEmail.getText().toString().toLowerCase(), etPassword.getText().toString());
-
-                if (valid) {
-                    // Intent to go to userAccountActivity
-                }
-
-
-
 
             }
         });

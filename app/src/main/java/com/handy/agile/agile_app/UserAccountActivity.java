@@ -70,7 +70,7 @@ public class UserAccountActivity extends AppCompatActivity {
 
     }
 
-    //Display database if Admin
+    //Display database if admin
     private void displayDataBase() {
         databaseUser.addValueEventListener(new ValueEventListener() {
             @Override
