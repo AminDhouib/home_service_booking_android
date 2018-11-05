@@ -53,7 +53,7 @@ public class UserAccountActivity extends AppCompatActivity {
         listViewUsers = findViewById(R.id.listViewUsers);
         users = new ArrayList<>();
 
-        databaseUser = FirebaseDatabase.getInstance().getReference();
+        databaseUser = FirebaseDatabase.getInstance().getReference("users");
 
     }
 

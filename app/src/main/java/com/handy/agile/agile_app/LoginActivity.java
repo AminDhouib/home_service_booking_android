@@ -48,7 +48,8 @@ public class LoginActivity extends AppCompatActivity {
         etPassword = findViewById(R.id.etPassword);
         bSignUp = findViewById(R.id.bSingUp);
         bLogin = findViewById(R.id.bLogin);
-        databaseUser = FirebaseDatabase.getInstance().getReference();
+
+        databaseUser = FirebaseDatabase.getInstance().getReference("users");
 
         bSignUp.setOnClickListener(new View.OnClickListener() {
             @Override

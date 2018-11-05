@@ -38,6 +38,7 @@ public class SignUpActivity extends Activity {
     EditText addressNewUser;
     Spinner spinnerRole;
 
+    DatabaseReference database;
     DatabaseReference databaseUser;
 
 
@@ -56,7 +57,8 @@ public class SignUpActivity extends Activity {
         spinnerRole = findViewById(R.id.spinnerRole);
 
         //connecting to database
-        databaseUser = FirebaseDatabase.getInstance().getReference();
+        database = FirebaseDatabase.getInstance().getReference();
+        databaseUser = database.child("users");
 
         final Button bRegister = findViewById(R.id.bRegister);
         bRegister.setOnClickListener(new View.OnClickListener() {
@@ -88,6 +90,7 @@ public class SignUpActivity extends Activity {
         String phoneNumber = phoneNumberNewUser.getText().toString().trim();
         String address = addressNewUser.getText().toString().trim().toLowerCase();
         String role = spinnerRole.getSelectedItem().toString().trim().toLowerCase();
+
 
         //If the rest of the users information is valid, proceed to adding them to the database
         if (verifyInfo(name, lastName, email, password, confirmPassword, phoneNumber, address)) {
