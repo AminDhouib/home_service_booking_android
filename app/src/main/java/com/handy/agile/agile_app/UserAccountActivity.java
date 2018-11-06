@@ -8,6 +8,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextClock;
 import android.widget.TextView;
@@ -30,6 +31,8 @@ public class UserAccountActivity extends AppCompatActivity {
 
     //list of users in the DB
     ListView listViewUsers;
+
+    Button servicesButton;
 
     DatabaseReference databaseUser;
 
@@ -55,6 +58,18 @@ public class UserAccountActivity extends AppCompatActivity {
 
         databaseUser = FirebaseDatabase.getInstance().getReference("users");
 
+        servicesButton = findViewById(R.id.servicesButton);
+        servicesButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //Take me to the services activity
+                Intent serviceIntent = new Intent(UserAccountActivity.this, servicesActivity.class);
+                UserAccountActivity.this.startActivity(serviceIntent);
+
+
+            }
+        });
+
     }
 
     @Override
@@ -63,6 +78,7 @@ public class UserAccountActivity extends AppCompatActivity {
         //if you're logged in as admin
         if (user.getRole().equals("admin")) {
             listViewUsers.setVisibility(View.VISIBLE);
+            servicesButton.setVisibility(View.VISIBLE);
             displayDataBase();
         }
 
@@ -94,5 +110,6 @@ public class UserAccountActivity extends AppCompatActivity {
         });
 
     }
+
 }
 
