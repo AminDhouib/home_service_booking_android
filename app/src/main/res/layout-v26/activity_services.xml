@@ -4,13 +4,13 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".servicesActivity"
-    tools:layout_editor_absoluteY="25dp">
+    tools:context=".servicesActivity">
 
     <RelativeLayout
         android:id="@+id/relativeLayout2"
         android:layout_width="0dp"
-        android:layout_height="219dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
@@ -39,7 +39,7 @@
             android:layout_marginLeft="115dp"
             android:layout_marginTop="9dp"
             android:ems="10"
-            android:hint="Enter a service type"
+            android:hint="@string/enter_a_service_type"
             android:inputType="textPersonName" />
 
         <TextView
@@ -91,7 +91,7 @@
         android:layout_width="0dp"
         android:layout_height="350dp"
         android:visibility="visible"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toBottomOf="@+id/relativeLayout2"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent">
 

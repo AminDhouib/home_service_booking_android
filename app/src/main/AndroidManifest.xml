@@ -21,7 +21,9 @@
             android:name=".SignUpActivity"
             android:label="@string/title_activity_sign_up" />
         <activity android:name=".UserAccountActivity" />
-        <activity android:name=".servicesActivity"></activity>
+        <activity android:name=".servicesActivity">
+
+        </activity>
     </application>
 
 </manifest>

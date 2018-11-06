@@ -6,8 +6,10 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Gravity;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ListView;
 import android.widget.Toast;
 
 import com.google.firebase.database.DataSnapshot;
@@ -16,12 +18,18 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class servicesActivity extends AppCompatActivity {
 
     EditText etServiceType;
     EditText etHourlyRate;
 
     Button addServiceButton;
+
+    List<Service> services;
+    ListView listViewServices;
 
     DatabaseReference database;
     DatabaseReference databaseService;
@@ -38,6 +46,11 @@ public class servicesActivity extends AppCompatActivity {
         //Initialize the textfields and button
         etServiceType = findViewById(R.id.etServiceType);
         etHourlyRate = findViewById(R.id.etHourlyRate);
+
+        listViewServices = findViewById(R.id.listViewServices);
+        services = new ArrayList<>();
+
+
         addServiceButton = findViewById(R.id.addServiceButton);
         addServiceButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -49,6 +62,13 @@ public class servicesActivity extends AppCompatActivity {
             }
         });
 
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        displayDataBase();
+        getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_NOTHING);
     }
 
     private void addServicetoDB() {
@@ -131,4 +151,27 @@ public class servicesActivity extends AppCompatActivity {
     }
 
     //Display table of the service DB
+    private void displayDataBase() {
+        databaseService.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+
+                services.clear();
+
+                for (DataSnapshot snapshot: dataSnapshot.getChildren()) {
+                    Service service = snapshot.getValue(Service.class);
+
+                    services.add(service);
+                }
+                ServiceList userAdapter = new ServiceList(servicesActivity.this,services);
+                listViewServices.setAdapter(userAdapter);
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+
+    }
 }
