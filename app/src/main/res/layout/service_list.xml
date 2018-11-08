@@ -31,7 +31,8 @@
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Edit"/>
+            android:text="Edit"
+            android:id="@+id/editServiceBtn"/>
 
     </LinearLayout>
 </android.support.constraint.ConstraintLayout>

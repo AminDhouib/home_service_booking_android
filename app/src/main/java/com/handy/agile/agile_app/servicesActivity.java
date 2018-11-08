@@ -1,5 +1,6 @@
 package com.handy.agile.agile_app;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
@@ -27,6 +28,7 @@ public class servicesActivity extends AppCompatActivity {
     EditText etHourlyRate;
 
     Button addServiceButton;
+    Button editServiceButton;
 
     List<Service> services;
     ListView listViewServices;
@@ -49,6 +51,8 @@ public class servicesActivity extends AppCompatActivity {
 
         listViewServices = findViewById(R.id.listViewServices);
         services = new ArrayList<>();
+
+
 
 
         addServiceButton = findViewById(R.id.addServiceButton);
