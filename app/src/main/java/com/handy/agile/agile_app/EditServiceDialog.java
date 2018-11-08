@@ -88,32 +88,42 @@ public class EditServiceDialog extends DialogFragment implements View.OnClickLis
             case R.id.saveServiceChangesBtn:
                 //Check if user has changed the values, if yes then update DB
 
-                if(!(hourlyRateTextView.getText().toString().equals(hourlyRate))){
-                    database.child("services").addListenerForSingleValueEvent(new ValueEventListener() {
-                        @Override
-                        public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                            for(DataSnapshot snapshot: dataSnapshot.getChildren()){
-                                Service service = snapshot.getValue(Service.class);
-                                //Update value in the database
-                                if(service.getType().equals(serviceTextView.getText().toString())){
-                                    DatabaseReference db = snapshot.getRef().child("hourlyRate");
-                                    db.setValue(Double.parseDouble(hourlyRateTextView.getText().toString()));
+
+                try{
+                    final Double newRate = Double.parseDouble(hourlyRateTextView.getText().toString());
+
+                    if(!(hourlyRateTextView.getText().toString().equals(hourlyRate))){
+                        database.child("services").addListenerForSingleValueEvent(new ValueEventListener() {
+                            @Override
+                            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                                for(DataSnapshot snapshot: dataSnapshot.getChildren()){
+                                    Service service = snapshot.getValue(Service.class);
+                                    //Update value in the database
+                                    if(service.getType().equals(serviceTextView.getText().toString())){
+                                        DatabaseReference db = snapshot.getRef().child("hourlyRate");
+                                        db.setValue(newRate);
+                                        dismiss();
+                                    }
                                 }
+
+
+
                             }
 
+                            @Override
+                            public void onCancelled(@NonNull DatabaseError databaseError) {
 
+                            }
+                        });
 
-                        }
+                    }
 
-                        @Override
-                        public void onCancelled(@NonNull DatabaseError databaseError) {
-
-                        }
-                    });
-
+                }catch (NumberFormatException e){
+                    hourlyRateTextView.setError("Invalid hourly rate");
+                    hourlyRateTextView.requestFocus();
                 }
 
-                dismiss();
+
                 break;
 
 
