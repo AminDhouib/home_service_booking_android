@@ -27,14 +27,14 @@ import java.util.Map;
 public class EditServiceDialog extends DialogFragment implements View.OnClickListener {
 
     //This dialog box appears when the user clicks edit for one of the services. It prompts the user to edit new values
-    //for the service name and hourly rate
+    //for the service name and hourly rate. It will update/delete the service in the database.
 
     private Activity activity;
     private Button save;
     private Button cancel;
     private Button delete;
     private DatabaseReference database;
-    private EditText serviceTextView;
+    private TextView serviceTextView;
     private EditText hourlyRateTextView;
     private String service;
     private String hourlyRate;
@@ -56,12 +56,13 @@ public class EditServiceDialog extends DialogFragment implements View.OnClickLis
         cancel = v.findViewById(R.id.cancelServiceChangesBtn);
         database = FirebaseDatabase.getInstance().getReference();
         save = v.findViewById(R.id.saveServiceChangesBtn);
-        cancel.setOnClickListener(this);
         delete = v.findViewById(R.id.deleteServiceButton);
+
+        cancel.setOnClickListener(this);
         delete.setOnClickListener(this);
-
-
         save.setOnClickListener(this);
+
+        //Retrive arguments passed from activity, these are the service name and price
         Bundle args = getArguments();
         hourlyRateTextView = v.findViewById(R.id.servicePrice);
         serviceTextView = v.findViewById(R.id.serviceName);
@@ -118,7 +119,7 @@ public class EditServiceDialog extends DialogFragment implements View.OnClickLis
 
 
             case R.id.deleteServiceButton:
-
+                //Remove the service from the db
                 database.child("services").addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
