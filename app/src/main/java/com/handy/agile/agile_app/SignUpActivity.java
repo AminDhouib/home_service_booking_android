@@ -138,13 +138,13 @@ public class SignUpActivity extends Activity {
 
         //if lastName is empty
         if (lastName.isEmpty()) {
-            lastNameNewUser.setError("last name is required");
+            lastNameNewUser.setError("Last name is required");
             lastNameNewUser.requestFocus();
             return false;
         }
 
         //validate last name
-        if (!name.toString().matches("[a-zA-Z]+")) {
+        if (!lastName.toString().matches("[a-zA-Z]+")) {
             lastNameNewUser.setError("Please enter a valid last name");
             lastNameNewUser.requestFocus();
             return false;
@@ -152,7 +152,7 @@ public class SignUpActivity extends Activity {
 
         //if email is empty
         if (email.isEmpty()) {
-            emailNewUser.setError("email is required");
+            emailNewUser.setError("Email is required");
             emailNewUser.requestFocus();
             return false;
         }
@@ -166,14 +166,14 @@ public class SignUpActivity extends Activity {
 
         //if password is empty
         if (password.isEmpty()) {
-            passwordNewUser.setError("password is required");
+            passwordNewUser.setError("Password is required");
             passwordNewUser.requestFocus();
             return false;
         }
 
         //validate password
         if (password.length() < 6) {
-            passwordNewUser.setError("Minimum length of password should b 6 ");
+            passwordNewUser.setError("Minimum length of password should be 6 ");
             passwordNewUser.requestFocus();
             return false;
         }
@@ -187,14 +187,14 @@ public class SignUpActivity extends Activity {
 
         //validate confirmPassword
         if (!confirmPassword.equals(password)) {
-            confirmNewUserPassword.setError("passwords do not match");
+            confirmNewUserPassword.setError("Passwords do not match");
             confirmNewUserPassword.requestFocus();
             return false;
         }
 
         //if phoneNumber is empty
         if (phoneNumber.isEmpty()) {
-            phoneNumberNewUser.setError("phone number is required");
+            phoneNumberNewUser.setError("Phone number is required!");
             phoneNumberNewUser.requestFocus();
             return false;
         }
