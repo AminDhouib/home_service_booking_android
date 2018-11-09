@@ -35,7 +35,6 @@ public class SignupActivityTest {
     }
 
     //DISCLAIMER: When running these test cases, make sure the email "test@uottawa.ca" is not present in the database.
-    //Comment for testing
 
 
     //Tests if "Name is required" text appears when the user enters a wrong first name
