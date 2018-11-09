@@ -173,7 +173,7 @@ public class SignUpActivity extends Activity {
 
         //validate password
         if (password.length() < 6) {
-            passwordNewUser.setError("Minimum length of password should be 6 ");
+            passwordNewUser.setError("Minimum length of password should be 6");
             passwordNewUser.requestFocus();
             return false;
         }
@@ -194,7 +194,7 @@ public class SignUpActivity extends Activity {
 
         //if phoneNumber is empty
         if (phoneNumber.isEmpty()) {
-            phoneNumberNewUser.setError("Phone number is required!");
+            phoneNumberNewUser.setError("Phone number is required");
             phoneNumberNewUser.requestFocus();
             return false;
         }
@@ -208,7 +208,7 @@ public class SignUpActivity extends Activity {
 
         //if address is empty
         if (address.isEmpty()) {
-            addressNewUser.setError("Name is required");
+            addressNewUser.setError("Address is required");
             addressNewUser.requestFocus();
             return false;
         }
