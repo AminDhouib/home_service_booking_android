@@ -139,8 +139,16 @@ public class servicesActivity extends AppCompatActivity {
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 //Check if the dataSnapshot contains non-null value, if it does not then the service is available and we will
                 //proceed to checking the user input and add the user to the db
+//TODO:Greg added this
+                //as asked by jasmine the following code will ensure no symbols are used in the string
+
                 if(!dataSnapshot.exists()) {
-                    addServicetoDB();
+                    if (!etServiceType.toString().matches("[a-zA-Z]+")) {
+                        addServicetoDB();
+                    }else{
+                        etServiceType.setError("Can only contain Letters");
+                        etServiceType.requestFocus();
+                    }
                 } else {
                     etServiceType.setError("This service is already available");
                     etServiceType.requestFocus();

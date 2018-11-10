@@ -12,7 +12,7 @@
         android:layout_height="0dp"
         android:layout_marginTop="7dp"
         android:layout_marginBottom="5dp"
-        android:text="Register/Sign Up!"
+        android:text="@string/register_sign_up"
         app:layout_constraintBottom_toBottomOf="@+id/rectangle_at_the_top"
         app:layout_constraintEnd_toEndOf="@+id/rectangle_at_the_top"
         app:layout_constraintTop_toTopOf="parent" />
