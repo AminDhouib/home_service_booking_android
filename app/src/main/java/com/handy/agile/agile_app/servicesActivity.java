@@ -127,6 +127,9 @@ public class servicesActivity extends AppCompatActivity {
         }
         try {
             float hourlyRate = Float.parseFloat(hourlyRateValue);
+            //Won't allow you to add a service for 0$
+            if (hourlyRate == 0)
+                throw new NullPointerException();
 
         } catch(NullPointerException e1) {
             etHourlyRate.setError("Please enter a valid rate");
