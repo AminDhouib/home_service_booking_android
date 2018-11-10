@@ -112,7 +112,8 @@ public class servicesActivity extends AppCompatActivity {
             return false;
         }
 
-        if (!serviceType.matches("[a-zA-Z]+")) {
+        //Allows the string to contain only characters and spaces.
+        if (!serviceType.matches("^[ A-Za-z]+$")){
             etServiceType.setError("This field can only contain Letters");
             etServiceType.requestFocus();
             return false;
