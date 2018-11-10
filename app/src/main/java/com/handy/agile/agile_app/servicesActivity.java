@@ -105,13 +105,20 @@ public class servicesActivity extends AppCompatActivity {
 
     //Verify info
     private boolean verifyInfo(String serviceType, String hourlyRateValue) {
-        //If the textfields are empty
+        //If the service type text field is empty are empty
         if (serviceType.isEmpty()) {
             etServiceType.setError("Enter a service");
             etServiceType.requestFocus();
             return false;
         }
 
+        if (!serviceType.matches("[a-zA-Z]+")) {
+            etServiceType.setError("This field can only contain Letters");
+            etServiceType.requestFocus();
+            return false;
+        }
+
+        //If hourly rate text field is empty
         if (hourlyRateValue.isEmpty()) {
             etHourlyRate.setError("Enter an hourly rate");
             etHourlyRate.requestFocus();
@@ -139,16 +146,8 @@ public class servicesActivity extends AppCompatActivity {
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 //Check if the dataSnapshot contains non-null value, if it does not then the service is available and we will
                 //proceed to checking the user input and add the user to the db
-//TODO:Greg added this
-                //as asked by jasmine the following code will ensure no symbols are used in the string
-
                 if(!dataSnapshot.exists()) {
-                    if (!etServiceType.toString().matches("[a-zA-Z]+")) {
-                        addServicetoDB();
-                    }else{
-                        etServiceType.setError("Can only contain Letters");
-                        etServiceType.requestFocus();
-                    }
+                    addServicetoDB();
                 } else {
                     etServiceType.setError("This service is already available");
                     etServiceType.requestFocus();
