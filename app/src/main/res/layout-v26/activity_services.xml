@@ -65,6 +65,7 @@
             android:autofillHints=""
             android:ems="10"
             android:hint="@string/enter_an_hourly_rate"
+            android:maxLength="8"
             android:inputType="number|numberDecimal" />
 
         <TextView
