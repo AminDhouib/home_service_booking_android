@@ -1,6 +1,7 @@
-package com.handy.agile.agile_app;
+package com.handy.agile.agile_app.ServiceProvider;
 
 
+import com.handy.agile.agile_app.User;
 
 public class ServiceProvider extends User {
 

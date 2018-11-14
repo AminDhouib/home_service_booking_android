@@ -1,16 +1,12 @@
 package com.handy.agile.agile_app;
 
 import android.content.Intent;
-import android.opengl.Visibility;
 import android.support.annotation.NonNull;
-import android.support.constraint.solver.widgets.Snapshot;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
-import android.widget.TextClock;
 import android.widget.TextView;
 
 import com.google.firebase.database.DataSnapshot;
@@ -18,8 +14,9 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
-
-import org.w3c.dom.Text;
+import com.handy.agile.agile_app.Admin.UserList;
+import com.handy.agile.agile_app.Admin.servicesActivity;
+import com.handy.agile.agile_app.ServiceProvider.ServiceSearchActivity;
 
 import java.util.ArrayList;
 import java.util.List;

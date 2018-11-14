@@ -9,20 +9,20 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".MainActivity">
+        <activity android:name=".Login.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".LoginActivity" />
+        <activity android:name=".Login.LoginActivity" />
         <activity
-            android:name=".SignUpActivity"
+            android:name=".SignUp.SignUpActivity"
             android:label="@string/title_activity_sign_up" />
         <activity android:name=".UserAccountActivity" />
-        <activity android:name=".servicesActivity"></activity>
-        <activity android:name=".ServiceSearchActivity"></activity>
+        <activity android:name=".Admin.servicesActivity"></activity>
+        <activity android:name=".ServiceProvider.ServiceSearchActivity"></activity>
     </application>
 
 </manifest>

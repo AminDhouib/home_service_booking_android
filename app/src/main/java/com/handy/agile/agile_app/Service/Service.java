@@ -1,4 +1,4 @@
-package com.handy.agile.agile_app;
+package com.handy.agile.agile_app.Service;
 
 public class Service {
 

@@ -1,10 +1,9 @@
-package com.handy.agile.agile_app;
+package com.handy.agile.agile_app.SignUp;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.app.Activity;
 
-import android.os.Debug;
 import android.support.annotation.NonNull;
 import android.util.Log;
 import android.util.Patterns;
@@ -14,17 +13,20 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
-import android.widget.Toast;
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
+import com.handy.agile.agile_app.Admin.Admin;
+import com.handy.agile.agile_app.HomeOwner.HomeOwner;
+import com.handy.agile.agile_app.Login.LoginActivity;
+import com.handy.agile.agile_app.R;
+import com.handy.agile.agile_app.ServiceProvider.ServiceProvider;
+import com.handy.agile.agile_app.User;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 public class SignUpActivity extends Activity {

@@ -1,14 +1,12 @@
-package com.handy.agile.agile_app;
+package com.handy.agile.agile_app.Admin;
 
 import android.app.Activity;
-import android.app.Dialog;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.app.DialogFragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.Window;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -18,11 +16,8 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
-
-import org.w3c.dom.Text;
-
-import java.util.HashMap;
-import java.util.Map;
+import com.handy.agile.agile_app.R;
+import com.handy.agile.agile_app.Service.Service;
 
 public class EditServiceDialog extends DialogFragment implements View.OnClickListener {
 

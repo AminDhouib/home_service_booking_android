@@ -1,20 +1,15 @@
-package com.handy.agile.agile_app;
+package com.handy.agile.agile_app.ServiceProvider;
 
 import android.app.Activity;
-import android.os.Bundle;
 import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
-import android.support.v4.app.FragmentActivity;
-import android.support.v4.app.FragmentManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
-import android.widget.SeekBar;
 import android.widget.TextView;
-import android.support.v4.app.Fragment;
 
-import org.w3c.dom.Text;
+import com.handy.agile.agile_app.R;
+import com.handy.agile.agile_app.Service.Service;
 
 import java.text.NumberFormat;
 import java.util.List;

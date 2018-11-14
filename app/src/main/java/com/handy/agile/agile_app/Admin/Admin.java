@@ -1,6 +1,7 @@
-package com.handy.agile.agile_app;
+package com.handy.agile.agile_app.Admin;
 
 
+import com.handy.agile.agile_app.User;
 
 public class Admin extends User {
     Admin(String name, String lastName,String email, String password, String phoneNumber, String address, String role, String id){
