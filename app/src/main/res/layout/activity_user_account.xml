@@ -68,7 +68,7 @@
             android:id="@+id/TestButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Search Service Test"
+            android:text="Search/Add Service Test"
             tools:layout_editor_absoluteX="0dp"
             tools:layout_editor_absoluteY="16dp" />
     </android.support.constraint.ConstraintLayout>
