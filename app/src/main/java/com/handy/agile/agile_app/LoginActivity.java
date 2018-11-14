@@ -1,4 +1,4 @@
-package com.handy.agile.agile_app.Login;
+package com.handy.agile.agile_app;
 
 import android.content.Intent;
 import android.support.annotation.NonNull;
@@ -16,10 +16,6 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
-import com.handy.agile.agile_app.R;
-import com.handy.agile.agile_app.SignUp.SignUpActivity;
-import com.handy.agile.agile_app.User;
-import com.handy.agile.agile_app.UserAccountActivity;
 
 public class LoginActivity extends AppCompatActivity {
 

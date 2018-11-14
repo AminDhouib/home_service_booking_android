@@ -1,4 +1,4 @@
-package com.handy.agile.agile_app.ServiceProvider;
+package com.handy.agile.agile_app;
 
 
 import com.handy.agile.agile_app.User;

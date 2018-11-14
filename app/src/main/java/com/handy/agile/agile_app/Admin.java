@@ -1,4 +1,4 @@
-package com.handy.agile.agile_app.Admin;
+package com.handy.agile.agile_app;
 
 
 import com.handy.agile.agile_app.User;

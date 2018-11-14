@@ -1,4 +1,4 @@
-package com.handy.agile.agile_app.ServiceProvider;
+package com.handy.agile.agile_app;
 
 import android.app.Activity;
 import android.support.annotation.NonNull;
@@ -7,9 +7,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
-
-import com.handy.agile.agile_app.R;
-import com.handy.agile.agile_app.Service.Service;
 
 import java.text.NumberFormat;
 import java.util.List;

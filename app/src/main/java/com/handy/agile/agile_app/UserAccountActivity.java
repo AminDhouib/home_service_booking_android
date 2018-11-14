@@ -14,9 +14,6 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
-import com.handy.agile.agile_app.Admin.UserList;
-import com.handy.agile.agile_app.Admin.servicesActivity;
-import com.handy.agile.agile_app.ServiceProvider.ServiceSearchActivity;
 
 import java.util.ArrayList;
 import java.util.List;

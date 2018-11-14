@@ -1,4 +1,4 @@
-package com.handy.agile.agile_app.Admin;
+package com.handy.agile.agile_app;
 
 import android.app.Activity;
 import android.support.annotation.NonNull;

@@ -3,8 +3,6 @@ package com.handy.agile.agile_app;
 import android.support.test.espresso.ViewInteraction;
 import android.support.test.rule.ActivityTestRule;
 
-import com.handy.agile.agile_app.SignUp.SignUpActivity;
-
 import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
