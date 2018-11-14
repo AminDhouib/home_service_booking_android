@@ -70,6 +70,16 @@ public class UserAccountActivity extends AppCompatActivity {
             }
         });
 
+        final Button testButton = findViewById(R.id.TestButton);
+        testButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //Take me to the login activity
+                Intent searchServiceActivityIntent = new Intent(UserAccountActivity.this,ServiceSearchActivity.class);
+                UserAccountActivity.this.startActivity(searchServiceActivityIntent);
+            }
+        });
+
     }
 
     @Override
