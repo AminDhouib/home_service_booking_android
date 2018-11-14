@@ -28,7 +28,6 @@ public class ServiceSearchActivity extends AppCompatActivity {
     EditText etHourlyRate;
 
     Button addServiceButton;
-    Button editServiceButton;
 
     List<Service> services;
     ListView listViewServices;
