@@ -4,11 +4,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".AdminAccountActivity"
-    tools:layout_editor_absoluteY="25dp">
+    tools:context=".ServiceProviderAccountActivity">
 
     <LinearLayout
-        android:id="@+id/linearLayout2"
+        android:id="@+id/linearLayout4"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:orientation="vertical"
@@ -18,46 +17,51 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <TextView
-            android:id="@+id/adminName"
+            android:id="@+id/serviceProviderName"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="" />
+            android:text="TextView" />
 
         <TextView
-            android:id="@+id/adminRole"
+            android:id="@+id/serviceProviderRole"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="You are logged in as Admin" />
+            android:text="You are logged in as Service Provider" />
 
+        <TextView
+            android:id="@+id/textView14"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Your Services"
+            android:textAlignment="center"
+            android:textAppearance="@style/TextAppearance.AppCompat.Large" />
     </LinearLayout>
 
     <LinearLayout
-        android:id="@+id/linearLayout3"
+        android:id="@+id/linearLayout5"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layout_marginTop="54dp"
+        android:layout_marginTop="68dp"
         android:orientation="vertical"
-        app:layout_constraintBottom_toTopOf="@+id/servicesButton"
+        app:layout_constraintBottom_toTopOf="@+id/searchServicesButton"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
         <ListView
-            android:id="@+id/listViewUsers"
+            android:id="@+id/listViewYourServices"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
-
-        </ListView>
+            android:layout_height="match_parent" />
     </LinearLayout>
 
     <Button
-        android:id="@+id/servicesButton"
+        android:id="@+id/searchServicesButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="13dp"
-        android:text="Services"
+        android:layout_marginBottom="11dp"
+        android:text="Search for Services"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayout3" />
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout5" />
 </android.support.constraint.ConstraintLayout>

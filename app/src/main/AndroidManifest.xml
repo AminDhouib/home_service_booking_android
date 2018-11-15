@@ -20,9 +20,11 @@
         <activity
             android:name=".SignUpActivity"
             android:label="@string/title_activity_sign_up" />
-        <activity android:name=".UserAccountActivity" />
-        <activity android:name=".servicesActivity"></activity>
-        <activity android:name=".ServiceSearchActivity"></activity>
+        <activity android:name=".AdminAccountActivity" />
+        <activity android:name=".servicesActivity" />
+        <activity android:name=".ServiceSearchActivity" />
+        <activity android:name=".HomeOwnerAccountActivity" />
+        <activity android:name=".ServiceProviderAccountActivity"></activity>
     </application>
 
 </manifest>

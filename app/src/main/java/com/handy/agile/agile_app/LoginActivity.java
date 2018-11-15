@@ -87,11 +87,26 @@ public class LoginActivity extends AppCompatActivity {
 
                         //check if this users password is the same as the one that was entered
                         if (user.getPassword().equals(password)){
-                            Intent intent = new Intent(LoginActivity.this, UserAccountActivity.class);
 
                             //Correct password entered, start next activity. Pass the user object to the next activity
-                            intent.putExtra("User",user);
-                            LoginActivity.this.startActivity(intent);
+                            String role = user.getRole().toLowerCase();
+                            Intent intent;
+
+                            if (role.equals("home owner")) {
+                                intent = new Intent(LoginActivity.this, HomeOwnerAccountActivity.class);
+                                intent.putExtra("User",user);
+                                LoginActivity.this.startActivity(intent);
+                            }
+                            else if (role.equals("service provider")) {
+                                intent = new Intent(LoginActivity.this, ServiceProviderAccountActivity.class);
+                                intent.putExtra("User",user);
+                                LoginActivity.this.startActivity(intent);
+                            } else {
+                                intent = new Intent(LoginActivity.this, AdminAccountActivity.class);
+                                intent.putExtra("User",user);
+                                LoginActivity.this.startActivity(intent);
+                            }
+
 
                         //Incorrect password was entered
                         }else{
