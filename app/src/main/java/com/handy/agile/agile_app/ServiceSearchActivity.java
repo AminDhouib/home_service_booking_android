@@ -1,5 +1,6 @@
 package com.handy.agile.agile_app;
 
+import android.app.TimePickerDialog;
 import android.content.Intent;
 import android.database.Cursor;
 import android.support.annotation.NonNull;
@@ -17,12 +18,15 @@ import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.TimePicker;
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+
+import org.w3c.dom.Text;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -113,19 +117,88 @@ public class ServiceSearchActivity extends AppCompatActivity {
         final View dialogView = inflater.inflate(R.layout.addtoyourservices_dialog,null);
         dialogBuilder.setView(dialogView);
 
-        final  TextView monday =findViewById(R.id.monday);
-        final EditText mondayStartTime = findViewById(R.id.mondayStartTime);
-        final EditText mondayEndTime = findViewById(R.id.mondayEndTime);
-        final Spinner stateSpinnerMonday = findViewById(R.id.stateSpinnerMonday);
 
         dialogBuilder.setTitle(service.getType());
         final AlertDialog b = dialogBuilder.create();
         b.show();
 
-        //Set spinner to event listener
+        final  TextView monday = dialogView.findViewById(R.id.monday);
+        //I want to make it so that clicking  on this will prop a time picker
+        final TextView mondayStartTime = dialogView.findViewById(R.id.mondayStartTime);
+
+        //I want to make it so that clicking on this will prop a time picker
+        final TextView mondayEndTime = dialogView.findViewById(R.id.mondayEndTime);
+
+        final Spinner stateSpinnerMonday = dialogView.findViewById(R.id.stateSpinnerMonday);
+        final TextView mondayDash = dialogView.findViewById(R.id.mondayDashTextView);
+
+        //Disable if necessary for Monday
+        disableTextViewsIfNecessary(stateSpinnerMonday,mondayStartTime,mondayDash,mondayEndTime);
+
+        //Choose start time and end time for Monday
+        chooseTime(mondayStartTime);
+        chooseTime(mondayEndTime);
+
+
+
 
         //Add the 'add' button to the layout and set to listener
-
-
     }
+
+    //This class disables the edit texts for the time if user selected closed
+    public void disableTextViewsIfNecessary(Spinner spinner, final TextView startTime, final TextView dash, final TextView endTime) {
+        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                String selectedItem = parent.getSelectedItem().toString();
+                if (selectedItem.equals("Open")) {
+                    startTime.setVisibility(View.VISIBLE);
+                    dash.setVisibility(View.VISIBLE);
+                    endTime.setVisibility(View.VISIBLE);
+                } else {
+                    startTime.setVisibility(View.INVISIBLE);
+                    dash.setVisibility(View.INVISIBLE);
+                    endTime.setVisibility(View.INVISIBLE);
+                }
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+    }
+
+    //This will create a time picker object to choose start time for a specific day
+    public void chooseTime(final TextView startTime) {
+        startTime.setOnClickListener(new View.OnClickListener() {
+            @Override
+            //We want it that clicking this will show the time picker
+            public void onClick(View v) {
+
+                //Initialize the time picker dialog
+                TimePickerDialog timePickerDialog = new TimePickerDialog(ServiceSearchActivity.this,new TimePickerDialog.OnTimeSetListener() {
+                    @Override
+                    public void onTimeSet(TimePicker timePicker, int hourOfDay, int minutes) {
+                        String amPM = "";
+                        if (hourOfDay >= 12) {
+                            amPM = "PM";
+                        } else {
+                            amPM = "AM";
+                        }
+
+                        String minuteValue = Integer.toString(minutes);
+                        if (minutes < 10) {
+                            minuteValue = "0"+minutes;
+                        }
+                        startTime.setText(hourOfDay+":"+minuteValue+amPM);
+                    }
+                }, 0,0, false);
+                timePickerDialog.show();
+            }
+        });
+    }
+
+
+
 }

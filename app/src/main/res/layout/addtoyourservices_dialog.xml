@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
@@ -8,8 +10,7 @@
         android:id="@+id/textView2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Add Service To Your List"
-        android:textAlignment="center"/>
+        android:text="Add Service To Your List" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -38,41 +39,50 @@
 
         <TextView
             android:id="@+id/monday"
-            android:layout_width="wrap_content"
+            android:layout_width="61dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="Monday:" />
 
         <Spinner
             android:id="@+id/stateSpinnerMonday"
-            android:layout_width="wrap_content"
+            android:layout_width="125dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:entries="@array/state" />
 
-        <EditText
+        <TextView
             android:id="@+id/mondayStartTime"
-            android:layout_width="75dp"
+            android:layout_width="70dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:ems="10"
-            android:inputType="time" />
+            android:inputType="none"
+            android:text="From"
+            android:textAppearance="@style/TextAppearance.AppCompat.Widget.Button"
+            android:textColor="@color/colorPrimary"
+            android:visibility="invisible" />
 
         <TextView
-            android:id="@+id/textView21"
-            android:layout_width="wrap_content"
+            android:id="@+id/mondayDashTextView"
+            android:layout_width="25dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="-"
-            android:textAlignment="center"/>
+            android:textAlignment="center"
+            android:visibility="invisible" />
 
-        <EditText
+        <TextView
             android:id="@+id/mondayEndTime"
             android:layout_width="75dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:ems="10"
-            android:inputType="time" />
+            android:inputType="none"
+            android:text="To "
+            android:textAppearance="@style/TextAppearance.AppCompat.Widget.Button"
+            android:textColor="@color/colorPrimary"
+            android:visibility="invisible" />
 
 
     </LinearLayout>
