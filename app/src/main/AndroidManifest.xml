@@ -24,7 +24,8 @@
         <activity android:name=".servicesActivity" />
         <activity android:name=".ServiceSearchActivity" />
         <activity android:name=".HomeOwnerAccountActivity" />
-        <activity android:name=".ServiceProviderAccountActivity"></activity>
+        <activity android:name=".ServiceProviderAccountActivity" />
+        <activity android:name=".EditAccountInfo"></activity>
     </application>
 
 </manifest>
