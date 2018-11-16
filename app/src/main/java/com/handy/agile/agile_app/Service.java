@@ -1,6 +1,8 @@
 package com.handy.agile.agile_app;
 
-public class Service {
+import java.io.Serializable;
+
+public class Service implements Serializable {
 
     private String type;
     private float hourlyRate;

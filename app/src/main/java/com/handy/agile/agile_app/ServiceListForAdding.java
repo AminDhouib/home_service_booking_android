@@ -45,19 +45,8 @@ public class ServiceListForAdding extends ArrayAdapter<Service> {
 
         textViewHourlyRate.setText(currencyText);
 
-        //Set on click listener to the 'add' button of each
-        listViewItem.findViewById(R.id.addServiceBtn).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
+       //Set on click listener to the 'add' button of each
 
-
-
-                //Add code for adding
-
-
-
-            }
-        });
 
         return listViewItem;
     }

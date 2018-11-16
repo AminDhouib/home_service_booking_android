@@ -46,6 +46,7 @@ public class ServiceProviderAccountActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent searchServiceActivityIntent = new Intent(ServiceProviderAccountActivity.this,ServiceSearchActivity.class);
+                searchServiceActivityIntent.putExtra("SP",user);
                 ServiceProviderAccountActivity.this.startActivity(searchServiceActivityIntent);
             }
         });

@@ -27,11 +27,6 @@
                 android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
         </LinearLayout>
 
-        <Button
-            android:id="@+id/addServiceBtn"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:text="Add" />
 
     </LinearLayout>
 </android.support.constraint.ConstraintLayout>

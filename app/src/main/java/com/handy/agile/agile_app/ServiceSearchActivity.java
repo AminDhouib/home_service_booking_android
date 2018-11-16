@@ -1,12 +1,22 @@
 package com.handy.agile.agile_app;
 
+import android.content.Intent;
+import android.database.Cursor;
 import android.support.annotation.NonNull;
+import android.support.v4.app.FragmentActivity;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
+import android.view.LayoutInflater;
+import android.view.View;
 import android.view.WindowManager;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.Spinner;
+import android.widget.TextView;
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -19,10 +29,9 @@ import java.util.List;
 
 public class ServiceSearchActivity extends AppCompatActivity {
 
-    EditText etServiceType;
-    EditText etHourlyRate;
+    TextView etServiceType;
+    TextView etHourlyRate;
 
-    Button addServiceButton;
 
     List<Service> services;
     ListView listViewServices;
@@ -30,22 +39,38 @@ public class ServiceSearchActivity extends AppCompatActivity {
     DatabaseReference database;
     DatabaseReference databaseService;
 
+    User user;
+    Service service;
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        Intent intent = getIntent();
+        //Get info of the profile that started this activity
+        user = (User) intent.getSerializableExtra("SP");
         setContentView(R.layout.activity_service_search);
 
         //Get reference to DB
         database = FirebaseDatabase.getInstance().getReference();
         databaseService = database.child("services");
 
-        //Initialize the textfields and button
-        etServiceType = findViewById(R.id.etServiceType);
-        etHourlyRate = findViewById(R.id.etHourlyRate);
 
         listViewServices = findViewById(R.id.listViewServices);
         services = new ArrayList<>();
+
+        listViewServices.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+            @Override
+            public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
+                //Extract the service object from the clicked item
+                service = (Service) services.get(position);
+
+                //open the dialog box
+                showUpdatedAddDialog(service,user);
+                return true;
+            }
+        });
     }
 
     @Override
@@ -79,6 +104,28 @@ public class ServiceSearchActivity extends AppCompatActivity {
 
             }
         });
+
+    }
+
+    private void showUpdatedAddDialog(Service service, User user) {
+        AlertDialog.Builder  dialogBuilder = new AlertDialog.Builder(this);
+        LayoutInflater inflater = getLayoutInflater();
+        final View dialogView = inflater.inflate(R.layout.addtoyourservices_dialog,null);
+        dialogBuilder.setView(dialogView);
+
+        final  TextView monday =findViewById(R.id.monday);
+        final EditText mondayStartTime = findViewById(R.id.mondayStartTime);
+        final EditText mondayEndTime = findViewById(R.id.mondayEndTime);
+        final Spinner stateSpinnerMonday = findViewById(R.id.stateSpinnerMonday);
+
+        dialogBuilder.setTitle(service.getType());
+        final AlertDialog b = dialogBuilder.create();
+        b.show();
+
+        //Set spinner to event listener
+
+        //Add the 'add' button to the layout and set to listener
+
 
     }
 }

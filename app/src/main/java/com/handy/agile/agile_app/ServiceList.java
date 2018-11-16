@@ -20,8 +20,10 @@ public class ServiceList extends ArrayAdapter<Service> {
     private Activity context;
     private List<Service> services;
 
+
     public ServiceList(Activity context, List<Service> services) {
         super(context, R.layout.service_list, services);
+
         this.context = context;
         this.services = services;
     }

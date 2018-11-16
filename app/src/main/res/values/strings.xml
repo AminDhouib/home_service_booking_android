@@ -21,4 +21,9 @@
         <item>Service Provider</item>
         <item>Admin</item>
     </array>
+
+    <array name="state">
+        <item>Open</item>
+        <item>Closed</item>
+    </array>
 </resources>
