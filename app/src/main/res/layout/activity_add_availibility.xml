@@ -13,61 +13,17 @@
         android:orientation="vertical">
 
         <TextView
-            android:id="@+id/serviceName"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Service"
-            android:layout_gravity="center"/>
-
-        <TextView
-            android:id="@+id/textView2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Add Service To Your List"
-            android:layout_gravity="center"/>
-
-        <TextView
             android:id="@+id/textView3"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Please enter your availibility"/>
+            android:text="Please enter your availibility"
+            android:textAppearance="@style/TextAppearance.AppCompat.Large" />
 
-        <LinearLayout
+        <ListView
+            android:id="@+id/availabilityListView"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="horizontal">
+            android:layout_height="match_parent" />
 
-            <TextView
-                android:id="@+id/monday"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Monday:"/>
-
-            <Spinner
-                android:id="@+id/stateSpinnerMonday"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:entries="@array/state" />
-
-            <TextView
-                android:id="@+id/mondayStartTime"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="From"/>
-
-            <TextView
-                android:id="@+id/mondayDash"
-                android:layout_width="20dp"
-                android:layout_height="wrap_content"
-                android:text="-"
-                android:textAlignment="center"/>
-
-            <TextView
-                android:id="@+id/mondayEndTime"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="To"/>
-        </LinearLayout>
 
     </LinearLayout>
 </android.support.constraint.ConstraintLayout>

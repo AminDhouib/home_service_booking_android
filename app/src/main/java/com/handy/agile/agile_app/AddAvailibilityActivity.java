@@ -1,18 +1,31 @@
 package com.handy.agile.agile_app;
 
 import android.content.Intent;
+import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ListView;
 import android.widget.TextView;
+
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class AddAvailibilityActivity extends AppCompatActivity {
 
-    //Textviews from the xml file
-    TextView serviceName;
-    TextView mondayStartTime;
-    TextView mondayEndTime;
+    //Listview from the xml file
+    ListView listViewAvailability;
+    List<DayEntry> days;
+    DatabaseReference databaseDays;
 
-    //Add button
+
 
 
     //User object
@@ -26,15 +39,41 @@ public class AddAvailibilityActivity extends AppCompatActivity {
         setContentView(R.layout.activity_add_availibility);
 
         //Initialize textfiels
+        listViewAvailability = findViewById(R.id.availabilityListView);
+        days = new ArrayList<>();
+        databaseDays = FirebaseDatabase.getInstance().getReference("users").child(user.getId()).child("daysOfWeek");
+        displayDataBase();
 
-        //Call the choose time method
-
-        //set add button as click listener
+        //Set listener on availability item
+        listViewAvailability.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+            @Override
+            public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
+                //Display dialog box which changes the data
+                return true;
+            }
+        });
     }
 
-    //Choose time method
+    //Display availibilities from DB
+    private void displayDataBase() {
+        databaseDays.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                days.clear();
 
-    //Verify time method
+                for (DataSnapshot snapshot: dataSnapshot.getChildren()) {
+                    DayEntry day = snapshot.getValue(DayEntry.class);
 
-    //Add to the DB method
+                    days.add(day);
+                }
+                AvailabilityList availabilityAdapter = new AvailabilityList(AddAvailibilityActivity.this,days);
+                listViewAvailability.setAdapter(availabilityAdapter);
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+    }
 }
