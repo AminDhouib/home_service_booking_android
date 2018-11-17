@@ -50,6 +50,13 @@
             android:layout_weight="0"
             android:text="Edit" />
 
+        <Button
+            android:id="@+id/availBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="AV" />
+
     </LinearLayout>
 
     <LinearLayout

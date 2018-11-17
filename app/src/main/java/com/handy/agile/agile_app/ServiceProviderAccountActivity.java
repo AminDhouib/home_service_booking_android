@@ -20,6 +20,8 @@ public class ServiceProviderAccountActivity extends AppCompatActivity {
     TextView serviceProviderName;
 
     Button searchServicesButton;
+    Button editBtn;
+    Button availBtn;
     ListView listViewYourServices;
 
     List<Service> yourServices;
@@ -53,7 +55,7 @@ public class ServiceProviderAccountActivity extends AppCompatActivity {
         });
 
 
-        Button editBtn = findViewById(R.id.btnEdit);
+        editBtn = findViewById(R.id.btnEdit);
 
         editBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -77,6 +79,16 @@ public class ServiceProviderAccountActivity extends AppCompatActivity {
 
                 //now refresh the activity
 
+            }
+        });
+
+        availBtn = findViewById(R.id.availBtn);
+        availBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent avail = new Intent(ServiceProviderAccountActivity.this,AddAvailibilityActivity.class);
+                avail.putExtra("UserInfo",user);
+                ServiceProviderAccountActivity.this.startActivity(avail);
             }
         });
 

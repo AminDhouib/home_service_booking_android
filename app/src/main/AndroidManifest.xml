@@ -25,7 +25,8 @@
         <activity android:name=".ServiceSearchActivity" />
         <activity android:name=".HomeOwnerAccountActivity" />
         <activity android:name=".ServiceProviderAccountActivity" />
-        <activity android:name=".EditAccountInfo"></activity>
+        <activity android:name=".EditAccountInfo" />
+        <activity android:name=".AddAvailibilityActivity"></activity>
     </application>
 
 </manifest>
