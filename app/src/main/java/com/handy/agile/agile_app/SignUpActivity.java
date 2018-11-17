@@ -252,12 +252,6 @@ public class SignUpActivity extends Activity {
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                     //if the data exists, an Admin exists in the system
                     Log.d("SERVER", "THE RESULT OF THE QUEREY: " + dataSnapshot.exists());
-                   /** if(dataSnapshot.exists()){
-                        adminExists = true;
-
-                    }else{
-                        adminExists = false;
-                    }*/
                 if (dataSnapshot.exists()) {
                     //intialize XML string[] to a ArrayList
                     final List<String> roleList = new ArrayList<String>();
