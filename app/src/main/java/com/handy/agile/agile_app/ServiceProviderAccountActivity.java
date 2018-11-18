@@ -39,6 +39,15 @@ public class ServiceProviderAccountActivity extends AppCompatActivity {
 
     private Activity context;
 
+
+    //Needed for resetting the activity to refresh the database's info
+    @Override
+    public void onRestart(){
+        super.onRestart();
+        finish();
+        startActivity(getIntent());
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
