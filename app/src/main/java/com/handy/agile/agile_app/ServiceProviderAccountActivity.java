@@ -155,7 +155,8 @@ public class ServiceProviderAccountActivity extends AppCompatActivity {
                     }
 
                 }
-
+                ServiceListForAdding userAdapter = new ServiceListForAdding(ServiceProviderAccountActivity.this,yourServices);
+                listViewYourServices.setAdapter(userAdapter);
             }
 
             @Override

@@ -23,7 +23,7 @@ public class ServiceProvider extends User {
 
         daysOfWeek.add(new DayEntry(false, "monday"));
         daysOfWeek.add(new DayEntry(false, "tuesday"));
-         daysOfWeek.add(new DayEntry(false, "wednesday"));
+        daysOfWeek.add(new DayEntry(false, "wednesday"));
         daysOfWeek.add(new DayEntry(false, "thursday"));
         daysOfWeek.add(new DayEntry(false, "friday"));
         daysOfWeek.add(new DayEntry(false, "saturday"));
