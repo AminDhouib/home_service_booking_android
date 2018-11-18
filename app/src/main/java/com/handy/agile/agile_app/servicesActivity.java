@@ -86,6 +86,8 @@ public class servicesActivity extends AppCompatActivity {
             Service newService = new Service(serviceType,hourlyRate);
             databaseService.child(id).setValue(newService);
 
+
+
             //Clear content of the textfields
             etServiceType.setText("");
             etHourlyRate.setText("");

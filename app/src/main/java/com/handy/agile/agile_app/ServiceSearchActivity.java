@@ -49,6 +49,7 @@ public class ServiceSearchActivity extends AppCompatActivity {
 
     DatabaseReference database;
     DatabaseReference databaseService;
+    DatabaseReference databaseServiceProvider;
 
     User user;
     Service service;
@@ -71,6 +72,8 @@ public class ServiceSearchActivity extends AppCompatActivity {
         database = FirebaseDatabase.getInstance().getReference();
         databaseService = database.child("services");
 
+        databaseServiceProvider = database.child("serviceProviders");
+
 
         listViewServices = findViewById(R.id.listViewServices);
         services = new ArrayList<>();
@@ -81,7 +84,8 @@ public class ServiceSearchActivity extends AppCompatActivity {
                 //Extract the service object from the clicked item
                 service = (Service) services.get(position);
 
-                //Add to the DB
+                //check if user is already a provider of this service
+                checkService(service);
                 return true;
             }
         });
@@ -119,12 +123,50 @@ public class ServiceSearchActivity extends AppCompatActivity {
             }
         });
 
+
+
     }
 
 
 
+//Method checks if the user is not already providing the service
+public void checkService(final Service service){
+        databaseServiceProvider.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                boolean found = false;
+                for(DataSnapshot snapshot : dataSnapshot.getChildren()) {
+                    for (DataSnapshot snapshot1 : snapshot.getChildren()) {
+                        User foundUser = snapshot1.getValue(User.class);
+                        //if the key is the same as the sercvice type and the user name
+                        // is the same as the user in the db, then the user is already providing this service.
+                        if (snapshot.getKey().equals(service.getType()) && foundUser.getName().equals(user.getName())) {
+                            //set flag to true
+                            found = true;
+                        }
+                    }
 
+                }
+                    //If the user was not found, add them as a service provider for this service
+                    if (!found) {
+                        String key = databaseServiceProvider.child(service.getType()).push().getKey();
+                        databaseServiceProvider.child(service.getType()).child(key).setValue(user);
 
+                    //Otherwise the user was already a service provider so we will not add them
+                    } else {
+                        //Display message saying they are already a service provider
+                        Toast toast = Toast.makeText(getApplicationContext(), "You already selected this service", Toast.LENGTH_LONG);
+                        toast.show();
+                    }
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+}
 
 
 
