@@ -1,6 +1,8 @@
 package com.handy.agile.agile_app;
 
-public class DayEntry {
+import java.io.Serializable;
+
+public class DayEntry implements Serializable {
 
     private boolean isOpen;
     private String day;

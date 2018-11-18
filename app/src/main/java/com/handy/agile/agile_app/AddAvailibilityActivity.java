@@ -2,8 +2,10 @@ package com.handy.agile.agile_app;
 
 import android.content.Intent;
 import android.support.annotation.NonNull;
+import android.support.v4.app.FragmentActivity;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
@@ -49,6 +51,16 @@ public class AddAvailibilityActivity extends AppCompatActivity {
             @Override
             public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
                 //Display dialog box which changes the data
+                DayEntry day = days.get(position);
+                EditAvailabilityDialog dialog = new EditAvailabilityDialog();
+                Bundle bundle = new Bundle();
+                bundle.putSerializable("AvailabilityInfo",day);
+                bundle.putSerializable("UserInfo",user);
+                dialog.setArguments(bundle);
+
+                FragmentActivity activity = AddAvailibilityActivity.this;
+                dialog.show(activity.getSupportFragmentManager(),"EdtAvailability");
+
                 return true;
             }
         });
