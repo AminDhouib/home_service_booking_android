@@ -96,10 +96,9 @@ public class EditAccountInfo extends DialogFragment implements View.OnClickListe
                     dismiss();
                     try{
                         editUsertoDB();
-                        //Toast.makeText(getContext(),"Successfully changed!", Toast.LENGTH_LONG);
+                        Toast.makeText(getContext(),"Successfully changed!", Toast.LENGTH_LONG);
 
-                       // getActivity().finish();
-                       // startActivity(getActivity().getIntent());
+                        getActivity().finish();
                     }catch (Exception e){
                         Toast.makeText(getContext(),"Something went wrong", Toast.LENGTH_LONG);
                     }finally {
@@ -226,5 +225,7 @@ public class EditAccountInfo extends DialogFragment implements View.OnClickListe
 
             }
         });
+
+
     }
 }
