@@ -15,6 +15,8 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -95,10 +97,10 @@ public class EditAccountInfo extends DialogFragment implements View.OnClickListe
 
                     dismiss();
                     try{
-                        editUsertoDB();
+                        editUsertoDB(getActivity());
                         Toast.makeText(getContext(),"Successfully changed!", Toast.LENGTH_LONG);
 
-                        getActivity().finish();
+                       // getActivity().finish();
                     }catch (Exception e){
                         Toast.makeText(getContext(),"Something went wrong", Toast.LENGTH_LONG);
                     }finally {
@@ -183,7 +185,7 @@ public class EditAccountInfo extends DialogFragment implements View.OnClickListe
         return true;
     }
 
-    private void editUsertoDB() {
+    private void editUsertoDB(final Activity activity) {
         //get inputs
         final String name = firstNameEdit.getText().toString().trim().toLowerCase();
         final String lastName = lastNameEdit.getText().toString().trim().toLowerCase();
@@ -216,7 +218,13 @@ public class EditAccountInfo extends DialogFragment implements View.OnClickListe
 
 
                     //update children with hash map
-                    ds.getRef().updateChildren(temp);
+                    ds.getRef().updateChildren(temp).addOnCompleteListener(new OnCompleteListener<Void>() {
+                        @Override
+                        public void onComplete(@NonNull Task<Void> task) {
+                            activity.finish();
+                            //activity.startActivity(activity.getIntent());
+                        }
+                    });
                 }
             }
 

@@ -13,6 +13,8 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -84,6 +86,7 @@ public class EditServiceDialog_for_sp extends DialogFragment implements View.OnC
 
             case R.id.deleteServiceButton:
                 //Remove the service from the db
+                final Activity tempAct = getActivity();
                 database.child("serviceProviders").addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -95,7 +98,13 @@ public class EditServiceDialog_for_sp extends DialogFragment implements View.OnC
                                 //If the user email is the same as the email of service provider in Db, then the user is
                                 //providing this service to we will get the info of this service to display
                                 if(userSearch.getEmail().equals(useremail) && serviceSearch.equals(service) ){
-                                    snapshot1.getRef().removeValue();
+                                    snapshot1.getRef().removeValue().addOnCompleteListener(new OnCompleteListener<Void>() {
+                                        @Override
+                                        public void onComplete(@NonNull Task<Void> task) {
+
+                                            tempAct.recreate();
+                                        }
+                                    });
 
 
 
@@ -116,6 +125,7 @@ public class EditServiceDialog_for_sp extends DialogFragment implements View.OnC
 
                 dismiss();
 
+                /*
                 //Performs a delay of 500 (NEEDED TO ALLOW TIME TO SYNC FROM FIREBASE FROM DELETION)
                 try {
                     Thread.sleep(500);
@@ -125,7 +135,7 @@ public class EditServiceDialog_for_sp extends DialogFragment implements View.OnC
 
                 //This is needed to restart the activity.
                 getActivity().recreate();
-
+                */
 
                 break;
         }
