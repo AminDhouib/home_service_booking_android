@@ -23,7 +23,6 @@ public class EditServiceDialog_for_sp extends DialogFragment implements View.OnC
     //for the service name and hourly rate. It will update/delete the service in the database.
 
     private Activity activity;
-    private Button save;
     private Button cancel;
     private Button delete;
     private DatabaseReference database;
@@ -48,12 +47,10 @@ public class EditServiceDialog_for_sp extends DialogFragment implements View.OnC
 
         cancel = v.findViewById(R.id.cancelServiceChangesBtn);
         database = FirebaseDatabase.getInstance().getReference();
-        save = v.findViewById(R.id.saveServiceChangesBtn);
         delete = v.findViewById(R.id.deleteServiceButton);
 
         cancel.setOnClickListener(this);
         delete.setOnClickListener(this);
-        save.setOnClickListener(this);
 
         //Retrive arguments passed from activity, these are the service name and price
         Bundle args = getArguments();
@@ -78,47 +75,6 @@ public class EditServiceDialog_for_sp extends DialogFragment implements View.OnC
             case R.id.cancelServiceChangesBtn:
                 dismiss();
                 break;
-            case R.id.saveServiceChangesBtn:
-                //Check if user has changed the values, if yes then update DB
-
-
-                try{
-                    final Double newRate = Double.parseDouble(hourlyRateTextView.getText().toString());
-
-                    if(!(hourlyRateTextView.getText().toString().equals(hourlyRate))){
-                        database.child("services").addListenerForSingleValueEvent(new ValueEventListener() {
-                            @Override
-                            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                                for(DataSnapshot snapshot: dataSnapshot.getChildren()){
-                                    Service service = snapshot.getValue(Service.class);
-                                    //Update value in the database
-                                    if(service.getType().equals(serviceTextView.getText().toString())){
-                                        DatabaseReference db = snapshot.getRef().child("hourlyRate");
-                                        db.setValue(newRate);
-                                        dismiss();
-                                    }
-                                }
-
-
-
-                            }
-
-                            @Override
-                            public void onCancelled(@NonNull DatabaseError databaseError) {
-
-                            }
-                        });
-
-                    }
-
-                }catch (NumberFormatException e){
-                    hourlyRateTextView.setError("Invalid hourly rate");
-                    hourlyRateTextView.requestFocus();
-                }
-
-
-                break;
-
 
 
             case R.id.deleteServiceButton:
