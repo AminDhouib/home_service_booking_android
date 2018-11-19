@@ -183,10 +183,15 @@ public class EditAvailabilityDialog extends DialogFragment implements View.OnCli
                 if (stateSpinner.getSelectedItem().toString().equals("Closed")) {
                     updateDB();
                 } else {
+                    boolean valid = verifyTime(startTimeTextView.getText().toString(),endTimeTextView.getText().toString());
                     //Call verify info for the dates if open
-                    if (verifyTime(startTimeTextView.getText().toString(),endTimeTextView.getText().toString())) {
+                    if (valid) {
                         //update the DB
                         updateDB();
+
+                    } else {
+                        endTimeTextView.setError("Invalid time range");
+                        endTimeTextView.requestFocus();
                     }
 
                 }
@@ -206,14 +211,12 @@ public class EditAvailabilityDialog extends DialogFragment implements View.OnCli
             endMinutes = Integer.parseInt(endTime.substring(3,5));
 
             if (endHour < startHour || (endMinutes < startMinutes && endHour == startHour) || (endMinutes == startMinutes && endHour == startHour)) {
-                endTimeTextView.setError("Invalid time range");
-                endTimeTextView.requestFocus();
+
                 return false;
             }
 
         } catch (NumberFormatException e) {
-            endTimeTextView.setError("Invalid input");
-            endTimeTextView.requestFocus();
+
             return false;
         }
         return true;
