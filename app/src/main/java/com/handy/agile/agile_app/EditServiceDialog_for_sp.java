@@ -54,12 +54,12 @@ public class EditServiceDialog_for_sp extends DialogFragment implements View.OnC
 
         //Retrive arguments passed from activity, these are the service name and price
         Bundle args = getArguments();
-        hourlyRateTextView = v.findViewById(R.id.servicePrice);
+
         serviceTextView = v.findViewById(R.id.serviceName);
         service = args.getString("Service");
         serviceTextView.setText(service);
         hourlyRate = args.getString("HourlyRate");
-        hourlyRateTextView.setText(hourlyRate);
+
 
 
         return v;
