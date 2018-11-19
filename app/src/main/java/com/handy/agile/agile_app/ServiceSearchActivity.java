@@ -166,8 +166,12 @@ public void checkService(final Service service){
 
             }
         });
-}
 
+
+}
+    public User getUser(){
+        return user;
+    }
 
 
 
