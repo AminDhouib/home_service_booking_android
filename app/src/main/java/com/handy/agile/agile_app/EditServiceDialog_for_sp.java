@@ -1,9 +1,11 @@
 package com.handy.agile.agile_app;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.app.DialogFragment;
+import android.support.v7.app.AppCompatActivity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -30,7 +32,7 @@ public class EditServiceDialog_for_sp extends DialogFragment implements View.OnC
     private EditText hourlyRateTextView;
     private String service;
     private String hourlyRate;
-
+    private String useremail;
 
 
 
@@ -38,7 +40,9 @@ public class EditServiceDialog_for_sp extends DialogFragment implements View.OnC
     public void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
 
+
     }
+
 
     @Override
     public View onCreateView(LayoutInflater layoutInflater, ViewGroup viewGroup, Bundle savedInstanceState) {
@@ -57,6 +61,7 @@ public class EditServiceDialog_for_sp extends DialogFragment implements View.OnC
 
         serviceTextView = v.findViewById(R.id.serviceName);
         service = args.getString("Service");
+        useremail = ((ServiceProviderAccountActivity)getActivity()).getUser().getEmail();
         serviceTextView.setText(service);
         hourlyRate = args.getString("HourlyRate");
 
@@ -77,18 +82,33 @@ public class EditServiceDialog_for_sp extends DialogFragment implements View.OnC
                 break;
 
 
+
+
             case R.id.deleteServiceButton:
                 //Remove the service from the db
-                database.child("services").addListenerForSingleValueEvent(new ValueEventListener() {
+                database.child("serviceProviders").addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                        for(DataSnapshot snapshot: dataSnapshot.getChildren()){
-                            Service service = snapshot.getValue(Service.class);
-                            if(service.getType().equals(serviceTextView.getText().toString())){
-                                snapshot.getRef().removeValue();
+                        for(final DataSnapshot snapshot : dataSnapshot.getChildren()){
+                            //iterate through providers of service
+                            String serviceSearch = snapshot.getKey();
+                            for(final DataSnapshot snapshot1 : snapshot.getChildren()){
+                                User userSearch = snapshot1.getValue(User.class);
+                                //If the user email is the same as the email of service provider in Db, then the user is
+                                //providing this service to we will get the info of this service to display
+                                if(userSearch.getEmail().equals(useremail) && serviceSearch.equals(service) ){
+                                    snapshot1.getRef().removeValue();
+
+
+
+                                }
                             }
                         }
+
+
+
                     }
+
 
                     @Override
                     public void onCancelled(@NonNull DatabaseError databaseError) {

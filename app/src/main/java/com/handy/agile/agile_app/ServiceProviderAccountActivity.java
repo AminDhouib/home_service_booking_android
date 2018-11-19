@@ -48,6 +48,7 @@ public class ServiceProviderAccountActivity extends AppCompatActivity {
         startActivity(getIntent());
     }
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -132,7 +133,8 @@ public class ServiceProviderAccountActivity extends AppCompatActivity {
                 dialog.show(getSupportFragmentManager(), "EditUser");
 
                 //now refresh the activity
-
+//                finish();
+//                startActivity(getIntent());
             }
         });
 
@@ -149,6 +151,10 @@ public class ServiceProviderAccountActivity extends AppCompatActivity {
 
 
 
+    }
+
+    public User getUser(){
+        return user;
     }
 
     //Gets the info for a particular service from DB and displays it

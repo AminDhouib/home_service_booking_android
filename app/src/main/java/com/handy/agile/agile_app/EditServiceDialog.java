@@ -35,8 +35,6 @@ public class EditServiceDialog extends DialogFragment implements View.OnClickLis
     private String hourlyRate;
 
 
-
-
     @Override
     public void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
@@ -99,6 +97,8 @@ public class EditServiceDialog extends DialogFragment implements View.OnClickLis
                                         db.setValue(newRate);
                                         dismiss();
                                     }
+
+
                                 }
 
 
