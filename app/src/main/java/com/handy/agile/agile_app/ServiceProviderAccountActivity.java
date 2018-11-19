@@ -12,6 +12,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -21,6 +22,7 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 public class ServiceProviderAccountActivity extends AppCompatActivity {
 
@@ -133,8 +135,6 @@ public class ServiceProviderAccountActivity extends AppCompatActivity {
                 dialog.show(getSupportFragmentManager(), "EditUser");
 
                 //now refresh the activity
-//                finish();
-//                startActivity(getIntent());
             }
         });
 

@@ -10,12 +10,13 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
+import android.content.Intent;
 
 import java.text.NumberFormat;
 import java.util.List;
 import java.util.Locale;
 
-public class ServiceListForDeleting extends ArrayAdapter<Service> {
+public class ServiceListForDeleting extends ArrayAdapter<Service>{
 
     private Activity context;
     private List<Service> services;
@@ -29,9 +30,10 @@ public class ServiceListForDeleting extends ArrayAdapter<Service> {
     }
 
 
+
     @NonNull
     @Override
-    public View getView(int position, View convertView, ViewGroup parent) {
+    public View getView(int position, final View convertView, ViewGroup parent) {
         LayoutInflater inflater = context.getLayoutInflater();
         View listViewItem = inflater.inflate(R.layout.service_list_for_sp, null, true);
 
@@ -69,6 +71,8 @@ public class ServiceListForDeleting extends ArrayAdapter<Service> {
                 //Show the Dialog
                 FragmentActivity activity = (FragmentActivity) context;
                 dialog.show(activity.getSupportFragmentManager(), "EditService");
+
+
             }
         });
 

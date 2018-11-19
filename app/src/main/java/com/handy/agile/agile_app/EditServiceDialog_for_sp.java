@@ -39,8 +39,6 @@ public class EditServiceDialog_for_sp extends DialogFragment implements View.OnC
     @Override
     public void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
-
-
     }
 
 
@@ -117,6 +115,17 @@ public class EditServiceDialog_for_sp extends DialogFragment implements View.OnC
                 });
 
                 dismiss();
+
+                try {
+                    Thread.sleep(500);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+
+                getActivity().recreate();
+               // getActivity().finish();
+                //startActivity(getActivity().getIntent());
+
                 break;
         }
     }
