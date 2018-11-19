@@ -21,13 +21,13 @@ public class ServiceProvider extends User {
 
         daysOfWeek = new ArrayList<>();
 
-        daysOfWeek.add(new DayEntry(false, "monday"));
-        daysOfWeek.add(new DayEntry(false, "tuesday"));
-        daysOfWeek.add(new DayEntry(false, "wednesday"));
-        daysOfWeek.add(new DayEntry(false, "thursday"));
-        daysOfWeek.add(new DayEntry(false, "friday"));
-        daysOfWeek.add(new DayEntry(false, "saturday"));
-        daysOfWeek.add(new DayEntry(false, "sunday"));
+        daysOfWeek.add(new DayEntry(false, "monday",0));
+        daysOfWeek.add(new DayEntry(false, "tuesday",1));
+        daysOfWeek.add(new DayEntry(false, "wednesday",2));
+        daysOfWeek.add(new DayEntry(false, "thursday",3));
+        daysOfWeek.add(new DayEntry(false, "friday",4));
+        daysOfWeek.add(new DayEntry(false, "saturday",5));
+        daysOfWeek.add(new DayEntry(false, "sunday",6));
 
 
 
@@ -35,15 +35,37 @@ public class ServiceProvider extends User {
 
 
 
-    public ServiceProvider(){}
+    public ServiceProvider(){
+        daysOfWeek = new ArrayList<>();
+
+        daysOfWeek.add(new DayEntry(false, "monday",0));
+        daysOfWeek.add(new DayEntry(false, "tuesday",1));
+        daysOfWeek.add(new DayEntry(false, "wednesday",2));
+        daysOfWeek.add(new DayEntry(false, "thursday",3));
+        daysOfWeek.add(new DayEntry(false, "friday",4));
+        daysOfWeek.add(new DayEntry(false, "saturday",5));
+        daysOfWeek.add(new DayEntry(false, "sunday",6));
+    }
 
     public DayEntry getDay(int index) {
         return daysOfWeek.get(index);
     }
 
+//    public int getIndexOfDay(String day) {
+//       DayEntry d;
+//       for (int i = 0; i < daysOfWeek.size(); i++) {
+//           d = daysOfWeek.get(i);
+//           if (d.getDay().equals(day)) {
+//               return i;
+//           }
+//       }
+//       return -1;
+//    }
+
     public List<DayEntry> getDaysOfWeek() {
         return daysOfWeek;
     }
+
 
     //
 //    public DayEntry getMonday() { return monday;}
