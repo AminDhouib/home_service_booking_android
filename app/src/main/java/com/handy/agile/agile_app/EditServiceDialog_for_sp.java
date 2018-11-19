@@ -116,15 +116,16 @@ public class EditServiceDialog_for_sp extends DialogFragment implements View.OnC
 
                 dismiss();
 
+                //Performs a delay of 500 (NEEDED TO ALLOW TIME TO SYNC FROM FIREBASE FROM DELETION)
                 try {
                     Thread.sleep(500);
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
 
+                //This is needed to restart the activity.
                 getActivity().recreate();
-               // getActivity().finish();
-                //startActivity(getActivity().getIntent());
+
 
                 break;
         }
