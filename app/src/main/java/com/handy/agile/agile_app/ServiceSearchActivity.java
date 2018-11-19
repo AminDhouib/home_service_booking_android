@@ -21,6 +21,7 @@ import android.widget.TextView;
 import android.widget.TimePicker;
 import android.widget.Toast;
 
+import android.content.DialogInterface;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -55,9 +56,6 @@ public class ServiceSearchActivity extends AppCompatActivity {
     Service service;
 
     TimePickerDialog timePickerDialog;
-
-
-
 
 
     @Override

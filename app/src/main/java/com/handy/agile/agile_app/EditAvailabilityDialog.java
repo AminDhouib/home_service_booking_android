@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.DialogFragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,9 +17,18 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.TimePicker;
+import android.widget.Toast;
 
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 public class EditAvailabilityDialog extends DialogFragment implements View.OnClickListener {
 
@@ -33,7 +43,7 @@ public class EditAvailabilityDialog extends DialogFragment implements View.OnCli
     private TextView endTimeTextView;
 
 
-    private DatabaseReference database;
+    private DatabaseReference databaseDays;
 
     private DayEntry dayEntry;
     private User user;
@@ -48,7 +58,7 @@ public class EditAvailabilityDialog extends DialogFragment implements View.OnCli
 
         View v = layoutInflater.inflate(R.layout.editavailability_dialog,viewGroup, false);
 
-        database = FirebaseDatabase.getInstance().getReference();
+
         cancelBtn = v.findViewById(R.id.cancelBtn);
         saveBtn = v.findViewById(R.id.saveBtn);
         dayTextView = v.findViewById(R.id.dayTextView);
@@ -61,8 +71,10 @@ public class EditAvailabilityDialog extends DialogFragment implements View.OnCli
         //Retrieve arguments passed from activity, that is the user
         Bundle args = getArguments();
         dayEntry = (DayEntry)args.getSerializable("AvailabilityInfo");
-        user = (User)args.getSerializable("UserInfo");
+        user = (User) args.getSerializable("UserInfo");
 
+
+        databaseDays = FirebaseDatabase.getInstance().getReference("users").child(user.getId()).child("daysOfWeek");
         dayTextView.setText("Edit Availability On "+dayEntry.getDay());
 
 
@@ -167,28 +179,80 @@ public class EditAvailabilityDialog extends DialogFragment implements View.OnCli
                 break;
 
             case R.id.saveBtn:
-                //Call verify info for the dates
-                verifyTime(startTimeTextView.getText().toString(),endTimeTextView.getText().toString());
 
-                //Add to the DB
+                if (stateSpinner.getSelectedItem().toString().equals("Closed")) {
+                    updateDB();
+                } else {
+                    boolean valid = verifyTime(startTimeTextView.getText().toString(),endTimeTextView.getText().toString());
+                    //Call verify info for the dates if open
+                    if (valid) {
+                        //update the DB
+                        updateDB();
+
+                    } else {
+                        endTimeTextView.setError("Invalid time range");
+                        endTimeTextView.requestFocus();
+                    }
+
+                }
+                break;
+
         }
 
     }
 
     public boolean verifyTime(String startTime, String endTime) {
-        int startHour,startMinutes,endHour, endMinutes;
-        startHour = Integer.parseInt(startTime.substring(0,2));
-        startMinutes = Integer.parseInt(startTime.substring(3,5));
+        try {
+            int startHour,startMinutes,endHour, endMinutes;
+            startHour = Integer.parseInt(startTime.substring(0,2));
+            startMinutes = Integer.parseInt(startTime.substring(3,5));
 
-        endHour = Integer.parseInt(endTime.substring(0,2));
-        endMinutes = Integer.parseInt(endTime.substring(3,5));
+            endHour = Integer.parseInt(endTime.substring(0,2));
+            endMinutes = Integer.parseInt(endTime.substring(3,5));
 
-        if (endHour < startHour || (endMinutes < startMinutes && endHour == startHour) || (endMinutes == startMinutes && endHour == startHour)) {
-            endTimeTextView.setError("Invalid time range");
-            endTimeTextView.requestFocus();
+            if (endHour < startHour || (endMinutes < startMinutes && endHour == startHour) || (endMinutes == startMinutes && endHour == startHour)) {
+
+                return false;
+            }
+
+        } catch (NumberFormatException e) {
+
             return false;
         }
-
         return true;
+    }
+
+    public void updateDB() {
+        //Get the day changed
+
+        Log.d("MyDay",dayEntry.getDay());
+
+        String status = stateSpinner.getSelectedItem().toString();
+        String startTime = startTimeTextView.getText().toString();
+        String endTime = endTimeTextView.getText().toString();
+
+        //Create a service provider to get the index of the day selected
+        int indexOfDaySelected = dayEntry.getId();
+
+        String key = Integer.toString(indexOfDaySelected);
+        Log.d("index",key);
+
+        //DB now points at the specific day to be changed
+        DatabaseReference databaseDay = databaseDays.child(key);
+
+        if (status.equals("Open")) {
+            dayEntry.setOpen(true);
+            dayEntry.setStartTime(startTime);
+            dayEntry.setEndTime(endTime);
+        } else {
+            dayEntry.setOpen(false);
+            dayEntry.setStartTime(null);
+            dayEntry.setEndTime(null);
+        }
+        databaseDay.setValue(dayEntry);
+        dismiss();
+
+        Toast.makeText(getContext(),"Availability updated", Toast.LENGTH_LONG).show();
+
     }
 }
