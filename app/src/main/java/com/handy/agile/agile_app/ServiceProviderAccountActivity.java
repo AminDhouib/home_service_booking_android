@@ -93,7 +93,7 @@ public class ServiceProviderAccountActivity extends AppCompatActivity {
                     }
                 }
 
-                  ServiceListForAdding adapter = new ServiceListForAdding(ServiceProviderAccountActivity.this, yourServices);
+                  ServiceListForDeleting adapter = new ServiceListForDeleting(ServiceProviderAccountActivity.this, yourServices);
                   listViewYourServices.setAdapter(adapter);
 
 
