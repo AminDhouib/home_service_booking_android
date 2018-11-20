@@ -8,26 +8,22 @@ import java.util.List;
 
 public class ServiceProvider extends User {
     private List<DayEntry> daysOfWeek;
-//    private DayEntry monday;
-//    private DayEntry tuesday;
-//    private DayEntry wednesday;
-//    private DayEntry thursday;
-//    private DayEntry friday;
-//    private DayEntry saturday;
-//    private DayEntry sunday;
+    private String companyName;
+    private String description;
+    private boolean licensed;
 
     public ServiceProvider(String name, String lastName, String email, String password, String phoneNumber, String address, String role, String id){
         super(name, lastName, email, password, phoneNumber, address, role,id);
 
         daysOfWeek = new ArrayList<>();
 
-        daysOfWeek.add(new DayEntry(false, "monday",0));
-        daysOfWeek.add(new DayEntry(false, "tuesday",1));
-        daysOfWeek.add(new DayEntry(false, "wednesday",2));
-        daysOfWeek.add(new DayEntry(false, "thursday",3));
-        daysOfWeek.add(new DayEntry(false, "friday",4));
-        daysOfWeek.add(new DayEntry(false, "saturday",5));
-        daysOfWeek.add(new DayEntry(false, "sunday",6));
+        daysOfWeek.add(new DayEntry(false, "Monday",0));
+        daysOfWeek.add(new DayEntry(false, "Tuesday",1));
+        daysOfWeek.add(new DayEntry(false, "Wednesday",2));
+        daysOfWeek.add(new DayEntry(false, "Thursday",3));
+        daysOfWeek.add(new DayEntry(false, "Friday",4));
+        daysOfWeek.add(new DayEntry(false, "Saturday",5));
+        daysOfWeek.add(new DayEntry(false, "Sunday",6));
 
 
 
@@ -38,49 +34,28 @@ public class ServiceProvider extends User {
     public ServiceProvider(){
         daysOfWeek = new ArrayList<>();
 
-        daysOfWeek.add(new DayEntry(false, "monday",0));
-        daysOfWeek.add(new DayEntry(false, "tuesday",1));
-        daysOfWeek.add(new DayEntry(false, "wednesday",2));
-        daysOfWeek.add(new DayEntry(false, "thursday",3));
-        daysOfWeek.add(new DayEntry(false, "friday",4));
-        daysOfWeek.add(new DayEntry(false, "saturday",5));
-        daysOfWeek.add(new DayEntry(false, "sunday",6));
+        daysOfWeek.add(new DayEntry(false, "Monday",0));
+        daysOfWeek.add(new DayEntry(false, "Tuesday",1));
+        daysOfWeek.add(new DayEntry(false, "Wednesday",2));
+        daysOfWeek.add(new DayEntry(false, "Thursday",3));
+        daysOfWeek.add(new DayEntry(false, "Friday",4));
+        daysOfWeek.add(new DayEntry(false, "Saturday",5));
+        daysOfWeek.add(new DayEntry(false, "Sunday",6));
     }
 
-    public DayEntry getDay(int index) {
-        return daysOfWeek.get(index);
-    }
-
-//    public int getIndexOfDay(String day) {
-//       DayEntry d;
-//       for (int i = 0; i < daysOfWeek.size(); i++) {
-//           d = daysOfWeek.get(i);
-//           if (d.getDay().equals(day)) {
-//               return i;
-//           }
-//       }
-//       return -1;
-//    }
 
     public List<DayEntry> getDaysOfWeek() {
         return daysOfWeek;
     }
 
+    public String getCompanyName() { return companyName;}
+    public void setCompanyName(String companyName) {this.companyName = companyName;}
 
-    //
-//    public DayEntry getMonday() { return monday;}
-//
-//    public DayEntry getTuesday() { return tuesday;}
-//
-//    public DayEntry getWednesday() { return wednesday;}
-//
-//    public DayEntry getThursday() { return thursday;}
-//
-//    public DayEntry getFriday() { return friday;}
-//
-//    public DayEntry getSaturday() { return saturday;}
-//
-//    public DayEntry getSunday() { return sunday;}
+    public boolean isLicensed() { return licensed;}
+    public void setLicensed(boolean licensed) { this.licensed = licensed;}
+
+    public String getDescription() {return description;}
+    public void setDescription(String description) { this.description = description;}
 
 
 }
