@@ -161,6 +161,13 @@ public class EditAccountActivity extends AppCompatActivity {
             return false;
         }
 
+        //validate password
+        if (password.length() < 6) {
+            txtPassword.setError("Minimum length of password should be 6");
+            txtPassword.requestFocus();
+            return false;
+        }
+
         //if phoneNumber is empty
         if (phoneNumber.isEmpty()) {
             txtPhone.setError("Phone number is required");
