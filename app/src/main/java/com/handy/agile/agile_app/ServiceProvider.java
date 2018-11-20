@@ -32,7 +32,9 @@ public class ServiceProvider extends User {
     }
 
     public ServiceProvider(User user) {
-        super(user.getName(),user.getLastName(),user.getEmail(),user.getPassword(),user.getPhoneNumber(),user.getAddress(),user.getRole(),user.getId());
+        super(user.name, user.lastName, user.email, user.password, user.phoneNumber, user.address, user.role, user.id);
+
+        daysOfWeek = new ArrayList<>();
 
         daysOfWeek.add(new DayEntry(false, "Monday",0));
         daysOfWeek.add(new DayEntry(false, "Tuesday",1));

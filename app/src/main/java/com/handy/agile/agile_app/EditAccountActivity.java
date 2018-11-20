@@ -44,6 +44,8 @@ public class EditAccountActivity extends AppCompatActivity {
         user = (User)intent.getSerializableExtra("ProfileInfo");
         setContentView(R.layout.activity_edit_account);
 
+        serv = new ServiceProvider(user);
+
         databaseServiceProvider = FirebaseDatabase.getInstance().getReference("user").child(user.getId());
 
 

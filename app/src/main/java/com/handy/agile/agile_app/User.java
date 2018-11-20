@@ -5,21 +5,21 @@ import java.io.Serializable;
 
 public class User implements Serializable {
 
-    private String name;
+    protected String name;
 
-    private String lastName;
+    protected String lastName;
 
-    private String email;
+    protected String email;
 
-    private String password;
+    protected String password;
 
-    private String phoneNumber;
+    protected String phoneNumber;
 
-    private String address;
+    protected String address;
 
-    private String role;
+    protected String role;
 
-    private String id;
+    protected String id;
 
     public User(String name, String lastName,String email, String password, String phoneNumber, String address, String role, String id){
         this.name = name;
