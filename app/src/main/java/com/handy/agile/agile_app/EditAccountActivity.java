@@ -26,6 +26,7 @@ public class EditAccountActivity extends AppCompatActivity {
     private Button btnSave;
 
     private User user;
+
     private DatabaseReference databaseServiceProvider;
 
     @Override
@@ -34,6 +35,9 @@ public class EditAccountActivity extends AppCompatActivity {
         Intent intent = getIntent();
         user = (User)intent.getSerializableExtra("ProfileInfo");
         setContentView(R.layout.activity_edit_account);
+
+        databaseServiceProvider = FirebaseDatabase.getInstance().getReference("users").child(user.getId());
+
 
         txtEmail = findViewById(R.id.txtEmail);
         txtEmail.setText(user.getEmail());
@@ -48,12 +52,12 @@ public class EditAccountActivity extends AppCompatActivity {
         txtPassword = findViewById(R.id.txtPassword);
         txtPassword.setText(user.getPassword());
         txtCompany = findViewById(R.id.txtCompanyName);
-//        txtCompany.setText();
+
         txtDescription = findViewById(R.id.txtDescription);
         licenseSpinner = findViewById(R.id.licenseSpinner);
         btnSave = findViewById(R.id.btnSave);
 
-//        databaseServiceProvider = FirebaseDatabase.getInstance().getReference(user.getId()).child()
+
 
 
         //Set a listener on save
