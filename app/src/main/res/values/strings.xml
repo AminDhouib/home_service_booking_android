@@ -22,6 +22,11 @@
         <item>Admin</item>
     </array>
 
+    <array name="license">
+        <item>Not Licensed</item>
+        <item>Licensed</item>
+    </array>
+
     <array name="state">
         <item>Closed</item>
         <item>Open</item>

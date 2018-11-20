@@ -113,30 +113,17 @@ public class ServiceProviderAccountActivity extends AppCompatActivity {
 
 
         editBtn = findViewById(R.id.btnEdit);
-
         editBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //Create new Dialog
-                EditAccountInfo dialog = new EditAccountInfo();
-                Bundle bundle = new Bundle();
+                Intent editIntent = new Intent(ServiceProviderAccountActivity.this, EditAccountActivity.class);
+                editIntent.putExtra("ProfileInfo",user);
+                ServiceProviderAccountActivity.this.startActivity(editIntent);
 
-                dialog.setArguments(bundle);
-
-                bundle.putString("Email", user.getEmail());
-                bundle.putString("FirstName", user.getName());
-                bundle.putString("LastName", user.getLastName());
-                bundle.putString("Password", user.getPassword());
-                bundle.putString("Phone", user.getPhoneNumber());
-                bundle.putString("Address", user.getAddress());
-
-                //Show the Dialog
-                //FragmentActivity activity = (FragmentActivity) ;
-                dialog.show(getSupportFragmentManager(), "EditUser");
-
-                //now refresh the activity
             }
         });
+
+
 
         availBtn = findViewById(R.id.availBtn);
         availBtn.setOnClickListener(new View.OnClickListener() {
