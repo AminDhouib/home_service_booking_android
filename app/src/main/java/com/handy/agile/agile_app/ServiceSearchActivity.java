@@ -135,7 +135,7 @@ public void checkService(final Service service){
                 boolean found = false;
                 for(DataSnapshot snapshot : dataSnapshot.getChildren()) {
                     for (DataSnapshot snapshot1 : snapshot.getChildren()) {
-                        User foundUser = snapshot1.getValue(User.class);
+                        ServiceProvider foundUser = snapshot1.getValue(ServiceProvider.class);
                         //if the key is the same as the sercvice type and the user name
                         // is the same as the user in the db, then the user is already providing this service.
                         if (snapshot.getKey().equals(service.getType()) && foundUser.getName().equals(user.getName())) {

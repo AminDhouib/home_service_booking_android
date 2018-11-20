@@ -6,12 +6,14 @@ import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Patterns;
+import android.view.Gravity;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
@@ -46,6 +48,12 @@ public class EditAccountActivity extends AppCompatActivity {
         user = (User)intent.getSerializableExtra("ProfileInfo");
         setContentView(R.layout.activity_edit_account);
 
+        if(intent.getBooleanExtra("CompleteProfile", false)){
+            Toast toast = Toast.makeText(getApplicationContext(), "Complete Your Profile!", Toast.LENGTH_LONG);
+            toast.setGravity(Gravity.TOP,0,0);
+            toast.show();
+        }
+
 
         txtEmail = findViewById(R.id.txtEmail);
         txtEmail.setText(user.getEmail());
@@ -64,6 +72,8 @@ public class EditAccountActivity extends AppCompatActivity {
         txtDescription = findViewById(R.id.txtDescription);
         txtDescription.setText(user.getDescription());
         licenseSpinner = findViewById(R.id.licenseSpinner);
+
+
 
         if (user.getLicensed().equals("true")) {
             licenseSpinner.setSelection(1);
