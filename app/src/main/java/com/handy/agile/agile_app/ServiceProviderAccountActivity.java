@@ -60,7 +60,7 @@ public class ServiceProviderAccountActivity extends AppCompatActivity {
         setContentView(R.layout.activity_service_provider_account);
         context = this;
         serviceProviderName = findViewById(R.id.serviceProviderName);
-        serviceProviderName.setText("Welcome, "+user.getName());
+        serviceProviderName.setText("  Welcome, "+user.getName());
 
         searchServicesButton = findViewById(R.id.searchServicesButton);
 

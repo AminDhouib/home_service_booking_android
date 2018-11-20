@@ -7,6 +7,17 @@
     tools:context=".ServiceProviderAccountActivity"
     tools:layout_editor_absoluteY="25dp">
 
+    <View
+        android:id="@+id/rectangle_at_the_top2"
+        android:layout_width="0dp"
+        android:layout_height="40dp"
+        android:layout_alignParentTop="true"
+        android:background="#2f409b"
+        android:visibility="visible"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <LinearLayout
         android:id="@+id/linearLayout6"
         android:layout_width="0dp"
@@ -35,46 +46,53 @@
                 android:id="@+id/serviceProviderName"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="TextView" />
+                android:text="TextView"
+                android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+                android:textColor="@color/common_google_signin_btn_text_dark_pressed" />
 
             <TextView
                 android:id="@+id/serviceProviderRole"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="  You are a Service Provider" />
+                android:text="  You are a Service Provider"
+                android:textAppearance="@style/TextAppearance.AppCompat.Caption"
+                android:textColor="@color/common_google_signin_btn_text_dark_default" />
 
         </LinearLayout>
 
         <Button
             android:id="@+id/logOutBtn"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="112dp"
+            android:layout_height="37dp"
             android:text="log out" />
 
     </LinearLayout>
 
     <LinearLayout
         android:id="@+id/linearLayout8"
-        android:layout_width="0dp"
-        android:layout_height="506dp"
+        android:layout_width="381dp"
+        android:layout_height="500dp"
+        android:layout_marginBottom="24dp"
         android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.666"
         app:layout_constraintStart_toStartOf="parent">
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="150dp">
+            android:layout_height="wrap_content">
 
             <Button
                 android:id="@+id/btnEdit"
-                android:layout_width="wrap_content"
+                android:layout_width="151dp"
                 android:layout_height="wrap_content"
-                android:layout_alignTop="@+id/availBtn"
                 android:layout_alignParentStart="true"
                 android:layout_alignParentLeft="true"
-                android:layout_marginStart="39dp"
-                android:layout_marginLeft="39dp"
+                android:layout_alignParentTop="true"
+                android:layout_marginStart="22dp"
+                android:layout_marginLeft="22dp"
+                android:layout_marginTop="1dp"
                 android:text="Edit Account" />
 
             <Button
@@ -84,9 +102,13 @@
                 android:layout_alignParentTop="true"
                 android:layout_alignParentEnd="true"
                 android:layout_alignParentRight="true"
-                android:layout_marginTop="15dp"
-                android:layout_marginEnd="25dp"
-                android:layout_marginRight="25dp"
+                android:layout_marginStart="38dp"
+                android:layout_marginLeft="38dp"
+                android:layout_marginTop="0dp"
+                android:layout_marginEnd="22dp"
+                android:layout_marginRight="22dp"
+                android:layout_toEndOf="@+id/btnEdit"
+                android:layout_toRightOf="@+id/btnEdit"
                 android:text="Edit Availability" />
         </RelativeLayout>
     </LinearLayout>
@@ -105,7 +127,7 @@
         <TextView
             android:id="@+id/textView14"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="43dp"
             android:text="Your Services"
             android:textAlignment="center"
             android:textAppearance="@style/TextAppearance.AppCompat.Large" />
@@ -113,7 +135,7 @@
         <ListView
             android:id="@+id/listViewYourServices"
             android:layout_width="match_parent"
-            android:layout_height="match_parent" />
+            android:layout_height="334dp" />
     </LinearLayout>
 
     <Button
