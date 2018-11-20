@@ -12,8 +12,13 @@ Purpose of the Project: This application allows home owners to connect with serv
 
 ****************************************************************************************
 
+Note: If an admin account already exist please use the following credentials:
+email: admin@admin.com
+password:123456
+
 Features which have currently been developed include: 
 
+Deliverable 1
 (1) Account creation: 
 -One and only one Admin account can be created. 
 -Home owners and service providers can create many accounts.
@@ -33,16 +38,23 @@ Features which have currently been developed include:
 -Admin can log in and see a welcome message and a list of all users in the database.
 -Home owners and service providers can only see a welcome message (for now).
 
+Deliverable 2
+(1) Admin can create, edit, delete services. 
+(2) A service has a name and an hourly rate. 
+
+Deliverable 3 
+(1) A service provider can edit his/her account. He/she has to include their phone number, address, name, last name, and their company name. Description is optional. 
+(2) A service provider may not edit their email. 
+(3) A service provider can enter and edit his/her availability. 
+(4) A service provider can search services added by the admin and add them to his/her account. 
+(5) A service provider may delete services from his/her account. 
+(6) A service provider cannot edit the service name or the rate of the service as that is governed by the admin. 
 ****************************************************************************************
 
 We will add the following features to our android application in future deliverables:
 
-1 - Allow users to search for service providers
+(1) A homeowner can search for a service provider by type of services, time, rating. 
+(2) A homeowner can book a service by selecting a preferred timeslot. 
+(3) A homeowner can rate a service provider by providing a comment and a rate from 1 to 5. 
 
-2 - Users will be able to rate a service and to book one as well
 
-3 - Service providers will add his availabilities. 
-
-4 - Allow Admin to delete, remove or add users
-
-5 - Allow to put a full address for the user (street adress, postal code, City, Province, Country)
