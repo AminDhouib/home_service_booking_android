@@ -100,6 +100,14 @@ public class LoginActivity extends AppCompatActivity {
                             else if (role.equals("service provider")) {
                                 intent = new Intent(LoginActivity.this, ServiceProviderAccountActivity.class);
                                 intent.putExtra("User",user);
+                                user.getName();
+                                if(user.getCompanyName().equals("Not yet specified")){
+                                    intent = new Intent(LoginActivity.this, EditAccountActivity.class);
+                                    intent.putExtra("ProfileInfo", new ServiceProvider(user));
+                                    intent.putExtra("CompleteProfile", true);
+                                    startActivity(intent);
+                                }
+//
                                 LoginActivity.this.startActivity(intent);
                             } else {
                                 intent = new Intent(LoginActivity.this, AdminAccountActivity.class);

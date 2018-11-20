@@ -19,25 +19,43 @@ public class DayEntry implements Serializable {
 
     public DayEntry() {}
 
-    public int getId() { return id;}
+    public int getId() {
+        return id;
+    }
 
-    public void setId(int id) { this.id = id;}
+    public void setId(int id) {
+        this.id = id;
+    }
 
+    public boolean isOpen() {
+        return isOpen;
+    }
 
-    public void setOpen(boolean isOpen) { this.isOpen = isOpen;}
+    public void setOpen(boolean open) {
+        isOpen = open;
+    }
 
-    public boolean isOpen() { return isOpen;}
+    public String getDay() {
+        return day;
+    }
 
-    public void setDay(String day) { this.day = day; }
+    public void setDay(String day) {
+        this.day = day;
+    }
 
-    public String getDay() { return day;}
+    public String getStartTime() {
+        return startTime;
+    }
 
-    public void setStartTime(String startTime) { this.startTime = startTime; }
+    public void setStartTime(String startTime) {
+        this.startTime = startTime;
+    }
 
-    public String getStartTime() { return startTime; }
+    public String getEndTime() {
+        return endTime;
+    }
 
-    public void setEndTime(String endTime) { this.endTime = endTime; }
-
-    public String getEndTime() { return endTime; }
-
+    public void setEndTime(String endTime) {
+        this.endTime = endTime;
+    }
 }
