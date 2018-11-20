@@ -35,7 +35,7 @@ public class EditAccountActivity extends AppCompatActivity {
     private Button btnSave;
 
     private User user;
-    private ServiceProvider serv;
+
 
     private DatabaseReference databaseServiceProvider;
 
@@ -46,78 +46,35 @@ public class EditAccountActivity extends AppCompatActivity {
         user = (User)intent.getSerializableExtra("ProfileInfo");
         setContentView(R.layout.activity_edit_account);
 
-        serv = new ServiceProvider(user);
-
-        databaseServiceProvider = FirebaseDatabase.getInstance().getReference("user").child(user.getId());
-        //So we can capture this value
-        databaseServiceProvider.child("companyName").addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                String companyName = dataSnapshot.getValue(String.class);
-                serv.setCompanyName(companyName);
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-
-            }
-        });
-
-        databaseServiceProvider.child("description").addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                String descrip = dataSnapshot.getValue(String.class);
-                serv.setDescription(descrip);
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-
-            }
-        });
-
-        databaseServiceProvider.child("licensed").addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                Boolean licesend = (Boolean)dataSnapshot.getValue();
-                serv.setLicensed(licesend);
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-
-            }
-        });
-
 
         txtEmail = findViewById(R.id.txtEmail);
-        txtEmail.setText(serv.getEmail());
+        txtEmail.setText(user.getEmail());
         txtFirstName = findViewById(R.id.txtFirstName);
-        txtFirstName.setText(serv.getName());
+        txtFirstName.setText(user.getName());
         txtLastName = findViewById(R.id.txtLastName);
-        txtLastName.setText(serv.getLastName());
+        txtLastName.setText(user.getLastName());
         txtAddress = findViewById(R.id.txtAdress);
-        txtAddress.setText(serv.getAddress());
+        txtAddress.setText(user.getAddress());
         txtPhone = findViewById(R.id.txtPhone);
-        txtPhone.setText(serv.getPhoneNumber());
+        txtPhone.setText(user.getPhoneNumber());
         txtPassword = findViewById(R.id.txtPassword);
-        txtPassword.setText(serv.getPassword());
+        txtPassword.setText(user.getPassword());
         txtCompany = findViewById(R.id.txtCompanyName);
-        txtCompany.setText(serv.getCompanyName());
+        txtCompany.setText(user.getCompanyName());
         txtDescription = findViewById(R.id.txtDescription);
-        txtDescription.setText(serv.getDescription());
+        txtDescription.setText(user.getDescription());
         licenseSpinner = findViewById(R.id.licenseSpinner);
-        if (serv.isLicensed()) {
+
+        if (user.getLicensed().equals("true")) {
             licenseSpinner.setSelection(1);
         } else {
             licenseSpinner.setSelection(0);
         }
-
-
         btnSave = findViewById(R.id.btnSave);
 
 
-
+        databaseServiceProvider = FirebaseDatabase.getInstance().getReference("user").child(user.getId());
+        //So we can capture this value
 
         //Set a listener on save
         btnSave.setOnClickListener(new View.OnClickListener() {

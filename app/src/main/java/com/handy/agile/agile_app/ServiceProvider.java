@@ -10,7 +10,7 @@ public class ServiceProvider extends User {
     private List<DayEntry> daysOfWeek;
     private String companyName;
     private String description;
-    private boolean licensed;
+    private String licensed;
 
     public ServiceProvider(String name, String lastName, String email, String password, String phoneNumber, String address, String role, String id){
         super(name, lastName, email, password, phoneNumber, address, role,id);
@@ -26,6 +26,7 @@ public class ServiceProvider extends User {
         daysOfWeek.add(new DayEntry(false, "Sunday",6));
         companyName = "Not yet specified";
         description = "Enter description";
+        licensed = "false";
 
 
 
@@ -45,6 +46,7 @@ public class ServiceProvider extends User {
         daysOfWeek.add(new DayEntry(false, "Sunday",6));
         companyName = "Not yet specified";
         description = "Enter description";
+        licensed = "false";
 
     }
 
@@ -62,6 +64,7 @@ public class ServiceProvider extends User {
         daysOfWeek.add(new DayEntry(false, "Sunday",6));
         companyName = "Not yet specified";
         description = "Enter description";
+        licensed = "false";
     }
 
 
@@ -73,11 +76,13 @@ public class ServiceProvider extends User {
     public String getCompanyName() { return companyName;}
     public void setCompanyName(String companyName) {this.companyName = companyName;}
 
-    public boolean isLicensed() { return licensed;}
-    public void setLicensed(boolean licensed) { this.licensed = licensed;}
+    public String getLicensed() { return licensed;}
+    public void  setLicensed(String licensed) { this.licensed = licensed;}
 
     public String getDescription() {return description;}
     public void setDescription(String description) { this.description = description;}
+
+
 
 
 }

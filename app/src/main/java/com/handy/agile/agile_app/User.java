@@ -1,6 +1,7 @@
 package com.handy.agile.agile_app;
 
 import java.io.Serializable;
+import java.util.List;
 
 
 public class User implements Serializable {
@@ -20,6 +21,12 @@ public class User implements Serializable {
     protected String role;
 
     protected String id;
+
+    private List<DayEntry> daysOfWeek;
+    private String companyName;
+    private String description;
+    private String licensed;
+
 
     public User(String name, String lastName,String email, String password, String phoneNumber, String address, String role, String id){
         this.name = name;
@@ -86,4 +93,21 @@ public class User implements Serializable {
     public void setId(String id) {
         this.id = id;
     }
+
+    public List<DayEntry> getDaysOfWeek() {
+        return daysOfWeek;
+    }
+    public void setDaysOfWeek(List<DayEntry> daysOfWeek) { this.daysOfWeek = daysOfWeek;}
+
+    public String getCompanyName() { return companyName;}
+    public void setCompanyName(String companyName) {this.companyName = companyName;}
+
+    public String getLicensed() { return licensed;}
+    public void  setLicensed(String licensed) { this.licensed = licensed;}
+
+    public String getDescription() {return description;}
+    public void setDescription(String description) { this.description = description;}
+
+
+
 }
