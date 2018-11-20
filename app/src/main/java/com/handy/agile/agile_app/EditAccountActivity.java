@@ -195,7 +195,7 @@ public class EditAccountActivity extends AppCompatActivity {
         }
 
         //validate name
-        if (!name.toString().matches("[a-zA-Z]+")) {
+        if (!companyName.toString().matches("[a-zA-Z]+")) {
             txtFirstName.setError("Must only contain letters");
             txtFirstName.requestFocus();
             return false;
