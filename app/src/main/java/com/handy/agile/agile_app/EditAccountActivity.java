@@ -5,7 +5,9 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Patterns;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
@@ -47,24 +49,71 @@ public class EditAccountActivity extends AppCompatActivity {
         serv = new ServiceProvider(user);
 
         databaseServiceProvider = FirebaseDatabase.getInstance().getReference("user").child(user.getId());
+        //So we can capture this value
+        databaseServiceProvider.child("companyName").addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                String companyName = dataSnapshot.getValue(String.class);
+                serv.setCompanyName(companyName);
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+
+        databaseServiceProvider.child("description").addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                String descrip = dataSnapshot.getValue(String.class);
+                serv.setDescription(descrip);
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+
+        databaseServiceProvider.child("licensed").addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                Boolean licesend = (Boolean)dataSnapshot.getValue();
+                serv.setLicensed(licesend);
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
 
 
         txtEmail = findViewById(R.id.txtEmail);
-        txtEmail.setText(user.getEmail());
+        txtEmail.setText(serv.getEmail());
         txtFirstName = findViewById(R.id.txtFirstName);
-        txtFirstName.setText(user.getName());
+        txtFirstName.setText(serv.getName());
         txtLastName = findViewById(R.id.txtLastName);
-        txtLastName.setText(user.getLastName());
+        txtLastName.setText(serv.getLastName());
         txtAddress = findViewById(R.id.txtAdress);
-        txtAddress.setText(user.getAddress());
+        txtAddress.setText(serv.getAddress());
         txtPhone = findViewById(R.id.txtPhone);
-        txtPhone.setText(user.getPhoneNumber());
+        txtPhone.setText(serv.getPhoneNumber());
         txtPassword = findViewById(R.id.txtPassword);
-        txtPassword.setText(user.getPassword());
+        txtPassword.setText(serv.getPassword());
         txtCompany = findViewById(R.id.txtCompanyName);
-
+        txtCompany.setText(serv.getCompanyName());
         txtDescription = findViewById(R.id.txtDescription);
+        txtDescription.setText(serv.getDescription());
         licenseSpinner = findViewById(R.id.licenseSpinner);
+        if (serv.isLicensed()) {
+            licenseSpinner.setSelection(1);
+        } else {
+            licenseSpinner.setSelection(0);
+        }
+
+
         btnSave = findViewById(R.id.btnSave);
 
 
@@ -82,9 +131,87 @@ public class EditAccountActivity extends AppCompatActivity {
 
     }
 
-    //Verify the info
+    //We can use this method to keep the user locked in this activity
     public boolean verifyInfo() {
-        return false;
+        String name = txtFirstName.getText().toString();
+        String lastName =txtLastName.getText().toString();
+        String password = txtPassword.getText().toString();
+        String phoneNumber = txtPhone.getText().toString();
+        String address = txtAddress.getText().toString();
+        String companyName = txtCompany.getText().toString();
+
+        //if name is empty
+        if (name.isEmpty()) {
+            txtFirstName.setError("Name is required");
+            txtFirstName.requestFocus();
+            return false;
+        }
+
+        //validate name
+        if (!name.toString().matches("[a-zA-Z]+")) {
+            txtFirstName.setError("Please enter a valid name");
+            txtFirstName.requestFocus();
+            return false;
+        }
+
+        //if lastName is empty
+        if (lastName.isEmpty()) {
+            txtLastName.setError("Last name is required");
+            txtLastName.requestFocus();
+            return false;
+        }
+
+        //validate last name
+        if (!lastName.toString().matches("[a-zA-Z]+")) {
+            txtLastName.setError("Please enter a valid last name");
+            txtLastName.requestFocus();
+            return false;
+        }
+
+
+        //if password is empty
+        if (password.isEmpty()) {
+            txtPassword.setError("Password is required");
+            txtPassword.requestFocus();
+            return false;
+        }
+
+        //if phoneNumber is empty
+        if (phoneNumber.isEmpty()) {
+            txtPhone.setError("Phone number is required");
+            txtPhone.requestFocus();
+            return false;
+        }
+
+        //validate phoneNumber
+        if (!Patterns.PHONE.matcher(phoneNumber).matches()) {
+            txtPhone.setError("Please enter a valid phone number");
+            txtPhone.requestFocus();
+            return false;
+        }
+
+        //if address is empty
+        if (address.isEmpty()) {
+            txtAddress.setError("Address is required");
+            txtAddress.requestFocus();
+            return false;
+        }
+
+        //validate address
+        if (!address.matches("\\d+\\s+([a-zA-Z]+|[a-zA-Z]+\\s[a-zA-Z]+)")) {
+            txtAddress.setError("Please enter a valid address");
+            txtAddress.requestFocus();
+            return false;
+        }
+
+        //validate company name
+        if (companyName.isEmpty()) {
+            txtCompany.setError("Company name is required");
+            txtCompany.requestFocus();
+            return false;
+        }
+
+        return true;
     }
 
 
