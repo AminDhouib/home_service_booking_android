@@ -31,6 +31,21 @@ public class ServiceProvider extends User {
 
     }
 
+    public ServiceProvider(User user) {
+        super(user.getName(),user.getLastName(),user.getEmail(),user.getPassword(),user.getPhoneNumber(),user.getAddress(),user.getRole(),user.getId());
+
+        daysOfWeek.add(new DayEntry(false, "Monday",0));
+        daysOfWeek.add(new DayEntry(false, "Tuesday",1));
+        daysOfWeek.add(new DayEntry(false, "Wednesday",2));
+        daysOfWeek.add(new DayEntry(false, "Thursday",3));
+        daysOfWeek.add(new DayEntry(false, "Friday",4));
+        daysOfWeek.add(new DayEntry(false, "Saturday",5));
+        daysOfWeek.add(new DayEntry(false, "Sunday",6));
+        companyName = "Not yet specified";
+        description = "Enter description";
+
+    }
+
 
 
     public ServiceProvider(){
