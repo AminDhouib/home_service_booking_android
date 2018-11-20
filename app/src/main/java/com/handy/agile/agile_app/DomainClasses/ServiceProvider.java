@@ -1,7 +1,7 @@
-package com.handy.agile.agile_app;
+package com.handy.agile.agile_app.DomainClasses;
 
 
-import com.handy.agile.agile_app.User;
+import com.handy.agile.agile_app.UtilityClasses.DayEntry;
 
 import java.util.ArrayList;
 import java.util.List;

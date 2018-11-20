@@ -20,13 +20,13 @@
         <activity
             android:name=".SignUpActivity"
             android:label="@string/title_activity_sign_up" />
-        <activity android:name=".AdminAccountActivity" />
-        <activity android:name=".servicesActivity" />
-        <activity android:name=".ServiceSearchActivity" />
-        <activity android:name=".HomeOwnerAccountActivity" />
-        <activity android:name=".ServiceProviderAccountActivity" />
-        <activity android:name=".AddAvailibilityActivity" />
-        <activity android:name=".EditAccountActivity"></activity>
+        <activity android:name=".AdminAccountActivities.AdminAccountActivity" />
+        <activity android:name=".AdminAccountActivities.servicesActivity" />
+        <activity android:name=".ServicreProviderAccountActivities.ServiceSearchActivity" />
+        <activity android:name=".HomeOwnerAccountActivities.HomeOwnerAccountActivity" />
+        <activity android:name=".ServicreProviderAccountActivities.ServiceProviderAccountActivity" />
+        <activity android:name=".ServicreProviderAccountActivities.AddAvailibilityActivity" />
+        <activity android:name=".ServicreProviderAccountActivities.EditAccountActivity"></activity>
     </application>
 
 </manifest>

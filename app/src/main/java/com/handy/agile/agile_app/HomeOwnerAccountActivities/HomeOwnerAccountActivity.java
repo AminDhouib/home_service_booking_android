@@ -1,9 +1,12 @@
-package com.handy.agile.agile_app;
+package com.handy.agile.agile_app.HomeOwnerAccountActivities;
 
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.TextView;
+
+import com.handy.agile.agile_app.DomainClasses.User;
+import com.handy.agile.agile_app.R;
 
 public class HomeOwnerAccountActivity extends AppCompatActivity {
 

@@ -1,7 +1,5 @@
-package com.handy.agile.agile_app;
+package com.handy.agile.agile_app.DomainClasses;
 
-
-import com.handy.agile.agile_app.User;
 
 public class HomeOwner extends User {
 

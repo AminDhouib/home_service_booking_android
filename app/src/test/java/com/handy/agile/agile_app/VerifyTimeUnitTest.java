@@ -1,6 +1,6 @@
 package com.handy.agile.agile_app;
 
-import com.handy.agile.agile_app.EditAvailabilityDialog;
+import com.handy.agile.agile_app.DialogBoxes.EditAvailabilityDialog;
 
 import org.junit.Test;
 

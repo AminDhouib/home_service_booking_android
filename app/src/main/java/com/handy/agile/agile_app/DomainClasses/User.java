@@ -1,4 +1,6 @@
-package com.handy.agile.agile_app;
+package com.handy.agile.agile_app.DomainClasses;
+
+import com.handy.agile.agile_app.UtilityClasses.DayEntry;
 
 import java.io.Serializable;
 import java.util.List;

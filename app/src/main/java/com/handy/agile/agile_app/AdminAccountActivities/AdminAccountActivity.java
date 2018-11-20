@@ -1,4 +1,4 @@
-package com.handy.agile.agile_app;
+package com.handy.agile.agile_app.AdminAccountActivities;
 
 import android.content.Intent;
 import android.support.annotation.NonNull;
@@ -14,6 +14,8 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.handy.agile.agile_app.DomainClasses.User;
+import com.handy.agile.agile_app.ListClasses.UserList;
 import com.handy.agile.agile_app.R;
 
 import java.util.ArrayList;

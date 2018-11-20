@@ -1,4 +1,4 @@
-package com.handy.agile.agile_app;
+package com.handy.agile.agile_app.DialogBoxes;
 
 import android.app.Activity;
 import android.os.Bundle;
@@ -16,8 +16,8 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.handy.agile.agile_app.DomainClasses.Service;
 import com.handy.agile.agile_app.R;
-import com.handy.agile.agile_app.Service;
 
 public class EditServiceDialog extends DialogFragment implements View.OnClickListener {
 

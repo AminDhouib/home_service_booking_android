@@ -1,4 +1,4 @@
-package com.handy.agile.agile_app;
+package com.handy.agile.agile_app.DialogBoxes;
 
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -13,6 +13,10 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.handy.agile.agile_app.DomainClasses.Service;
+import com.handy.agile.agile_app.DomainClasses.User;
+import com.handy.agile.agile_app.R;
+import com.handy.agile.agile_app.ServicreProviderAccountActivities.ServiceSearchActivity;
 
 public class AddProvidedServiceDialog extends DialogFragment {
 

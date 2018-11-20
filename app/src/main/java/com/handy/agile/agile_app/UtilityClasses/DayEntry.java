@@ -1,4 +1,4 @@
-package com.handy.agile.agile_app;
+package com.handy.agile.agile_app.UtilityClasses;
 
 import java.io.Serializable;
 

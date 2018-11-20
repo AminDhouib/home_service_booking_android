@@ -1,4 +1,4 @@
-package com.handy.agile.agile_app;
+package com.handy.agile.agile_app.ListClasses;
 
 import android.app.Activity;
 import android.os.Bundle;
@@ -9,6 +9,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
+
+import com.handy.agile.agile_app.DialogBoxes.AddProvidedServiceDialog;
+import com.handy.agile.agile_app.DomainClasses.Service;
+import com.handy.agile.agile_app.R;
 
 import java.text.NumberFormat;
 import java.util.List;
