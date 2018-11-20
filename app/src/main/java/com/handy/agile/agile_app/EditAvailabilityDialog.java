@@ -250,6 +250,7 @@ public class EditAvailabilityDialog extends DialogFragment implements View.OnCli
             dayEntry.setEndTime(null);
         }
         databaseDay.setValue(dayEntry);
+
         dismiss();
 
         Toast.makeText(getContext(),"Availability updated", Toast.LENGTH_LONG).show();

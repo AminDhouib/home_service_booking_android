@@ -19,6 +19,12 @@
             android:text="Please enter your availibility"
             android:textAppearance="@style/TextAppearance.AppCompat.Large" />
 
+        <TextView
+            android:id="@+id/textView21"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="(Long click to edit)" />
+
         <ListView
             android:id="@+id/availabilityListView"
             android:layout_width="match_parent"

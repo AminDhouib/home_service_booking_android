@@ -31,6 +31,7 @@ public class ServiceProviderAccountActivity extends AppCompatActivity {
     Button searchServicesButton;
     Button editBtn;
     Button availBtn;
+    Button logOutBtn;
     ListView listViewYourServices;
 
     List<Service> yourServices;
@@ -62,6 +63,7 @@ public class ServiceProviderAccountActivity extends AppCompatActivity {
         serviceProviderName.setText("Welcome, "+user.getName());
 
         searchServicesButton = findViewById(R.id.searchServicesButton);
+
 
         listViewYourServices = findViewById(R.id.listViewYourServices);
         yourServices = new ArrayList<>();
@@ -113,30 +115,17 @@ public class ServiceProviderAccountActivity extends AppCompatActivity {
 
 
         editBtn = findViewById(R.id.btnEdit);
-
         editBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //Create new Dialog
-                EditAccountInfo dialog = new EditAccountInfo();
-                Bundle bundle = new Bundle();
+                Intent editIntent = new Intent(ServiceProviderAccountActivity.this, EditAccountActivity.class);
+                editIntent.putExtra("ProfileInfo",user);
+                ServiceProviderAccountActivity.this.startActivity(editIntent);
 
-                dialog.setArguments(bundle);
-
-                bundle.putString("Email", user.getEmail());
-                bundle.putString("FirstName", user.getName());
-                bundle.putString("LastName", user.getLastName());
-                bundle.putString("Password", user.getPassword());
-                bundle.putString("Phone", user.getPhoneNumber());
-                bundle.putString("Address", user.getAddress());
-
-                //Show the Dialog
-                //FragmentActivity activity = (FragmentActivity) ;
-                dialog.show(getSupportFragmentManager(), "EditUser");
-
-                //now refresh the activity
             }
         });
+
+
 
         availBtn = findViewById(R.id.availBtn);
         availBtn.setOnClickListener(new View.OnClickListener() {
@@ -145,6 +134,15 @@ public class ServiceProviderAccountActivity extends AppCompatActivity {
                 Intent avail = new Intent(ServiceProviderAccountActivity.this,AddAvailibilityActivity.class);
                 avail.putExtra("UserInfo",user);
                 ServiceProviderAccountActivity.this.startActivity(avail);
+            }
+        });
+
+        logOutBtn = findViewById(R.id.logOutBtn);
+        logOutBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent logoutIntent = new Intent(ServiceProviderAccountActivity.this, LoginActivity.class);
+                ServiceProviderAccountActivity.this.startActivity(logoutIntent);
             }
         });
 
