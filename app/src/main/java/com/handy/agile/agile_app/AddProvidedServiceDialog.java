@@ -38,7 +38,7 @@ public class AddProvidedServiceDialog extends DialogFragment {
             @Override
             public void onClick(View v) {
                 checkService(service);
-                Toast toast = Toast.makeText(getContext(), "Added you as a Service Provider!", Toast.LENGTH_LONG);
+                Toast toast = Toast.makeText(getContext(), "Processing...", Toast.LENGTH_SHORT);
                 toast.show();
                 dismiss();
             }
@@ -75,7 +75,6 @@ public class AddProvidedServiceDialog extends DialogFragment {
                 if (!found) {
                     String key = databaseServiceProvider.child(service.getType()).push().getKey();
                     databaseServiceProvider.child(service.getType()).child(key).setValue(user);
-
                     //Otherwise the user was already a service provider so we will not add them
                 } else {
                     //Display message saying they are already a service provider
