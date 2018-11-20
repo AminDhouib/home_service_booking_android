@@ -101,7 +101,7 @@ public class EditServiceDialog_for_sp extends DialogFragment implements View.OnC
                                     snapshot1.getRef().removeValue().addOnCompleteListener(new OnCompleteListener<Void>() {
                                         @Override
                                         public void onComplete(@NonNull Task<Void> task) {
-
+                                            //waits untill task is compleated, then resets the activity
                                             tempAct.recreate();
                                         }
                                     });

@@ -1,10 +1,12 @@
 package com.handy.agile.agile_app;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.util.Patterns;
 import android.view.Gravity;
 import android.view.View;
@@ -15,6 +17,8 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -22,6 +26,9 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
+
+import java.util.HashMap;
+import java.util.Map;
 
 public class EditAccountActivity extends AppCompatActivity {
 
@@ -53,6 +60,8 @@ public class EditAccountActivity extends AppCompatActivity {
             toast.setGravity(Gravity.TOP,0,0);
             toast.show();
         }
+
+        databaseServiceProvider = FirebaseDatabase.getInstance().getReference().child("users");
 
 
         txtEmail = findViewById(R.id.txtEmail);
@@ -92,6 +101,10 @@ public class EditAccountActivity extends AppCompatActivity {
             public void onClick(View v) {
                 //Verify the info
                 //Add to DB
+                editUsertoDB();
+
+                //getApplicationContext();
+
             }
         });
 
@@ -178,12 +191,75 @@ public class EditAccountActivity extends AppCompatActivity {
             return false;
         }
 
+        //validate name
+        if (!name.toString().matches("[a-zA-Z]+")) {
+            txtFirstName.setError("Must only contain letters");
+            txtFirstName.requestFocus();
+            return false;
+        }
+
         return true;
     }
 
 
-    //Update the info
-    public void updateInfo() {
+    private void editUsertoDB() {
+        //get inputs
+        final String name = txtFirstName.getText().toString().trim().toLowerCase();
+        final String lastName = txtLastName.getText().toString().trim().toLowerCase();
+        final String email = txtEmail.getText().toString().trim().toLowerCase();
+        final String password = txtPassword.getText().toString().trim();
+        final String phoneNumber = txtPhone.getText().toString().trim();
+        final String address = txtAddress.getText().toString().trim().toLowerCase();
+        final String description = txtDescription.getText().toString().trim().toLowerCase();
+        final String companyName = txtCompany.getText().toString().trim().toLowerCase();
+        final String isLicenced = licenseSpinner.getSelectedItem().toString().toLowerCase().trim();
+        Log.d("GREG", "|"+email);
+
+        databaseServiceProvider.orderByChild("email").equalTo(email).addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                //Check if the dataSnapshot contains non-null value, if it does not then the username is available and we will
+                //proceed to checking the user input and add the user to the db
+                if (dataSnapshot.exists()) {
+
+                    //this can probably be optimized, but this works lol
+                    DataSnapshot ds = dataSnapshot.getChildren().iterator().next();
+
+
+
+                    //load data in hash map
+                    Map<String, Object> temp = new HashMap<>();
+                    temp.put("name",name);
+                    temp.put("lastName", lastName);
+                    temp.put("email", email);
+                    temp.put("password",password);
+                    temp.put("phoneNumber", phoneNumber);
+                    temp.put("address", address);
+                    temp.put("description", description);
+                    temp.put("companyName", companyName);
+                    temp.put("licensed", isLicenced);
+
+
+
+                    //update children with hash map
+                    ds.getRef().updateChildren(temp).addOnCompleteListener(new OnCompleteListener<Void>() {
+                        @Override
+                        public void onComplete(@NonNull Task<Void> task) {
+                            //activity.finish();
+                            //activity.startActivity(activity.getIntent());
+                        }
+                    });
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+
 
     }
+
+
 }
