@@ -26,7 +26,7 @@ public class ServiceProvider extends User {
         daysOfWeek.add(new DayEntry(false, "Sunday",6));
         companyName = "Not yet specified";
         description = "Enter description";
-        licensed = "false";
+        licensed = "not licensed";
 
 
 
@@ -46,7 +46,7 @@ public class ServiceProvider extends User {
         daysOfWeek.add(new DayEntry(false, "Sunday",6));
         companyName = "Not yet specified";
         description = "Enter description";
-        licensed = "false";
+        licensed = "not licensed";
 
     }
 
@@ -64,7 +64,7 @@ public class ServiceProvider extends User {
         daysOfWeek.add(new DayEntry(false, "Sunday",6));
         companyName = "Not yet specified";
         description = "Enter description";
-        licensed = "false";
+        licensed = "not licensed";
     }
 
 
