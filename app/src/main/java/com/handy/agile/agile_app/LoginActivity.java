@@ -69,6 +69,8 @@ public class LoginActivity extends AppCompatActivity {
     //Verify username and password entered
     public boolean verifyInfo(String username, final String password) {
 
+        databaseUser = FirebaseDatabase.getInstance().getReference("users");
+
         //Search database for entries with emails equal to the one entered
         Query query = databaseUser.orderByChild("email").equalTo(username);
 

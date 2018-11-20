@@ -1,6 +1,7 @@
 package com.handy.agile.agile_app;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -42,6 +43,7 @@ public class EditAccountActivity extends AppCompatActivity {
     private EditText txtDescription;
     private Spinner licenseSpinner;
     private Button btnSave;
+    Context context;
 
     private User user;
 
@@ -55,8 +57,9 @@ public class EditAccountActivity extends AppCompatActivity {
         user = (User)intent.getSerializableExtra("ProfileInfo");
         setContentView(R.layout.activity_edit_account);
 
+        context = getApplicationContext();
         if(intent.getBooleanExtra("CompleteProfile", false)){
-            Toast toast = Toast.makeText(getApplicationContext(), "Complete Your Profile!", Toast.LENGTH_LONG);
+            Toast toast = Toast.makeText(context, "Complete Your Profile!", Toast.LENGTH_LONG);
             toast.setGravity(Gravity.TOP,0,0);
             toast.show();
         }
@@ -89,10 +92,11 @@ public class EditAccountActivity extends AppCompatActivity {
         } else {
             licenseSpinner.setSelection(0);
         }
+
         btnSave = findViewById(R.id.btnSave);
 
 
-        databaseServiceProvider = FirebaseDatabase.getInstance().getReference("user").child(user.getId());
+        //databaseServiceProvider = FirebaseDatabase.getInstance().getReference("user").child(user.getId());
         //So we can capture this value
 
         //Set a listener on save
@@ -101,9 +105,8 @@ public class EditAccountActivity extends AppCompatActivity {
             public void onClick(View v) {
                 //Verify the info
                 //Add to DB
-                editUsertoDB();
+                editUsertoDB(getApplicationContext());
 
-                //getApplicationContext();
 
             }
         });
@@ -202,7 +205,7 @@ public class EditAccountActivity extends AppCompatActivity {
     }
 
 
-    private void editUsertoDB() {
+    private void editUsertoDB(final Context context) {
         //get inputs
         final String name = txtFirstName.getText().toString().trim().toLowerCase();
         final String lastName = txtLastName.getText().toString().trim().toLowerCase();
@@ -213,8 +216,6 @@ public class EditAccountActivity extends AppCompatActivity {
         final String description = txtDescription.getText().toString().trim().toLowerCase();
         final String companyName = txtCompany.getText().toString().trim().toLowerCase();
         final String isLicenced = licenseSpinner.getSelectedItem().toString().toLowerCase().trim();
-        Log.d("GREG", "|"+email);
-
         databaseServiceProvider.orderByChild("email").equalTo(email).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -247,6 +248,7 @@ public class EditAccountActivity extends AppCompatActivity {
                         public void onComplete(@NonNull Task<Void> task) {
                             //activity.finish();
                             //activity.startActivity(activity.getIntent());
+                            openAccount(email);
                         }
                     });
                 }
@@ -259,7 +261,40 @@ public class EditAccountActivity extends AppCompatActivity {
         });
 
 
+
+
     }
+    public void openAccount(String username) {
 
+       DatabaseReference databaseUser = FirebaseDatabase.getInstance().getReference("users");
 
+        //Search database for entries with emails equal to the one entered
+        Query query = databaseUser.orderByChild("email").equalTo(username);
+
+        query.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+
+                //If the dataSnaphot is not null, then we have found a user with a username matching the one specified
+                if(dataSnapshot.exists()) {
+
+                    //Iterate through found results, there will be only one returned result in this case as all usernames are unique
+                    for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
+
+                        //create a user with the returned data
+                        User user = snapshot.getValue(User.class);
+                        Intent intent = new Intent(context, ServiceProviderAccountActivity.class);
+                        intent.putExtra("User", user);
+                        user.getName();
+                        context.startActivity(intent);
+                    }
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+    }
 }
