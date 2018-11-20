@@ -51,6 +51,7 @@ public class ServiceProvider extends User {
     public List<DayEntry> getDaysOfWeek() {
         return daysOfWeek;
     }
+    public void setDaysOfWeek(List<DayEntry> daysOfWeek) { this.daysOfWeek = daysOfWeek;}
 
     public String getCompanyName() { return companyName;}
     public void setCompanyName(String companyName) {this.companyName = companyName;}
