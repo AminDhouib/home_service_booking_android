@@ -84,7 +84,7 @@ public class EditAccountActivity extends AppCompatActivity {
 
 
 
-        if (user.getLicensed().equals("true")) {
+        if (user.getLicensed().equals("licensed")) {
             licenseSpinner.setSelection(1);
         } else {
             licenseSpinner.setSelection(0);
