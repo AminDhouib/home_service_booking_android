@@ -105,7 +105,9 @@ public class EditAccountActivity extends AppCompatActivity {
             public void onClick(View v) {
                 //Verify the info
                 //Add to DB
-                editUsertoDB(getApplicationContext());
+                if (verifyInfo()) {
+                    editUsertoDB(getApplicationContext());
+                }
 
 
             }
@@ -188,18 +190,12 @@ public class EditAccountActivity extends AppCompatActivity {
         }
 
         //validate company name
-        if (companyName.isEmpty()) {
+        if (companyName.isEmpty() || companyName.toLowerCase().equals("not yet specified")) {
             txtCompany.setError("Company name is required");
             txtCompany.requestFocus();
             return false;
         }
 
-        //validate name
-        if (!companyName.toString().matches("[a-zA-Z]+")) {
-            txtFirstName.setError("Must only contain letters");
-            txtFirstName.requestFocus();
-            return false;
-        }
 
         return true;
     }
