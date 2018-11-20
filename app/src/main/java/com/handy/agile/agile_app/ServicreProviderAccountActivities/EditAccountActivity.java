@@ -284,6 +284,7 @@ public class EditAccountActivity extends AppCompatActivity {
                         //create a user with the returned data
                         User user = snapshot.getValue(User.class);
                         Intent intent = new Intent(context, ServiceProviderAccountActivity.class);
+                        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                         intent.putExtra("User", user);
                         user.getName();
                         context.startActivity(intent);
