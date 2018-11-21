@@ -1,5 +1,6 @@
 package com.handy.agile.agile_app.ServicreProviderAccountActivities;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.support.annotation.NonNull;
@@ -40,7 +41,7 @@ public class EditAccountActivity extends AppCompatActivity {
     private EditText txtDescription;
     private Spinner licenseSpinner;
     private Button btnSave;
-    Context context;
+    Activity context;
 
     private User user;
 
@@ -54,7 +55,8 @@ public class EditAccountActivity extends AppCompatActivity {
         user = (User)intent.getSerializableExtra("ProfileInfo");
         setContentView(R.layout.activity_edit_account);
 
-        context = getApplicationContext();
+        context = this;
+
         if(intent.getBooleanExtra("CompleteProfile", false)){
             Toast toast = Toast.makeText(context, "Complete Your Profile!", Toast.LENGTH_LONG);
             toast.setGravity(Gravity.TOP,0,0);
