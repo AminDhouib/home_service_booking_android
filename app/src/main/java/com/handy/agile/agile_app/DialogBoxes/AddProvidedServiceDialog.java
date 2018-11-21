@@ -68,7 +68,7 @@ public class AddProvidedServiceDialog extends DialogFragment {
                         User foundUser = snapshot1.getValue(User.class);
                         //if the key is the same as the sercvice type and the user name
                         // is the same as the user in the db, then the user is already providing this service.
-                        if (snapshot.getKey().equals(service.getType()) && foundUser.getName().equals(user.getName())) {
+                        if (snapshot.getKey().equals(service.getType()) && foundUser.getId().equals(user.getId())) {
                             //set flag to true
                             found = true;
                         }
