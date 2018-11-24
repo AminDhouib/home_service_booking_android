@@ -14,22 +14,24 @@ import android.widget.TextView;
 import com.handy.agile.agile_app.DialogBoxes.AddProvidedServiceDialog;
 import com.handy.agile.agile_app.DialogBoxes.EditServiceDialog;
 import com.handy.agile.agile_app.DomainClasses.Service;
+import com.handy.agile.agile_app.DomainClasses.ServiceProvider;
+import com.handy.agile.agile_app.DomainClasses.User;
 import com.handy.agile.agile_app.R;
 
 import java.text.NumberFormat;
 import java.util.List;
 import java.util.Locale;
 
-public class ListForTypeSearch extends ArrayAdapter<Service> {
+public class ListForTypeSearch extends ArrayAdapter<ServiceProvider> {
 
 
     private Activity context;
-    private List<Service> services;
+    private List<ServiceProvider> serviceProviders;
     
-    public ListForTypeSearch(Activity context, List<Service> services) {
-        super(context, R.layout.service_list_for_type_search, services);
+    public ListForTypeSearch(Activity context, List<ServiceProvider> serviceProviders) {
+        super(context, R.layout.service_list_for_type_search, serviceProviders);
         this.context = context;
-        this.services = services;
+        this.serviceProviders = serviceProviders;
     }
 
 
@@ -39,8 +41,9 @@ public class ListForTypeSearch extends ArrayAdapter<Service> {
         LayoutInflater inflater = context.getLayoutInflater();
         View listViewItem = inflater.inflate(R.layout.service_list_for_type_search, null, true);
 
-        final TextView textViewServiceType = listViewItem.findViewById(R.id.textViewServiceType);
-        final TextView textViewHourlyRate = listViewItem.findViewById(R.id.textViewHourlyRate);
+        final TextView textViewCompanyNameText = listViewItem.findViewById(R.id.textViewCompanyName);
+        final TextView textViewLicenseText = listViewItem.findViewById(R.id.textViewLicense);
+        final TextView textViewPhoneNumberText = listViewItem.findViewById(R.id.textViewPhoneNumber);
 
 //        listViewItem.findViewById(R.id.addServiceToProvideButton).setOnClickListener(new View.OnClickListener() {
 //            @Override
@@ -56,19 +59,11 @@ public class ListForTypeSearch extends ArrayAdapter<Service> {
 //        });
 
 
-        Service service = services.get(position);
-        textViewServiceType.setText(service.getType());
-//
-//        //Changes here to format AS a currency
-//        Locale locale = Locale.US;
-//        NumberFormat fmt = NumberFormat.getCurrencyInstance(locale);
-//        String currencyText = fmt.format(service.getHourlyRate());
-//
-//
-//        textViewHourlyRate.setText(currencyText);
+        ServiceProvider service = serviceProviders.get(position);
+        textViewCompanyNameText.setText(service.getCompanyName());
 
-        //Set on click listener to the 'add' button of each
-
+        textViewLicenseText.setText(service.getLicensed());
+        textViewPhoneNumberText.setText(service.getPhoneNumber());
 
         return listViewItem;
     }

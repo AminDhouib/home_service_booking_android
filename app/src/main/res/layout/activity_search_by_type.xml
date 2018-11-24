@@ -8,12 +8,12 @@
     tools:layout_editor_absoluteY="25dp">
 
     <EditText
-        android:id="@+id/etEmail2"
+        android:id="@+id/whatToSearchType"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="5dp"
         android:layout_marginLeft="5dp"
-        android:hint="Enter Username"
+        android:hint="Enter Type Of Service"
         android:importantForAutofill="no"
         android:inputType=""
         app:layout_constraintEnd_toStartOf="@+id/applySearchTypeButton"

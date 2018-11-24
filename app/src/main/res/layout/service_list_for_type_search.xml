@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:layout_editor_absoluteY="25dp">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -15,13 +17,19 @@
             android:orientation="vertical">
 
             <TextView
-                android:id="@+id/textViewServiceType"
+                android:id="@+id/textViewCompanyName"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textAppearance="@style/TextAppearance.AppCompat.Large" />
 
             <TextView
-                android:id="@+id/textViewHourlyRate"
+                android:id="@+id/textViewPhoneNumber"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
+
+            <TextView
+                android:id="@+id/textViewLicense"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
@@ -31,7 +39,7 @@
             android:id="@+id/addServiceToProvideButton"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:text="S" />
+            android:text="+" />
 
     </LinearLayout>
 </android.support.constraint.ConstraintLayout>
