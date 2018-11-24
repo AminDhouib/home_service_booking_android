@@ -26,7 +26,10 @@
         <activity android:name=".HomeOwnerAccountActivities.HomeOwnerAccountActivity" />
         <activity android:name=".ServicreProviderAccountActivities.ServiceProviderAccountActivity" />
         <activity android:name=".ServicreProviderAccountActivities.AddAvailibilityActivity" />
-        <activity android:name=".ServicreProviderAccountActivities.EditAccountActivity"></activity>
+        <activity android:name=".ServicreProviderAccountActivities.EditAccountActivity" />
+        <activity android:name=".HomeOwnerAccountActivities.SearchByTypeActivity" />
+        <activity android:name=".HomeOwnerAccountActivities.SearchByTimeActivity" />
+        <activity android:name=".HomeOwnerAccountActivities.SearchByRatingsActivity"></activity>
     </application>
 
 </manifest>

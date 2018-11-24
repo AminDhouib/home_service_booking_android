@@ -21,5 +21,23 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="You are logged in as Home Owner" />
+
+        <Button
+            android:id="@+id/searchTypeButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Search By Type" />
+
+        <Button
+            android:id="@+id/searchTimeButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Search By Time" />
+
+        <Button
+            android:id="@+id/searchRatingButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Search By Ratings" />
     </LinearLayout>
 </android.support.constraint.ConstraintLayout>
