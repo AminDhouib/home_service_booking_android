@@ -6,11 +6,38 @@
     android:layout_height="match_parent"
     tools:context=".HomeOwnerAccountActivities.SearchByTimeActivity">
 
-    <TextView
-        android:id="@+id/textView23"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Time Search"
-        tools:layout_editor_absoluteX="0dp"
-        tools:layout_editor_absoluteY="0dp" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/TextView0"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Time Search"/>
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <EditText
+                android:id="@+id/timeSearchEditText"
+                android:layout_width="280dp"
+                android:layout_height="wrap_content"
+                android:hint="Enter Day ex: Monday"/>
+
+            <Button
+                android:id="@+id/searchBtn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Search" />
+        </LinearLayout>
+
+        <ListView
+            android:id="@+id/searchByTimeListView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"></ListView>
+
+    </LinearLayout>
 </android.support.constraint.ConstraintLayout>

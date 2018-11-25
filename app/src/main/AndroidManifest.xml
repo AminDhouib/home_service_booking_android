@@ -29,7 +29,8 @@
         <activity android:name=".ServicreProviderAccountActivities.EditAccountActivity" />
         <activity android:name=".HomeOwnerAccountActivities.SearchByTypeActivity" />
         <activity android:name=".HomeOwnerAccountActivities.SearchByTimeActivity" />
-        <activity android:name=".HomeOwnerAccountActivities.SearchByRatingsActivity"></activity>
+        <activity android:name=".HomeOwnerAccountActivities.SearchByRatingsActivity" />
+        <activity android:name=".HomeOwnerAccountActivities.SPPublicProfileActivity"></activity>
     </application>
 
 </manifest>

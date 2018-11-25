@@ -11,6 +11,7 @@ public class ServiceProvider extends User {
     private String companyName;
     private String description;
     private String licensed;
+    private int rating;
 
     public ServiceProvider(String name, String lastName, String email, String password, String phoneNumber, String address, String role, String id){
         super(name, lastName, email, password, phoneNumber, address, role,id);
@@ -27,6 +28,7 @@ public class ServiceProvider extends User {
         companyName = "Not yet specified";
         description = "Enter description";
         licensed = "not licensed";
+        rating = 0;
 
 
 
@@ -47,24 +49,13 @@ public class ServiceProvider extends User {
         companyName = "Not yet specified";
         description = "Enter description";
         licensed = "not licensed";
+        rating = 0;
 
     }
 
 
 
     public ServiceProvider(){
-        daysOfWeek = new ArrayList<>();
-
-        daysOfWeek.add(new DayEntry(false, "Monday",0));
-        daysOfWeek.add(new DayEntry(false, "Tuesday",1));
-        daysOfWeek.add(new DayEntry(false, "Wednesday",2));
-        daysOfWeek.add(new DayEntry(false, "Thursday",3));
-        daysOfWeek.add(new DayEntry(false, "Friday",4));
-        daysOfWeek.add(new DayEntry(false, "Saturday",5));
-        daysOfWeek.add(new DayEntry(false, "Sunday",6));
-        companyName = "Not yet specified";
-        description = "Enter description";
-        licensed = "not licensed";
     }
 
 
@@ -83,6 +74,7 @@ public class ServiceProvider extends User {
     public void setDescription(String description) { this.description = description;}
 
 
-
+    public int getRating() { return rating; }
+    public void setRating(int rating) { this.rating = rating; }
 
 }

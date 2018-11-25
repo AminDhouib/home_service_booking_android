@@ -11,6 +11,7 @@ import android.widget.TextView;
 import com.handy.agile.agile_app.DomainClasses.User;
 import com.handy.agile.agile_app.R;
 
+
 import java.util.List;
 
 public class UserList extends ArrayAdapter<User> {
