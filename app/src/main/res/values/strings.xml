@@ -31,4 +31,6 @@
         <item>Closed</item>
         <item>Open</item>
     </array>
+
+    <string name="underlinedText"><u>See All Reviews </u></string>
 </resources>

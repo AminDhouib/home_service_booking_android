@@ -17,6 +17,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.handy.agile.agile_app.DomainClasses.ServiceProvider;
+import com.handy.agile.agile_app.DomainClasses.User;
 import com.handy.agile.agile_app.ListClasses.SPListForTimeSearch;
 import com.handy.agile.agile_app.R;
 import com.handy.agile.agile_app.UtilityClasses.DayEntry;
@@ -32,10 +33,13 @@ public class SearchByTimeActivity extends AppCompatActivity {
     List<ServiceProvider> serviceProviders;
     DatabaseReference databaseReference;
     String searchedQuery;
+    User user;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        Intent intent = getIntent();
+        user = (User) intent.getSerializableExtra("homeOwnerInfo") ;
         setContentView(R.layout.activity_search_by_time);
 
         //initialize textfields
@@ -53,6 +57,7 @@ public class SearchByTimeActivity extends AppCompatActivity {
                 ServiceProvider sp = serviceProviders.get(position);
                 Intent goToProfileIntent = new Intent(SearchByTimeActivity.this,SPPublicProfileActivity.class);
                 goToProfileIntent.putExtra("spInfo",sp);
+                goToProfileIntent.putExtra("homeOwnerStuff",user);
                 SearchByTimeActivity.this.startActivity(goToProfileIntent);
             }
         });

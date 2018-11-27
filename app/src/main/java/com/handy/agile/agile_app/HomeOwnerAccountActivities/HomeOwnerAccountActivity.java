@@ -45,6 +45,7 @@ public class HomeOwnerAccountActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent searchTimeActivityIntent = new Intent(HomeOwnerAccountActivity.this,SearchByTimeActivity.class);
+                searchTimeActivityIntent.putExtra("homeOwnerInfo", user);
                 HomeOwnerAccountActivity.this.startActivity(searchTimeActivityIntent);
             }
         });

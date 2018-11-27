@@ -30,7 +30,8 @@
         <activity android:name=".HomeOwnerAccountActivities.SearchByTypeActivity" />
         <activity android:name=".HomeOwnerAccountActivities.SearchByTimeActivity" />
         <activity android:name=".HomeOwnerAccountActivities.SearchByRatingsActivity" />
-        <activity android:name=".HomeOwnerAccountActivities.SPPublicProfileActivity"></activity>
+        <activity android:name=".HomeOwnerAccountActivities.SPPublicProfileActivity" />
+        <activity android:name=".HomeOwnerAccountActivities.ViewAllRatingsActivity"></activity>
     </application>
 
 </manifest>
