@@ -48,11 +48,26 @@ public class SearchByTypeActivityTest {
     }
 
     @Test
-    public void isANumber() {
+    public void isANumberOne() {
         ViewInteraction editText = onView(withId(R.id.whatToSearchType)).perform(typeText("5"),closeSoftKeyboard());
         onView(withId(R.id.applySearchTypeButton)).perform(click());
         editText.check(matches(hasErrorText("Please enter a type!")));
     }
+
+    @Test
+    public void isANumberTwoAndThen() {
+        ViewInteraction editText = onView(withId(R.id.whatToSearchType)).perform(typeText("5"),closeSoftKeyboard());
+        onView(withId(R.id.applySearchTypeButton)).perform(click());
+        editText.check(matches(hasErrorText("Please enter a type!")));
+    }
+
+    @Test
+    public void containsSpecialCharacter() {
+        ViewInteraction editText = onView(withId(R.id.whatToSearchType)).perform(typeText("painting@"),closeSoftKeyboard());
+        onView(withId(R.id.applySearchTypeButton)).perform(click());
+        editText.check(matches(hasErrorText("Please enter a type!")));
+    }
+
 
 
 }

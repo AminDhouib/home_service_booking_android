@@ -61,8 +61,8 @@ public class SearchByTimeActivityTest {
     }
 
     @Test
-    public void numberEnteredTwo() {
-        ViewInteraction editText = onView(withId(R.id.timeSearchEditText)).perform(typeText("Tuesday2"),closeSoftKeyboard());
+    public void containsASpecialCharacter() {
+        ViewInteraction editText = onView(withId(R.id.timeSearchEditText)).perform(typeText("Tuesday@/"),closeSoftKeyboard());
         onView(withId(R.id.searchBtn)).perform(click());
         editText.check(matches(hasErrorText("Please enter a valid week day")));
     }
