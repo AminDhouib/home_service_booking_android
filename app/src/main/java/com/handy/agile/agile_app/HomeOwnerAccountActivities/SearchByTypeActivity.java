@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -31,6 +32,7 @@ import java.util.List;
 
 public class SearchByTypeActivity extends AppCompatActivity {
 
+    EditText timeSearchEditText;
     ListView listViewServices;
     List<ServiceProvider> serviceProviders;
     DatabaseReference database;
@@ -50,6 +52,7 @@ public class SearchByTypeActivity extends AppCompatActivity {
 
         //Initialize textfiels
         final TextView textview = findViewById(R.id.whatToSearchType);
+        timeSearchEditText = findViewById(R.id.whatToSearchType);
         listViewServices = findViewById(R.id.listViewServices);
         serviceProviders = new ArrayList<>();
         database = FirebaseDatabase.getInstance().getReference("serviceProviders");
@@ -62,10 +65,22 @@ public class SearchByTypeActivity extends AppCompatActivity {
 
                 str = textview.getText().toString();
 
+                try {
+                    //Make first letter lower case
+                    str = str.substring(0,1).toLowerCase()+str.substring(1);
+                    if (!isSearchBoxIsEmpty()) {
+                        displayDataBase();
+                    } else {
+                        timeSearchEditText.setError("Please enter a type!");
+                        timeSearchEditText.requestFocus();
+                    }
 
-                displayDataBase();
+                } catch (Exception e) {
+                    timeSearchEditText.setError("Please enter a type!");
+                    timeSearchEditText.requestFocus();
+                }
 
-
+                str = textview.getText().toString();
 
             }
         });
@@ -105,6 +120,10 @@ public class SearchByTypeActivity extends AppCompatActivity {
 
             }
         });
+    }
+
+    public boolean isSearchBoxIsEmpty() {
+        return (str.equals(""));
     }
 
 
