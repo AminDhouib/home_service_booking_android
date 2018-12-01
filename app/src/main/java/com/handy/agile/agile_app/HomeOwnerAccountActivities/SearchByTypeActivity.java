@@ -5,6 +5,7 @@ import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -17,8 +18,10 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.handy.agile.agile_app.DomainClasses.Service;
 import com.handy.agile.agile_app.DomainClasses.ServiceProvider;
+import com.handy.agile.agile_app.DomainClasses.User;
 import com.handy.agile.agile_app.ListClasses.AvailabilityList;
 import com.handy.agile.agile_app.ListClasses.ListForTypeSearch;
+import com.handy.agile.agile_app.ListClasses.SPListForTimeSearch;
 import com.handy.agile.agile_app.R;
 import com.handy.agile.agile_app.ServicreProviderAccountActivities.AddAvailibilityActivity;
 import com.handy.agile.agile_app.UtilityClasses.DayEntry;
@@ -32,6 +35,7 @@ public class SearchByTypeActivity extends AppCompatActivity {
     List<ServiceProvider> serviceProviders;
     DatabaseReference database;
     String str;
+    User user;
 
 
 
@@ -39,6 +43,10 @@ public class SearchByTypeActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_search_by_type);
+
+        Intent intent = getIntent();
+
+        user = (User)intent.getSerializableExtra("homeOwnerInfo");
 
         //Initialize textfiels
         final TextView textview = findViewById(R.id.whatToSearchType);
@@ -61,6 +69,17 @@ public class SearchByTypeActivity extends AppCompatActivity {
 
             }
         });
+
+       listViewServices.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                ServiceProvider sp = serviceProviders.get(position);
+                Intent goToProfileIntent = new Intent(SearchByTypeActivity.this,SPPublicProfileActivity.class);
+                goToProfileIntent.putExtra("spInfo",sp);
+                goToProfileIntent.putExtra("homeOwnerStuff",user);
+                SearchByTypeActivity.this.startActivity(goToProfileIntent);
+            }
+        });
     }
 
 
@@ -77,8 +96,8 @@ public class SearchByTypeActivity extends AppCompatActivity {
 
                     serviceProviders.add(serviceProvider);
                 }
-                ListForTypeSearch searchTypeAdapter = new ListForTypeSearch(SearchByTypeActivity.this,serviceProviders);
-                listViewServices.setAdapter(searchTypeAdapter);
+                SPListForTimeSearch adapter = new SPListForTimeSearch(SearchByTypeActivity.this, serviceProviders);
+                listViewServices.setAdapter(adapter);
             }
 
             @Override

@@ -70,6 +70,7 @@ public class BookAppointmentDialog extends DialogFragment {
         saveBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                //Validate the time so that is withing the SPs availibility
                 if(validateTime(timepicker.getCurrentHour(), timepicker.getCurrentMinute())){
                     bookAppointment(timepicker.getCurrentHour(), timepicker.getCurrentMinute(), currentDay.getDay());
                     Toast toast = Toast.makeText(getContext(), "Booked Appointment!", Toast.LENGTH_LONG);
@@ -86,6 +87,7 @@ public class BookAppointmentDialog extends DialogFragment {
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(getContext(), R.array.weekdays, android.R.layout.simple_spinner_dropdown_item);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         days.setAdapter(adapter);
+
         days.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
@@ -129,18 +131,22 @@ public class BookAppointmentDialog extends DialogFragment {
         return true;
     }
 
+    //Method to add the appointment to the DB
     public void bookAppointment(int hour, int minute, String day){
         Appointment appointment = new Appointment();
 
+        //Convert hour and minute to time string
         String hourString = "00".substring(Integer.toString(hour).length()) + Integer.toString(hour);
         String minString = "00".substring(Integer.toString(minute).length()) + Integer.toString(minute);
         String ampm = hour >= 12 ? "PM" : "AM";
         String time = hourString +":" + minString + ampm;
-        appointment.setTime(time);
 
+        appointment.setTime(time);
         appointment.setDay(day);
         appointment.setHomeOwner(homeOwner);
         appointment.setServiceProvider(serviceProvider);
+
+        //Add appontment to the DB
         String key = database.push().getKey();
         database.child("Appointments").child(homeOwner.getId()).child(key).setValue(appointment);
     }
