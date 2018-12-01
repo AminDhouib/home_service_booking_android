@@ -32,5 +32,15 @@
         <item>Open</item>
     </array>
 
+    <array name="weekdays">
+        <item>Sunday</item>
+        <item>Monday</item>
+        <item>Tuesday</item>
+        <item>Wednesday</item>
+        <item>Thursday</item>
+        <item>Friday</item>
+        <item>Saturday</item>
+    </array>
+
     <string name="underlinedText"><u>See All Reviews </u></string>
 </resources>

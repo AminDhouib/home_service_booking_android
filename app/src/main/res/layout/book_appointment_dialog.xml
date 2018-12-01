@@ -8,14 +8,30 @@
         android:layout_height="wrap_content"
         android:text="Select Appointment Time"
         android:textAlignment="center"
-        android:textSize="32sp"/>
+        android:textSize="16sp"/>
+    <Spinner
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:id="@+id/daysOfWeekSpinner"></Spinner>
     <TimePicker
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"></TimePicker>
+        android:layout_height="wrap_content"
+        android:id="@+id/bookAppointmentTimepicker"></TimePicker>
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Campany availability:"
-        android:textSize="24sp"/>
+        android:textSize="16sp"
+        android:id="@+id/availabilityTextView"/>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:text="Book Appointment"
+            android:id="@+id/saveAppointmentBtn"/>
+    </RelativeLayout>
 
 </LinearLayout>

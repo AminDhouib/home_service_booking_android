@@ -20,6 +20,7 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.handy.agile.agile_app.DialogBoxes.BookAppointmentDialog;
 import com.handy.agile.agile_app.DomainClasses.Service;
 import com.handy.agile.agile_app.DomainClasses.ServiceProvider;
 import com.handy.agile.agile_app.DomainClasses.User;
@@ -57,6 +58,7 @@ public class SPPublicProfileActivity extends AppCompatActivity {
     private Button saveRatingnButton;
     private TextView seeAllReviewsTextView;
     private RatingBar ratingBar;
+
 
 
     @Override
@@ -164,6 +166,18 @@ public class SPPublicProfileActivity extends AppCompatActivity {
                 Intent viewAllRatingsItent = new Intent(SPPublicProfileActivity.this, ViewAllRatingsActivity.class);
                 viewAllRatingsItent.putExtra("SPInQuestion", serviceProvider);
                 SPPublicProfileActivity.this.startActivity(viewAllRatingsItent);
+            }
+        });
+
+        findViewById(R.id.bookAppointmentBtn).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                BookAppointmentDialog dialog = new BookAppointmentDialog();
+                Bundle bundle = new Bundle();
+                bundle.putSerializable("user", homeOwner);
+                bundle.putSerializable("serviceProvider", serviceProvider);
+                dialog.setArguments(bundle);
+                dialog.show(getSupportFragmentManager(), "Book");
             }
         });
 
