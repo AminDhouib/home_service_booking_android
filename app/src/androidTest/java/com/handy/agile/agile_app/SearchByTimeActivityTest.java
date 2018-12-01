@@ -40,7 +40,7 @@ public class SearchByTimeActivityTest {
     }
 
     @Test
-    public void numberEntered() {
+    public void numberEnteredOne() {
         ViewInteraction editText = onView(withId(R.id.timeSearchEditText)).perform(typeText("Monday1"),closeSoftKeyboard());
         onView(withId(R.id.searchBtn)).perform(click());
         editText.check(matches(hasErrorText("Please enter a valid week day")));
@@ -56,6 +56,13 @@ public class SearchByTimeActivityTest {
     @Test
     public void notADay() {
         ViewInteraction editText = onView(withId(R.id.timeSearchEditText)).perform(typeText("ThisIsNotADay"),closeSoftKeyboard());
+        onView(withId(R.id.searchBtn)).perform(click());
+        editText.check(matches(hasErrorText("Please enter a valid week day")));
+    }
+
+    @Test
+    public void numberEnteredTwo() {
+        ViewInteraction editText = onView(withId(R.id.timeSearchEditText)).perform(typeText("Tuesday2"),closeSoftKeyboard());
         onView(withId(R.id.searchBtn)).perform(click());
         editText.check(matches(hasErrorText("Please enter a valid week day")));
     }

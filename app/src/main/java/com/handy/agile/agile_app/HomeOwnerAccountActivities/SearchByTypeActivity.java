@@ -68,7 +68,7 @@ public class SearchByTypeActivity extends AppCompatActivity {
                 try {
                     //Make first letter lower case
                     str = str.substring(0,1).toLowerCase()+str.substring(1);
-                    if (!isSearchBoxIsEmpty()) {
+                    if (!isSearchBoxInvalid()) {
                         displayDataBase();
                     } else {
                         timeSearchEditText.setError("Please enter a type!");
@@ -122,8 +122,9 @@ public class SearchByTypeActivity extends AppCompatActivity {
         });
     }
 
-    public boolean isSearchBoxIsEmpty() {
-        return (str.equals(""));
+    //checks if empty or there is a number inside.
+    public boolean isSearchBoxInvalid() {
+        return (str.equals("")) || str.matches(".*\\d+.*");
     }
 
 
