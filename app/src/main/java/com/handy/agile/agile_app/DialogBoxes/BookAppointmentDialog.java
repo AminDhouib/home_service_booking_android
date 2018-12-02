@@ -1,7 +1,7 @@
 package com.handy.agile.agile_app.DialogBoxes;
 
+import android.content.Intent;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
 import android.support.v4.app.DialogFragment;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -14,20 +14,16 @@ import android.widget.TextView;
 import android.widget.TimePicker;
 import android.widget.Toast;
 
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
-import com.handy.agile.agile_app.Appointment;
-import com.handy.agile.agile_app.DomainClasses.HomeOwner;
+import com.handy.agile.agile_app.HomeOwnerAccountActivities.SPPublicProfileActivity;
+import com.handy.agile.agile_app.UtilityClasses.Appointment;
 import com.handy.agile.agile_app.UtilityClasses.DayEntry;
 import com.handy.agile.agile_app.R;
 import com.handy.agile.agile_app.DomainClasses.ServiceProvider;
 import com.handy.agile.agile_app.DomainClasses.User;
 
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class BookAppointmentDialog extends DialogFragment {
@@ -75,6 +71,7 @@ public class BookAppointmentDialog extends DialogFragment {
                     bookAppointment(timepicker.getCurrentHour(), timepicker.getCurrentMinute(), currentDay.getDay());
                     Toast toast = Toast.makeText(getContext(), "Booked Appointment!", Toast.LENGTH_LONG);
                     toast.show();
+
                     dismiss();
                 }else{
                     Toast toast = Toast.makeText(getContext(), "unavailable", Toast.LENGTH_LONG);

@@ -2,6 +2,7 @@ package com.handy.agile.agile_app.HomeOwnerAccountActivities;
 
 import android.content.Intent;
 import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -136,6 +137,8 @@ public class SPPublicProfileActivity extends AppCompatActivity {
         saveRatingnButton = findViewById(R.id.saveRatingnButton);
         seeAllReviewsTextView = findViewById(R.id.seeAllReviewsTextView);
 
+
+
         //Set a listener for rating
         saveRatingnButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -182,6 +185,12 @@ public class SPPublicProfileActivity extends AppCompatActivity {
         });
 
 
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        saveRatingnButton.setEnabled(false);
     }
 
 
