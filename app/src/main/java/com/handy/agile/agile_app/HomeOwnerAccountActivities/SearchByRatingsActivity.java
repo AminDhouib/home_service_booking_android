@@ -88,9 +88,9 @@ public class SearchByRatingsActivity extends AppCompatActivity {
                     //create a list to better organize all the reveiws
                     //List<ReveiwStore> lstRS = new LinkedList<ReveiwStore>();
 
-                    ReveiwStore rs = new ReveiwStore();
-                    rs.setID(snapshot.getKey());
                     for (DataSnapshot temp : snapshot.getChildren()) {
+                        ReveiwStore rs = new ReveiwStore();
+                        rs.setID(snapshot.getKey());
                         for (DataSnapshot tempChildren : temp.getChildren()) {
                             switch (tempChildren.getKey()) {
                                 case ("comment"):
@@ -104,13 +104,15 @@ public class SearchByRatingsActivity extends AppCompatActivity {
                                     Log.d("Greg", "General rating "+rs.getScore());
                                     break;
                             }
+
                         }
+
                         if (rs.getScore() == (int) raitingsQuery.getRating()) {
                             addServiceProviderbyID(rs.getID());
                             storedReveiwes.add(rs);
                         }
-
                     }
+
 
 
 
