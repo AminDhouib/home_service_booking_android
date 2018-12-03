@@ -77,8 +77,7 @@ public class AddProvidedServiceDialog extends DialogFragment {
                 }
                 //If the user was not found, add them as a service provider for this service
                 if (!found) {
-                    String key = databaseServiceProvider.child(service.getType()).push().getKey();
-                    databaseServiceProvider.child(service.getType()).child(key).setValue(user);
+                    databaseServiceProvider.child(service.getType()).child(user.getId()).setValue(user);
                     //Otherwise the user was already a service provider so we will not add them
                 } else {
                     //Display message saying they are already a service provider
