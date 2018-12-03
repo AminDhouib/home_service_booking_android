@@ -124,7 +124,7 @@ public class SearchByTypeActivity extends AppCompatActivity {
 
     //checks if empty or there is a number inside.
     public boolean isSearchBoxInvalid() {
-        return (str.equals("")) || str.matches(".*\\d+.*") || (!(str.matches("[a-zA-Z]+")));
+        return (str.equals("")) || str.matches(".*\\d+.*") || str.matches("@") || str.matches("$") || str.matches("&") || str.matches("/")  ;
     }
 
 

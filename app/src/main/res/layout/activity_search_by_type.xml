@@ -13,7 +13,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="5dp"
         android:layout_marginLeft="5dp"
-        android:hint="Enter Type Of Service"
+        android:hint="Enter Service (ex: painting)"
         android:importantForAutofill="no"
         android:inputType=""
         app:layout_constraintEnd_toStartOf="@+id/applySearchTypeButton"
