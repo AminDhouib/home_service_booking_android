@@ -187,12 +187,6 @@ public class SPPublicProfileActivity extends AppCompatActivity {
 
     }
 
-    @Override
-    protected void onStart() {
-        super.onStart();
-        saveRatingnButton.setEnabled(false);
-    }
-
 
     //Get info for a particulate service from DB and display it
     public void getServices(final String key) {

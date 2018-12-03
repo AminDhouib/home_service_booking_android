@@ -17,6 +17,7 @@ import android.widget.Toast;
 
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.handy.agile.agile_app.DBUtility;
 import com.handy.agile.agile_app.UtilityClasses.DayEntry;
 import com.handy.agile.agile_app.DomainClasses.User;
 import com.handy.agile.agile_app.R;
@@ -241,6 +242,9 @@ public class EditAvailabilityDialog extends DialogFragment implements View.OnCli
             dayEntry.setEndTime(null);
         }
         databaseDay.setValue(dayEntry);
+
+        DBUtility db = new DBUtility();
+        db.updateServicePRovider(user.getId());
 
         dismiss();
 
