@@ -1,10 +1,8 @@
 # AGILE
 
-
-#Starts Here
 Build Status
 [![Build Status](https://circleci.com/gh/AminDhouib/AGILE.png?branch=master)](https://circleci.com/gh/AminDhouib/AGILE)
-#Ends Here
+
 
 
 Group Project For SEG 2105.
