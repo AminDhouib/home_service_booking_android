@@ -57,6 +57,7 @@ public class HomeOwnerAccountActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent searchRatingActivityIntent = new Intent(HomeOwnerAccountActivity.this,SearchByRatingsActivity.class);
+                searchRatingActivityIntent.putExtra("homeOwnerInfo", user);
                 HomeOwnerAccountActivity.this.startActivity(searchRatingActivityIntent);
             }
         });

@@ -50,7 +50,7 @@ public class DBUtility {
 
                     for (DataSnapshot snapshot1: snapshot.getChildren()){
 
-                        if (snapshot1.getKey().equals(toUpdate[0].getKey())){
+                        if (snapshot1.equals(toUpdate[0].getKey())){
                             HashMap<String, Object> tempStore = new HashMap<>();
                             for (DataSnapshot copyChildren: toUpdate[0].getChildren()){
                                 tempStore.put(copyChildren.getKey(),copyChildren.getValue());

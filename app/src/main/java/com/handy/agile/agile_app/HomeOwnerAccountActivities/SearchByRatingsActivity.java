@@ -49,7 +49,7 @@ public class SearchByRatingsActivity extends AppCompatActivity {
         searchByRaitingList = findViewById(R.id.lstRaitingsSearch);
         databaseReference = FirebaseDatabase.getInstance().getReference("Ratings"); //Used to access all the raitings
         serviceProviders = new ArrayList<>(); //lists all the service providers that will be displyed
-
+        user = (User) getIntent().getSerializableExtra("homeOwnerInfo") ;
 
         //Raiting bar is begins set to 5 Stars, initial query.
         displayDataBase();
