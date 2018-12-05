@@ -3,6 +3,10 @@
 Build Status
 [![Build Status](https://circleci.com/gh/AminDhouib/AGILE.png?branch=master)](https://circleci.com/gh/AminDhouib/AGILE)
 
+To sign in as a Service Provider: 
+
+UserName: sp@sp.com
+Password: 123456
 
 
 Group Project For SEG 2105.
