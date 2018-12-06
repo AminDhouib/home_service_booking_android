@@ -6,6 +6,10 @@ Build Status
 
 # AGILE
 
+To sign in as admin:
+
+Username: admin@admin.com
+Password: 123456
 To sign in as a Service Provider: 
 
 UserName: sp@sp.com
